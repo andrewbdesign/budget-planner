@@ -1,0 +1,44 @@
+.dashboard {
+  background: linear-gradient(45deg,#6e2bd3,#6e2bd3 0,#b73587 48%,#fe7077 87%,#fe7077 0,#ffc18e);
+}
+
+.overview {
+  color: $white;
+
+  .overview__heading {
+    background: $navy;
+    color: $grey;
+    padding: 20px;
+    border-radius: 5px 5px 0 0;
+    
+    span {
+      color: $white;
+    }
+
+    p {
+      font-size: 1.4rem;
+    }
+  }
+  
+  .overview__body {
+    background: $lightNavy;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+  }
+
+  .overview__user {
+    h2 {
+      margin-bottom: 1.3rem;
+    }
+    p {
+      font-size: 1.3rem;
+      color: $grey;
+    }
+  }
+
+  .overview__container {
+    column-count: 3;
+    width: 100%;
+  }
+}
