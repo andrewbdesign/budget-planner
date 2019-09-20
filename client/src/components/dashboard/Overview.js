@@ -1,55 +1,57 @@
-import React from 'react'
+import React from 'react';
 
 const Overview = () => {
+  const renderOverviewStats = () => {
+    const stats = [
+      {
+        title: 'Target goal',
+        value: '$20,000',
+      },
+      {
+        title: 'Current savings',
+        value: '$11,000',
+      },
+      {
+        title: 'Difference',
+        value: '$9,000',
+      },
+      {
+        title: 'Current balance',
+        value: '$2555.19',
+      },
+      {
+        title: 'Daily limit',
+        value: '$142.91',
+      },
+      {
+        title: 'September Expenses',
+        value: '$20',
+      },
+    ];
+
+    return stats.map(({ title, value }, index) => (
+      <div key={index} className="section">
+        <h2>{title}</h2>
+        <p>{value}</p>
+      </div>
+    ));
+  };
+
   return (
     <div className="overview">
       <div className="overview__heading">
-        <h1>Your <span>Overview</span></h1>
+        <h1>
+          Hello, <span>Andrew</span>.
+        </h1>
         <p>Welcome to your savings overview</p>
       </div>
       <div className="overview__body">
-
-        <div className="overview__user">
-          <h2>Hello, Andrew</h2>
-          <p>Today is Saturday<br/>September 13, 2019</p>
+        <div className="overview__section">
         </div>
-
-        <div className="overview__container">
-          <div className="overview__section">
-            <h3>Target goal</h3>
-            <p>$20,000</p>
-          </div>
-
-          <div className="overview__section">
-            <h3>Current savings</h3>
-            <p>$11,000</p>
-          </div>
-
-          <div className="overview__section">
-            <h3>Difference</h3>
-            <p>$9,000</p>
-          </div>
-
-          <div className="overview__section">
-            <h3>Current balance</h3>
-            <p>$2555.19</p>
-          </div>
-
-          <div className="overview__section">
-            <h3>Daily Limit</h3>
-            <p>$142.91</p>
-          </div>
-
-          <div className="overview__section">
-            <h3>September Expenses</h3>
-            <p>$20</p>
-          </div>
-
-        </div>
+        <div className="overview__stats">{renderOverviewStats()}</div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Overview
+export default Overview;
