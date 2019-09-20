@@ -9,10 +9,8 @@ const Dashboard = () => {
       <div className="container">
         <Overview />
         <div className="dashboard__body">
-          
           <Progress />
           <Summary />
-          
         </div>
       </div>
     </section>

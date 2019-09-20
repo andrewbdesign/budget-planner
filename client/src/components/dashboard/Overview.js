@@ -46,8 +46,7 @@ const Overview = () => {
         <p>Welcome to your savings overview</p>
       </div>
       <div className="overview__body">
-        <div className="overview__section">
-        </div>
+        <div className="overview__section"></div>
         <div className="overview__stats">{renderOverviewStats()}</div>
       </div>
     </div>
