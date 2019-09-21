@@ -27,6 +27,11 @@
   p {
     font-size: 1.3rem;
     color: $grey;
+
+    span {
+      color: $white;
+      text-decoration: underline;
+    }
   }
 }
 
@@ -54,6 +59,10 @@
 .dashboard__body {
   display: flex;
   width: 100%;
+
+  .overview__body {
+    height: 228px;
+  }
 
   .dashboard__chart {
     width: 30%;

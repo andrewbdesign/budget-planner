@@ -9,11 +9,11 @@ const Overview = () => {
       },
       {
         title: 'Current savings',
-        value: '$11,000',
+        value: '$13,000',
       },
       {
         title: 'Difference',
-        value: '$9,000',
+        value: '$7,000',
       },
       {
         title: 'Current balance',

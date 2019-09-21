@@ -10,8 +10,8 @@ const Progress = () => {
         </h1>
       </div>
       <div className="overview__body">
-        <h2>You've saved $9000</h2>
-        <p>You are 70% there.</p>
+        <h2>You've saved $13,000</h2>
+        <p>You are 65% there.</p>
         <ProgressChart />
       </div>
     </div>
