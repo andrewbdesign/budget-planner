@@ -1,19 +1,23 @@
-import React from 'react';
-import Overview from './Overview';
-import Progress from './Progress';
-import Summary from './Summary';
+import React, { Fragment } from 'react';
+import Overview from './Overview/Overview';
+import Progress from './Overview/Progress';
+import Summary from './Overview/Summary';
+import MonthlyExpenses from './MonthlyExpenses/MonthlyExpenses';
 
 const Dashboard = () => {
   return (
-    <section className="dashboard">
-      <div className="container">
-        <Overview />
-        <div className="dashboard__body">
-          <Progress />
-          <Summary />
+    <Fragment>
+      <section className="dashboard">
+        <div className="container">
+          <Overview />
+          <div className="dashboard__body">
+            <Progress />
+            <Summary />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <MonthlyExpenses />
+    </Fragment>
   );
 };
 

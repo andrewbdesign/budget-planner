@@ -1,0 +1,31 @@
+.monthly-expenses {
+  padding: 50px 0;
+  background: #fff;
+  color: #222;
+
+  .monthly-expenses__body {
+    background: #f3f3f3;
+    padding: 30px;
+    border-radius: 5px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    // font-weight: bold;
+  }
+
+  p {
+    color: #717171;
+    font-size: 1.2rem;
+    padding-bottom: 14px;
+  }
+
+  hr {
+    border-top: 1px solid #dadada;
+  }
+
+  .bill {
+    display: flex;
+    justify-content: space-around;
+  }
+}
