@@ -58,15 +58,26 @@ const MonthlyExpenses = () => {
     },
   ];
 
+  const dailyBreakdown = bill => {
+    const res = parseInt(bill);
+    return (res / getDaysInMonth()).toFixed(2);
+  };
+
+  const getDaysInMonth = () => {
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    return new Date(year, month, 0).getDate();
+  };
+
   const renderBills = () => {
     return bills.map((bill, index) => {
       return (
-        <div key={index} className="bill">
-          <p>{bill.title}</p>
-          <p>${bill.cost}</p>
-          <p>${parseInt(bill.cost) / 30}</p>
-          <p>{bill.date}</p>
-        </div>
+        <tr key={index} className={'bill ' + (bill.paid && 'paid')}>
+          <td>{bill.title}</td>
+          <td>${bill.cost}</td>
+          <td>${dailyBreakdown(bill.cost)}</td>
+          <td>{bill.date}</td>
+        </tr>
       );
     });
   };
@@ -81,7 +92,27 @@ const MonthlyExpenses = () => {
             debited from your account
           </p>
           <hr />
-          {renderBills()}
+          <table>
+            <tbody>
+              <tr>
+                <th>Expense</th>
+                <th>Cost</th>
+                <th>Day</th>
+                <th>Due</th>
+              </tr>
+            </tbody>
+            {renderBills()}
+          </table>
+          <h1>Total Bills amount</h1>
+          <p>$1,156.62 / month</p>
+          <div className="monthly-expenses__button">
+            <a href="https://www.google.com" className="button button-success">
+              Add expense
+            </a>
+            <a href="https://www.google.com" className="button button-warning">
+              Remove expense
+            </a>
+          </div>
         </div>
       </div>
     </section>

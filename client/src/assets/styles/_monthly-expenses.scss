@@ -5,27 +5,98 @@
 
   .monthly-expenses__body {
     background: #f3f3f3;
-    padding: 30px;
+    padding: 30px 0;
     border-radius: 5px;
   }
 
   h1 {
     font-size: 1.8rem;
-    // font-weight: bold;
+    padding: 0 30px 5px;
+    font-weight: 700;
   }
 
   p {
     color: #717171;
     font-size: 1.2rem;
-    padding-bottom: 14px;
+    padding: 0 30px 14px;
   }
 
   hr {
     border-top: 1px solid #dadada;
   }
 
+  table {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    text-align: left;
+    font-size: 1.3rem;
+    margin: 20px 0;
+
+    tr:nth-child(1) {
+      font-size: 1.7rem;
+      font-weight: 400;
+    }
+
+    tr:hover {
+      background: #eee;
+    }
+
+    tbody tr {
+      height: 60px;
+
+    }
+
+
+    th,
+    td {
+      font-weight: 400;
+      padding: 0 30px;
+      cursor: pointer;
+    }
+
+    th {
+      pointer-events: auto;
+    }
+  }
+
   .bill {
-    display: flex;
-    justify-content: space-around;
+    color: #717171;
+    height: 40px;
+  }
+
+  .bill.paid {
+    background: #eee;
+    text-decoration: line-through;
+
+    td:nth-child(4) {
+      border-right: 10px solid #00c58c;
+    }
+  }
+
+  .monthly-expenses__button {
+    padding: 30px;
+  }
+
+  .button {
+    background: $navy;
+    color: $white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin-right: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all .3s ease-in-out;
+  }
+
+  .button-success:hover {
+    background: #00c58c;
+    color: #fff;
+  }
+
+  .button-warning:hover {
+    background: red;
+    color: #fff;
   }
 }
