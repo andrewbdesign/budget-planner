@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +7,6 @@ const Login = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [userAuthenticated, setUserAuthenticated] = useState(false);
 
   const onHandleChange = e => {
     setFormData({
@@ -24,26 +21,8 @@ const Login = () => {
 
   const onHandleSubmit = async e => {
     e.preventDefault();
-    // @todo use redux to handle auth stuff
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const body = JSON.stringify(formData);
-      console.log('body', body);
-      const res = await axios.post('/api/auth', body, config);
-      console.log('JWT', res.data.token);
-      setUserAuthenticated(true);
-    } catch (err) {
-      console.error(err.message);
-    }
+    console.log('success');
   };
-
-  if (userAuthenticated) {
-    return <Redirect to="dashboard" />;
-  }
 
   return (
     <section className="login">
