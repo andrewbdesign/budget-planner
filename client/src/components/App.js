@@ -9,6 +9,7 @@ import store from '../store';
 import Login from './auth/Login';
 import Navbar from './layout/Navbar';
 import Footer from './layout/Footer';
+import Alert from './layout/Alert';
 import Dashboard from './dashboard/Dashboard';
 import Expenses from './expenses/Expenses';
 import Goals from './goals/Goals';
@@ -19,6 +20,7 @@ const App = () => {
       <Fragment>
         <Router>
           <Navbar />
+          <Alert />
           <Route exact path="/login" component={Login} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/expenses" component={Expenses} />

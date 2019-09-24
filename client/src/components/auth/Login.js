@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
 
-const Login = () => {
+const Login = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,7 +24,8 @@ const Login = () => {
 
   const onHandleSubmit = async e => {
     e.preventDefault();
-    console.log('success');
+    // console.log('success');
+    setAlert('congrats you win', 'success');
   };
 
   return (
@@ -67,4 +71,14 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = null;
+const mapDispatchToProps = { setAlert };
+
+Login.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login);
