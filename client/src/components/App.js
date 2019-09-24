@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // Redux
 import { Provider } from 'react-redux';
 import store from '../store';
+import { loadUser } from '../actions/auth';
+import setAuthToken from '../utlis/setAuthToken';
 
 // Components
 import Login from './auth/Login';
@@ -15,7 +17,15 @@ import Dashboard from './dashboard/Dashboard';
 import Expenses from './expenses/Expenses';
 import Goals from './goals/Goals';
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
 const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <Fragment>
