@@ -7,6 +7,7 @@ import store from '../store';
 
 // Components
 import Login from './auth/Login';
+import Register from './auth/Register';
 import Navbar from './layout/Navbar';
 import Footer from './layout/Footer';
 import Alert from './layout/Alert';
@@ -21,6 +22,7 @@ const App = () => {
         <Router>
           <Navbar />
           <Alert />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/expenses" component={Expenses} />
