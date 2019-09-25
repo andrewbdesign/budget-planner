@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
+import { login } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-const Login = ({ setAlert }) => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const { email, password } = formData;
 
   const onHandleChange = e => {
     setFormData({
@@ -24,9 +27,12 @@ const Login = ({ setAlert }) => {
 
   const onHandleSubmit = async e => {
     e.preventDefault();
-    // console.log('success');
-    setAlert('congrats you win', 'success');
+    login(email, password);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <section className="login">
@@ -71,11 +77,14 @@ const Login = ({ setAlert }) => {
   );
 };
 
-const mapStateToProps = null;
-const mapDispatchToProps = { setAlert };
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+const mapDispatchToProps = { login };
 
 Login.propTypes = {
-  setAlert: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 export default connect(

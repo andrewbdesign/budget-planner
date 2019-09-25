@@ -1,25 +1,34 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import logo from '../../assets/images/logo-bp.svg'
-const Navbar = () => {
-
-  const isAuthenticated = true
-
+import logo from '../../assets/images/logo-bp.svg';
+const Navbar = ({ isAuthenticated }) => {
   const authLinks = (
     <Fragment>
-      <li><Link to="/dashboard">Dashboard</Link></li>
-      <li><Link to="/expenses">Expenses</Link></li>
-      <li><Link to="/goals">Goals</Link></li>
+      <li>
+        <Link to="/dashboard">Dashboard</Link>
+      </li>
+      <li>
+        <Link to="/expenses">Expenses</Link>
+      </li>
+      <li>
+        <Link to="/goals">Goals</Link>
+      </li>
     </Fragment>
-  )
+  );
 
   const guestLinks = (
     <Fragment>
-      <li><Link to="/register">Register</Link></li>
-      <li><Link to="/login">Login</Link></li>
+      <li>
+        <Link to="/register">Register</Link>
+      </li>
+      <li>
+        <Link to="/login">Login</Link>
+      </li>
     </Fragment>
-  )
+  );
 
   return (
     <nav className="navbar">
@@ -30,11 +39,24 @@ const Navbar = () => {
           </Link>
         </div>
         <ul className="navbar__menu-list">
-          {isAuthenticated ? authLinks : guestLinks }
+          {isAuthenticated ? authLinks : guestLinks}
         </ul>
-      </div> 
+      </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+Navbar.propTypes = {
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+const mapDispatchToProps = {};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Navbar);

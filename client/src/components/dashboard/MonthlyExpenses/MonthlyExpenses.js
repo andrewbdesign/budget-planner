@@ -100,8 +100,8 @@ const MonthlyExpenses = () => {
                 <th>Day</th>
                 <th>Due</th>
               </tr>
+              {renderBills()}
             </tbody>
-            {renderBills()}
           </table>
           <h1>Total Bills amount</h1>
           <p>$1,156.62 / month</p>
