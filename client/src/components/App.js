@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PrivateRoute from '../components/routing/PrivateRoute';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -32,11 +33,13 @@ const App = () => {
         <Router>
           <Navbar />
           <Alert />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/expenses" component={Expenses} />
-          <Route exact path="/goals" component={Goals} />
+          <Switch>
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/expenses" component={Expenses} />
+            <PrivateRoute exact path="/goals" component={Goals} />
+          </Switch>
           <Footer />
         </Router>
       </Fragment>

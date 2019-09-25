@@ -2,9 +2,12 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 
 import logo from '../../assets/images/logo-bp.svg';
-const Navbar = ({ isAuthenticated }) => {
+const Navbar = ({ logout, auth }) => {
+  const { isAuthenticated, loading } = auth;
+
   const authLinks = (
     <Fragment>
       <li>
@@ -15,6 +18,11 @@ const Navbar = ({ isAuthenticated }) => {
       </li>
       <li>
         <Link to="/goals">Goals</Link>
+      </li>
+      <li>
+        <a href="#!" onClick={logout}>
+          Logout
+        </a>
       </li>
     </Fragment>
   );
@@ -39,7 +47,9 @@ const Navbar = ({ isAuthenticated }) => {
           </Link>
         </div>
         <ul className="navbar__menu-list">
-          {isAuthenticated ? authLinks : guestLinks}
+          {!loading && (
+            <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+          )}
         </ul>
       </div>
     </nav>
@@ -47,14 +57,15 @@ const Navbar = ({ isAuthenticated }) => {
 };
 
 Navbar.propTypes = {
-  isAuthenticated: PropTypes.bool,
+  logout: PropTypes.bool.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { logout };
 
 export default connect(
   mapStateToProps,
