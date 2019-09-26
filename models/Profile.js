@@ -1,13 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
-  },
-  name: {
-    type: String,
-    required: true,
+    ref: 'user',
   },
   goalTitle: {
     type: String,
@@ -19,32 +15,30 @@ const ProfileSchema = new mongoose.Schema({
   },
   totalSaved: {
     type: Number,
-    required: true,
   },
   currentBalance: {
     type: Number,
-    required: true,
   },
   timeline: {
     months: {
       type: Number,
-      required: true
+      required: true,
     },
     years: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   bio: {
     type: String,
   },
   location: {
-    type: String
+    type: String,
   },
   date: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-module.exports = Profile = mongoose.model('profile', ProfileSchema)
+module.exports = Profile = mongoose.model('profile', ProfileSchema);

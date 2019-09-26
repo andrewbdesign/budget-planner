@@ -9,6 +9,7 @@ import { loadUser } from '../actions/auth';
 import setAuthToken from '../utlis/setAuthToken';
 
 // Components
+import Landing from './Landing';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import Navbar from './layout/Navbar';
@@ -34,6 +35,7 @@ const App = () => {
           <Navbar />
           <Alert />
           <Switch>
+            <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
