@@ -15,6 +15,7 @@ import Register from './auth/Register';
 import Navbar from './layout/Navbar';
 import Footer from './layout/Footer';
 import Alert from './layout/Alert';
+import CreateProfile from './profile/CreateProfile';
 import Dashboard from './dashboard/Dashboard';
 import Expenses from './expenses/Expenses';
 import Goals from './goals/Goals';
@@ -39,6 +40,11 @@ const App = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute
+              exact
+              path="/create-profile"
+              component={CreateProfile}
+            />
             <PrivateRoute exact path="/expenses" component={Expenses} />
             <PrivateRoute exact path="/goals" component={Goals} />
           </Switch>

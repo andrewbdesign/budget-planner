@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Overview = () => {
+const Overview = ({ user }) => {
   const renderOverviewStats = () => {
     const stats = [
       {
@@ -40,9 +40,7 @@ const Overview = () => {
   return (
     <div className="overview">
       <div className="overview__heading">
-        <h1>
-          Hello, <span>Andrew</span>.
-        </h1>
+        <h1>Hello, {user && <span>{user.name}</span>}.</h1>
         <p>Welcome to your savings overview</p>
       </div>
       <div className="overview__body">

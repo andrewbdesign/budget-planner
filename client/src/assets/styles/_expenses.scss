@@ -1,0 +1,87 @@
+.expenses {
+  padding: 50px 0;
+  background: linear-gradient(45deg, #5fa9fd, #5bc7fe 20%, #b069ea);
+}
+
+.expenses__body {
+  color: #fff;
+  border-radius: 5px;
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding-bottom: 5px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    padding-bottom: 14px;
+  }
+
+  hr {
+    border-top: 1px solid #dadada;
+    border-bottom: none;
+    margin-bottom: 14px;
+  }
+
+  table {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    text-align: left;
+    font-size: 1.3rem;
+    margin: 20px 0;
+
+    tr:nth-child(1) {
+      font-size: 1.7rem;
+      font-weight: 700;
+    }
+
+    // tr:hover {
+    //   background: #eee;
+    // }
+
+    tbody tr {
+      height: 40px;
+
+    }
+
+
+    th,
+    td {
+      font-weight: 400;
+      // padding: 0 30px;
+      cursor: pointer;
+    }
+
+    th {
+      pointer-events: auto;
+    }
+  }
+
+  .monthly-expenses__button {
+    padding: 30px 0;
+  }
+
+  .button {
+    background: $navy;
+    color: $white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin-right: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all .3s ease-in-out;
+  }
+
+  .button-success:hover {
+    background: #00c58c;
+    color: #fff;
+  }
+
+  .button-warning:hover {
+    background: red;
+    color: #fff;
+  }
+}
