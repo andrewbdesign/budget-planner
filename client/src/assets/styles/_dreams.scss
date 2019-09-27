@@ -1,0 +1,50 @@
+.dreams {
+  background: $navy;
+  color: $white;
+  padding-bottom: 0;
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding-bottom: 5px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    padding-top: 5px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    padding-bottom: 14px;
+  }
+
+  hr {
+    border-top: 1px solid #dadada;
+    border-bottom: none;
+    margin-bottom: 14px;
+  }
+
+  .dreams__container {
+    display: flex;
+    // margin-top: 30px;
+
+    div {
+      width: 100%;
+    }
+
+    ol {
+      padding: 0;
+      list-style-position: inside;
+      line-height: 1.5;
+      font-family: 'Roboto';
+      font-size: 1.3rem;
+      margin: 0;
+
+      li {
+        margin: 4px 0;
+      }
+    }
+  }
+}

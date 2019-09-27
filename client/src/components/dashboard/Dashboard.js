@@ -12,6 +12,7 @@ import Progress from './Overview/Progress';
 import Summary from './Overview/Summary';
 import MonthlyExpenses from './MonthlyExpenses/MonthlyExpenses';
 import Expenses from './Expenses/Expenses';
+import Dreams from './Dreams/Dreams';
 
 const Dashboard = ({
   auth: { user },
@@ -40,6 +41,7 @@ const Dashboard = ({
           </section>
           <MonthlyExpenses />
           <Expenses />
+          <Dreams />
         </Fragment>
       ) : (
         <Fragment>
