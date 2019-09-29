@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import {} from '../../../utlis';
+import { numberWithCommas } from '../../../utlis/numberFormatter';
+import { getCurrentMonth } from '../../../utlis/dates';
 
 const Overview = ({ user, profile: { profile } }) => {
   console.log('profile', profile);
@@ -10,34 +11,34 @@ const Overview = ({ user, profile: { profile } }) => {
     const stats = [
       {
         title: 'Target goal',
-        value: `$${profile.goalTarget}`,
+        value: `${profile.goalTarget}`,
       },
       {
         title: 'Current savings',
-        value: `$${profile.totalSaved}`,
+        value: `${profile.totalSaved}`,
       },
       {
         title: 'Difference',
-        value: `$${profile.goalTarget - profile.totalSaved}`,
+        value: `${profile.goalTarget - profile.totalSaved}`,
       },
       {
         title: 'Current balance',
-        value: '$0',
+        value: '0',
       },
       {
         title: 'Daily limit',
-        value: '$0',
+        value: '0',
       },
       {
-        title: 'September Expenses',
-        value: '$0',
+        title: `${getCurrentMonth()} Expenses`,
+        value: '0',
       },
     ];
 
     return stats.map(({ title, value }, index) => (
       <div key={index} className="section">
         <h2>{title}</h2>
-        <p>{value}</p>
+        <p>${numberWithCommas(value)}</p>
       </div>
     ));
   };

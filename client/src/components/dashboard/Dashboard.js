@@ -15,6 +15,8 @@ import MonthlyExpenses from './MonthlyExpenses/MonthlyExpenses';
 import Expenses from './Expenses/Expenses';
 import Dreams from './Dreams/Dreams';
 
+// Utils
+
 const Dashboard = ({
   auth: { user },
   profile: { profile, loading },
