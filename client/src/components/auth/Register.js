@@ -85,7 +85,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               ></input>
             </p>
 
-            <button className="btn">Register</button>
+            <button className="button">Register</button>
           </form>
         </div>
       </div>

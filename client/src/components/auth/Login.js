@@ -69,7 +69,7 @@ const Login = ({ login, isAuthenticated }) => {
               ></input>
             </p>
 
-            <button className="btn">Login</button>
+            <button className="button">Login</button>
           </form>
         </div>
       </div>

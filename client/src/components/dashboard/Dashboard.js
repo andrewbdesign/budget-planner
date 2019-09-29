@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { getCurrentProfile } from '../../actions/profile';
 
 // Components
+import Loader from '../layout/Loader';
 import Overview from './Overview/Overview';
 import Progress from './Overview/Progress';
 import Summary from './Overview/Summary';
@@ -23,12 +24,12 @@ const Dashboard = ({
     getCurrentProfile();
     // eslint-disable-next-line
   }, [getCurrentProfile]);
-
+  console.log({ user });
   return loading && profile === null ? (
-    <h1>SPINNER</h1>
+    <Loader />
   ) : (
     <Fragment>
-      {profile === null ? (
+      {profile !== null ? (
         <Fragment>
           <section className="dashboard">
             <div className="container">
@@ -45,14 +46,22 @@ const Dashboard = ({
         </Fragment>
       ) : (
         <Fragment>
-          <section className="setup">
+          <section className="profile-setup">
             <div className="container">
-              <h1>
-                There is no profile. Click here to get{' '}
-                <Link to="/create-profile" className="button">
-                  started
-                </Link>
-              </h1>
+              <div className="profile-setup__container">
+                {user && (
+                  <Fragment>
+                    <h1>Hi {user.name}!</h1>
+                    <p>
+                      You have not setup a profile with us yet. Click here to
+                      get started{' '}
+                    </p>
+                    <Link to="/create-profile" className="button">
+                      Create Profile
+                    </Link>
+                  </Fragment>
+                )}
+              </div>
             </div>
           </section>
         </Fragment>

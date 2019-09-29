@@ -1,31 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+// import {} from '../../../utlis';
 
-const Overview = ({ user }) => {
+const Overview = ({ user, profile: { profile } }) => {
+  console.log('profile', profile);
+
   const renderOverviewStats = () => {
     const stats = [
       {
         title: 'Target goal',
-        value: '$20,000',
+        value: `$${profile.goalTarget}`,
       },
       {
         title: 'Current savings',
-        value: '$13,000',
+        value: `$${profile.totalSaved}`,
       },
       {
         title: 'Difference',
-        value: '$7,000',
+        value: `$${profile.goalTarget - profile.totalSaved}`,
       },
       {
         title: 'Current balance',
-        value: '$2555.19',
+        value: '$0',
       },
       {
         title: 'Daily limit',
-        value: '$142.91',
+        value: '$0',
       },
       {
         title: 'September Expenses',
-        value: '$20',
+        value: '$0',
       },
     ];
 
@@ -51,4 +56,16 @@ const Overview = ({ user }) => {
   );
 };
 
-export default Overview;
+Overview.propTypes = {
+  profile: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile,
+});
+const mapDispatchToProps = {};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Overview);

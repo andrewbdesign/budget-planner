@@ -37,7 +37,10 @@ router.post(
       check('goalTitle', 'Goal title is required')
         .not()
         .isEmpty(),
-      check('targetGoal', 'Target goal amount is required')
+      check('goalTarget', 'Goal target is required')
+        .not()
+        .isEmpty(),
+      check('totalSaved', 'Total saved is required')
         .not()
         .isEmpty(),
     ],
@@ -50,22 +53,24 @@ router.post(
 
     const {
       goalTitle,
-      targetGoal,
+      goalTarget,
       totalSaved,
-      currentBalance,
-      timeline,
-      bio,
-      location,
+      savingFrequency,
+      savingCommitment,
+      savingDurationMonths,
+      savingDurationYears,
     } = req.body;
 
     const profileFields = {};
     if (goalTitle) profileFields.goalTitle = goalTitle;
-    if (targetGoal) profileFields.targetGoal = targetGoal;
+    if (goalTarget) profileFields.goalTarget = goalTarget;
     if (totalSaved) profileFields.totalSaved = totalSaved;
-    if (currentBalance) profileFields.currentBalance = currentBalance;
-    if (timeline) profileFields.timeline = timeline;
-    if (bio) profileFields.bio = bio;
-    if (location) profileFields.location = location;
+    if (savingFrequency) profileFields.savingFrequency = savingFrequency;
+    if (savingCommitment) profileFields.savingCommitment = savingCommitment;
+    if (savingDurationMonths)
+      profileFields.savingDurationMonths = savingDurationMonths;
+    if (savingDurationYears)
+      profileFields.savingDurationYears = savingDurationYears;
 
     try {
       // Using upsert option (creates new doc if no match is found):

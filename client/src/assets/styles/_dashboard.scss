@@ -2,6 +2,7 @@
   background: linear-gradient(45deg, #6e2bd3, #6e2bd3 0, #b73587 48%, #fe7077 87%, #fe7077 0, #ffc18e);
 }
 
+
 .overview__heading {
   background: $navy;
   color: $grey;
@@ -46,7 +47,6 @@
   }
 
   .overview__stats {
-    // column-count: 3;
     column-count: 1;
     width: 100%;
 
@@ -67,13 +67,11 @@
   }
 
   .dashboard__chart {
-    // width: 30%;
     width: 100%;
     margin-right: 20px;
   }
 
   .dashboard__summary {
-    // width: 70%;
     width: 100%;
   }
 }

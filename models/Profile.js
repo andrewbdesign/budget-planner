@@ -9,7 +9,7 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  targetGoal: {
+  goalTarget: {
     type: Number,
     required: true,
   },
@@ -19,20 +19,16 @@ const ProfileSchema = new mongoose.Schema({
   currentBalance: {
     type: Number,
   },
-  timeline: {
-    months: {
-      type: Number,
-      required: true,
-    },
-    years: {
-      type: Number,
-      required: true,
-    },
+  savingCommitment: {
+    type: Number,
   },
-  bio: {
+  savingDurationMonths: {
     type: String,
   },
-  location: {
+  savingDurationYears: {
+    type: String,
+  },
+  savingFrequency: {
     type: String,
   },
   date: {
