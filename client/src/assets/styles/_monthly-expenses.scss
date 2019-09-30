@@ -99,4 +99,16 @@
     background: red;
     color: #fff;
   }
+
+  form {
+    display: flex;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  }
 }

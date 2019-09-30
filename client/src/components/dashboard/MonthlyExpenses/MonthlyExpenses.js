@@ -1,65 +1,53 @@
-import React from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getBills, addBill } from '../../../actions/bill';
+import { numberWithCommas } from '../../../utlis/numberFormatter';
 
-const MonthlyExpenses = () => {
-  const bills = [
-    {
-      title: 'Rent 1/2',
-      cost: '400',
-      date: '1st',
-      paid: true,
-    },
-    {
-      title: 'iCloud Storage',
-      cost: '4.49',
-      date: '6th',
-      paid: true,
-    },
-    {
-      title: 'Boxing 1/2',
-      cost: '88.00',
-      date: '11th',
-      paid: true,
-    },
-    {
-      title: 'Netflix',
-      cost: '13.99',
-      date: '11th',
+const MonthlyExpenses = ({ getBills, bills: { bills }, addBill }) => {
+  useEffect(() => {
+    getBills();
+  });
+
+  const [showAddBill, setShowAddBill] = useState(false);
+  const [formData, setFormData] = useState({
+    title: '',
+    amount: '',
+    date: Date.now(),
+    paid: false,
+  });
+
+  const { title, amount, paid } = formData;
+
+  const onChange = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onChangeCheckbox = e => {
+    setFormData({
+      ...formData,
+      paid: e.currentTarget.checked,
+    });
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log('formData', formData);
+    addBill(formData);
+    setFormData({
+      ...formData,
+      title: '',
+      amount: '',
       paid: false,
-    },
-    {
-      title: 'Spotify',
-      cost: '17.99',
-      date: '14th',
-      paid: false,
-    },
-    {
-      title: 'Github',
-      cost: '9.45',
-      date: '18th',
-      paid: false,
-    },
-    {
-      title: 'Boxing 2/2',
-      cost: '88.00',
-      date: '26th',
-      paid: false,
-    },
-    {
-      title: 'Phone Bill',
-      cost: '134.70',
-      date: '23th',
-      paid: false,
-    },
-    {
-      title: 'Rent 2/2',
-      cost: '400.00',
-      date: '28th',
-      paid: false,
-    },
-  ];
+    });
+    setShowAddBill(!showAddBill);
+  };
 
   const dailyBreakdown = bill => {
-    const res = parseInt(bill);
+    const res = parseFloat(bill);
     return (res / getDaysInMonth()).toFixed(2);
   };
 
@@ -74,12 +62,20 @@ const MonthlyExpenses = () => {
       return (
         <tr key={index} className={'bill ' + (bill.paid && 'paid')}>
           <td>{bill.title}</td>
-          <td>${bill.cost}</td>
-          <td>${dailyBreakdown(bill.cost)}</td>
+          <td>${bill.amount}</td>
+          <td>${dailyBreakdown(bill.amount)}</td>
           <td>{bill.date}</td>
         </tr>
       );
     });
+  };
+
+  const calculateMonthlyBillsCost = () => {
+    let sum = 0;
+    bills.forEach(bill => {
+      sum += parseFloat(bill.amount);
+    });
+    return sum;
   };
 
   return (
@@ -92,26 +88,79 @@ const MonthlyExpenses = () => {
             debited from your account
           </p>
           <hr />
-          <table>
-            <tbody>
-              <tr>
-                <th>Expense</th>
-                <th>Cost</th>
-                <th>Day</th>
-                <th>Due</th>
-              </tr>
-              {renderBills()}
-            </tbody>
-          </table>
-          <h1>Total Bills amount</h1>
-          <p>$1,156.62 / month</p>
+          {bills ? (
+            <Fragment>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Expense</th>
+                    <th>Cost</th>
+                    <th>Day</th>
+                    <th>Due</th>
+                  </tr>
+                  {renderBills()}
+                </tbody>
+              </table>
+              <h1>Total Bills amount</h1>
+              <p>${numberWithCommas(calculateMonthlyBillsCost())} / month</p>
+            </Fragment>
+          ) : (
+            <Fragment>
+              You do not have any bills yet. Click here to get started
+            </Fragment>
+          )}
+
           <div className="monthly-expenses__button">
-            <a href="https://www.google.com" className="button button-success">
-              Add expense
-            </a>
-            <a href="https://www.google.com" className="button button-warning">
-              Remove expense
-            </a>
+            {showAddBill ? (
+              <Fragment>
+                <form onSubmit={onSubmit} autocomplete="off">
+                  <div>
+                    <label htmlFor="title">Title</label>
+                    <input
+                      id="title"
+                      name="title"
+                      value={title}
+                      onChange={onChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="amount">Cost</label>
+                    <input
+                      id="amout"
+                      name="amount"
+                      value={amount}
+                      onChange={onChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="paid">Completed</label>
+                    <input
+                      type="checkbox"
+                      checked={paid}
+                      onChange={onChangeCheckbox}
+                    ></input>
+                  </div>
+                  <div>
+                    <button>Add</button>
+                  </div>
+                </form>
+                <div
+                  onClick={() => setShowAddBill(!showAddBill)}
+                  className="button button-success"
+                >
+                  Finish
+                </div>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <div
+                  onClick={() => setShowAddBill(!showAddBill)}
+                  className="button button-success"
+                >
+                  Add Expense
+                </div>
+              </Fragment>
+            )}
           </div>
         </div>
       </div>
@@ -119,4 +168,22 @@ const MonthlyExpenses = () => {
   );
 };
 
-export default MonthlyExpenses;
+MonthlyExpenses.propTypes = {
+  getBills: PropTypes.func.isRequired,
+  addBill: PropTypes.func.isRequired,
+  bills: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  bills: state.bill,
+});
+
+const mapDispatchToProps = {
+  getBills,
+  addBill,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MonthlyExpenses);
