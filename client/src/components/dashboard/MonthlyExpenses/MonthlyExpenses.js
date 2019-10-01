@@ -73,7 +73,18 @@ const MonthlyExpenses = ({
     return bills.map(bill => {
       const { _id, paid, title, amount, date } = bill;
       return (
-        <tr key={_id} className={'bill ' + (paid && 'paid')}>
+        <tr
+          key={_id}
+          className={'bill ' + (paid && 'paid')}
+          onClick={() => {
+            updateBill({
+              title,
+              amount,
+              paid: !paid,
+              id: _id,
+            });
+          }}
+        >
           <td>{title}</td>
           <td>${amount}</td>
           <td>${dailyBreakdown(amount)}</td>
@@ -82,7 +93,6 @@ const MonthlyExpenses = ({
             <div
               className="button button-secondary"
               onClick={() => {
-                // console.log('bill', bill);
                 setFormData({
                   title,
                   amount,
@@ -91,7 +101,6 @@ const MonthlyExpenses = ({
                 });
                 setUpdatingBill(true);
                 setShowAddBill(true);
-                // removeBill(bill._id);
               }}
             >
               Edit
@@ -180,6 +189,10 @@ const MonthlyExpenses = ({
                         <div
                           className="button button-secondary"
                           onClick={() => {
+                            console.log('{ ...formData }', {
+                              ...formData,
+                              // paid: !formData.paid,
+                            });
                             updateBill({ ...formData });
                             setFormData({
                               ...formData,
@@ -188,6 +201,7 @@ const MonthlyExpenses = ({
                               paid: false,
                             });
                             setUpdatingBill(false);
+                            setShowAddBill(false);
                           }}
                         >
                           Update

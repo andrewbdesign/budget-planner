@@ -77,7 +77,7 @@ router.put('/:id', auth, async (req, res) => {
     const billFields = {};
     if (title) billFields.title = title;
     if (amount) billFields.amount = amount;
-    if (paid) billFields.paid = paid;
+    if (paid !== null) billFields.paid = paid;
 
     await Bill.findByIdAndUpdate(
       { _id: req.params.id },
