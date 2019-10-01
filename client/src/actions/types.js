@@ -12,3 +12,5 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const GET_BILLS = 'GET_BILLS';
 export const ADD_BILL = 'ADD_BILL';
+export const REMOVE_BILL = 'REMOVE_BILL';
+export const UPDATE_BILL = 'UPDATE_BILL';

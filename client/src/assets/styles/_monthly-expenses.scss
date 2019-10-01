@@ -68,7 +68,7 @@
     background: #eee;
     text-decoration: line-through;
 
-    td:nth-child(4) {
+    td:last-child {
       border-right: 10px solid #00c58c;
     }
   }
@@ -100,6 +100,26 @@
     color: #fff;
   }
 
+  .button-secondary {
+    border: 1px solid #263149;
+    background: none;
+    color: #263149;
+    // width: 40px;
+    text-align: center;
+    // margin-right: 30px;
+  }
+
+  .button-tertiary {
+    background: transparent;
+    color: #263149;
+    text-decoration: underline;
+    padding: 0;
+
+    &:hover {
+      color: #ee0000;
+    }
+  }
+
   form {
     display: flex;
     font-size: 1.4rem;
@@ -109,6 +129,14 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+      position: relative;
+
+      input {
+        margin-top: 5px;
+        margin-right: 5px;
+        padding: 5px;
+        font-size: 1.6rem;
+      }
     }
   }
 }

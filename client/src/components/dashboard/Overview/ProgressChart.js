@@ -65,6 +65,7 @@ const ProgressChart = ({ profile: { profile } }) => {
 
   useEffect(() => {
     generateChart();
+    // eslint-disable-next-line
   }, []);
 
   return (

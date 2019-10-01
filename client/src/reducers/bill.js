@@ -1,4 +1,9 @@
-import { GET_BILLS, ADD_BILL } from '../actions/types';
+import {
+  GET_BILLS,
+  ADD_BILL,
+  REMOVE_BILL,
+  UPDATE_BILL,
+} from '../actions/types';
 
 const initialState = {
   bills: null,
@@ -19,7 +24,19 @@ export default function(state = initialState, action) {
     case ADD_BILL:
       return {
         ...state,
-        bill: payload,
+        bills: payload,
+        loading: false,
+      };
+    case REMOVE_BILL:
+      return {
+        ...state,
+        bills: payload,
+        loading: false,
+      };
+    case UPDATE_BILL:
+      return {
+        ...state,
+        bills: payload,
         loading: false,
       };
     default:

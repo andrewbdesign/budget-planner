@@ -1,15 +1,27 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getBills, addBill } from '../../../actions/bill';
+import {
+  getBills,
+  addBill,
+  removeBill,
+  updateBill,
+} from '../../../actions/bill';
 import { numberWithCommas } from '../../../utlis/numberFormatter';
 
-const MonthlyExpenses = ({ getBills, bills: { bills }, addBill }) => {
+const MonthlyExpenses = ({
+  getBills,
+  bills: { bills },
+  addBill,
+  removeBill,
+  updateBill,
+}) => {
   useEffect(() => {
     getBills();
-  });
+  }, [getBills]);
 
   const [showAddBill, setShowAddBill] = useState(false);
+  const [updatingBill, setUpdatingBill] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     amount: '',
@@ -58,13 +70,41 @@ const MonthlyExpenses = ({ getBills, bills: { bills }, addBill }) => {
   };
 
   const renderBills = () => {
-    return bills.map((bill, index) => {
+    return bills.map(bill => {
+      const { _id, paid, title, amount, date } = bill;
       return (
-        <tr key={index} className={'bill ' + (bill.paid && 'paid')}>
-          <td>{bill.title}</td>
-          <td>${bill.amount}</td>
-          <td>${dailyBreakdown(bill.amount)}</td>
-          <td>{bill.date}</td>
+        <tr key={_id} className={'bill ' + (paid && 'paid')}>
+          <td>{title}</td>
+          <td>${amount}</td>
+          <td>${dailyBreakdown(amount)}</td>
+          <td>{date}</td>
+          <td>
+            <div
+              className="button button-secondary"
+              onClick={() => {
+                // console.log('bill', bill);
+                setFormData({
+                  title,
+                  amount,
+                  paid,
+                  id: _id,
+                });
+                setUpdatingBill(true);
+                setShowAddBill(true);
+                // removeBill(bill._id);
+              }}
+            >
+              Edit
+            </div>
+            <div
+              className="button button-tertiary"
+              onClick={() => {
+                removeBill(_id);
+              }}
+            >
+              Delete
+            </div>
+          </td>
         </tr>
       );
     });
@@ -88,7 +128,7 @@ const MonthlyExpenses = ({ getBills, bills: { bills }, addBill }) => {
             debited from your account
           </p>
           <hr />
-          {bills ? (
+          {bills && bills.length > 0 ? (
             <Fragment>
               <table>
                 <tbody>
@@ -103,17 +143,104 @@ const MonthlyExpenses = ({ getBills, bills: { bills }, addBill }) => {
               </table>
               <h1>Total Bills amount</h1>
               <p>${numberWithCommas(calculateMonthlyBillsCost())} / month</p>
+
+              <div className="monthly-expenses__button">
+                {showAddBill ? (
+                  <Fragment>
+                    <form autoComplete="off">
+                      <div>
+                        <label htmlFor="title">Title</label>
+                        <input
+                          id="title"
+                          name="title"
+                          value={title}
+                          onChange={onChange}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="amount">Cost</label>
+                        <input
+                          id="amout"
+                          name="amount"
+                          value={amount}
+                          onChange={onChange}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="paid">Completed</label>
+                        <input
+                          type="checkbox"
+                          checked={paid}
+                          onChange={onChangeCheckbox}
+                        ></input>
+                      </div>
+                    </form>
+                    {updatingBill ? (
+                      <Fragment>
+                        <div
+                          className="button button-secondary"
+                          onClick={() => {
+                            updateBill({ ...formData });
+                            setFormData({
+                              ...formData,
+                              title: '',
+                              amount: '',
+                              paid: false,
+                            });
+                            setUpdatingBill(false);
+                          }}
+                        >
+                          Update
+                        </div>
+                        <div
+                          className="button button-tertiary"
+                          onClick={() => {
+                            setUpdatingBill(false);
+                            setFormData({
+                              ...formData,
+                              title: '',
+                              amount: '',
+                              paid: false,
+                            });
+                          }}
+                        >
+                          Cancel
+                        </div>
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        <div
+                          className="button button-success"
+                          onClick={onSubmit}
+                        >
+                          Add
+                        </div>
+                        <div
+                          onClick={() => setShowAddBill(!showAddBill)}
+                          className="button button-tertiary"
+                        >
+                          Cancel
+                        </div>
+                      </Fragment>
+                    )}
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <div
+                      onClick={() => setShowAddBill(!showAddBill)}
+                      className="button button-success"
+                    >
+                      Add Expense
+                    </div>
+                  </Fragment>
+                )}
+              </div>
             </Fragment>
           ) : (
             <Fragment>
-              You do not have any bills yet. Click here to get started
-            </Fragment>
-          )}
-
-          <div className="monthly-expenses__button">
-            {showAddBill ? (
-              <Fragment>
-                <form onSubmit={onSubmit} autocomplete="off">
+              <p>You do not have any bills yet. Add your first bill</p>
+              <div className="monthly-expenses__button">
+                <form autoComplete="off">
                   <div>
                     <label htmlFor="title">Title</label>
                     <input
@@ -140,28 +267,14 @@ const MonthlyExpenses = ({ getBills, bills: { bills }, addBill }) => {
                       onChange={onChangeCheckbox}
                     ></input>
                   </div>
-                  <div>
-                    <button>Add</button>
-                  </div>
                 </form>
-                <div
-                  onClick={() => setShowAddBill(!showAddBill)}
-                  className="button button-success"
-                >
-                  Finish
+
+                <div className="button button-success" onClick={onSubmit}>
+                  Add
                 </div>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <div
-                  onClick={() => setShowAddBill(!showAddBill)}
-                  className="button button-success"
-                >
-                  Add Expense
-                </div>
-              </Fragment>
-            )}
-          </div>
+              </div>
+            </Fragment>
+          )}
         </div>
       </div>
     </section>
@@ -172,6 +285,8 @@ MonthlyExpenses.propTypes = {
   getBills: PropTypes.func.isRequired,
   addBill: PropTypes.func.isRequired,
   bills: PropTypes.object.isRequired,
+  removeBill: PropTypes.func.isRequired,
+  updateBill: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -181,6 +296,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getBills,
   addBill,
+  removeBill,
+  updateBill,
 };
 
 export default connect(

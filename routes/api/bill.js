@@ -36,9 +36,10 @@ router.post(
         user: req.user.id,
       });
 
-      const bill = await newBill.save();
+      await newBill.save();
 
-      res.json(bill);
+      const bills = await Bill.find().sort({ date: -1 });
+      res.json(bills);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -56,6 +57,71 @@ router.get('/', auth, async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
+  }
+});
+
+// @route    DELETE api/bills/:id
+// @desc     Delete a bill
+// @access   Private
+
+router.put('/:id', auth, async (req, res) => {
+  try {
+    // Update the stuff here
+
+    // console.log('req.body', req.body);
+    // const bill = await Bill.findById(req.params.id);
+    // res.json(bill);
+
+    const { title, amount, paid } = req.body;
+
+    const billFields = {};
+    if (title) billFields.title = title;
+    if (amount) billFields.amount = amount;
+    if (paid) billFields.paid = paid;
+
+    await Bill.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $set: billFields },
+      { new: true, upsert: true },
+    );
+
+    const bills = await Bill.find().sort({ date: -1 });
+    res.json(bills);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Bill not found' });
+    }
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    DELETE api/bills/:id
+// @desc     Delete a bill
+// @access   Private
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const bill = await Bill.findById(req.params.id);
+
+    if (!bill) {
+      return res.status(404).json({ msg: 'Bill not found' });
+    }
+
+    // Check user
+    if (bill.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    await bill.remove();
+    const bills = await Bill.find().sort({ date: -1 });
+    res.json(bills);
+    // res.json({ msg: 'Post removed' });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Bill not found' });
+    }
+    res.status(500).send('Server Error');
   }
 });
 
