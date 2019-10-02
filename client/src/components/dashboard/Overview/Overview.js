@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { numberWithCommas } from '../../../utlis/numberFormatter';
 import { getCurrentMonth } from '../../../utlis/dates';
 
-const Overview = ({ user, profile: { profile } }) => {
-  console.log('profile', profile);
+const Overview = ({ user, profile: { profile }, bill: { bills } }) => {
+  console.log('bills', bills);
 
   const renderOverviewStats = () => {
     const stats = [
@@ -59,10 +59,12 @@ const Overview = ({ user, profile: { profile } }) => {
 
 Overview.propTypes = {
   profile: PropTypes.object.isRequired,
+  bill: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
+  bill: state.bill,
 });
 const mapDispatchToProps = {};
 

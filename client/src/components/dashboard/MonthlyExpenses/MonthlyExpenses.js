@@ -8,6 +8,7 @@ import {
   updateBill,
 } from '../../../actions/bill';
 import { numberWithCommas } from '../../../utlis/numberFormatter';
+import { totalSum } from '../../../utlis/bill';
 
 const MonthlyExpenses = ({
   getBills,
@@ -119,13 +120,13 @@ const MonthlyExpenses = ({
     });
   };
 
-  const calculateMonthlyBillsCost = () => {
-    let sum = 0;
-    bills.forEach(bill => {
-      sum += parseFloat(bill.amount);
-    });
-    return sum;
-  };
+  // const calculateMonthlyBillsCost = () => {
+  //   let sum = 0;
+  //   bills.forEach(bill => {
+  //     sum += parseFloat(bill.amount);
+  //   });
+  //   return sum;
+  // };
 
   return (
     <section className="monthly-expenses">
@@ -151,7 +152,7 @@ const MonthlyExpenses = ({
                 </tbody>
               </table>
               <h1>Total Bills amount</h1>
-              <p>${numberWithCommas(calculateMonthlyBillsCost())} / month</p>
+              <p>${numberWithCommas(totalSum(bills))} / month</p>
 
               <div className="monthly-expenses__button">
                 {showAddBill ? (

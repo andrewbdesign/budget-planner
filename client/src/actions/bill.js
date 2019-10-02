@@ -41,7 +41,7 @@ export const removeBill = billID => async dispatch => {
       payload: res.data,
     });
   } catch (err) {
-    dispatch(setAlert('Cant remove bill man'));
+    setAlert('Cant remove bill man');
   }
 };
 
