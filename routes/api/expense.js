@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
-const Bill = require('../../models/Bill');
+const Expense = require('../../models/Expense');
 const User = require('../../models/User');
 const { check, validationResult } = require('express-validator');
 
-// @route    POST api/bill
-// @desc     Create a bill
+// @route    POST api/expense
+// @desc     Create a expense
 // @access   Private
 router.post(
   '/',
@@ -27,7 +27,7 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select('-password');
 
-      const newBill = new Bill({
+      const newExpense = new Expense({
         title: req.body.title,
         amount: req.body.amount,
         paid: req.body.paid,
@@ -36,10 +36,10 @@ router.post(
         user: req.user.id,
       });
 
-      await newBill.save();
+      await newExpense.save();
 
-      const bills = await Bill.find().sort({ date: -1 });
-      res.json(bills);
+      const expenses = await Expense.find().sort({ date: -1 });
+      res.json(expenses);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -47,73 +47,73 @@ router.post(
   },
 );
 
-// @route     GET /api/bills
-// @desc      Get all profile users bills
+// @route     GET /api/expense
+// @desc      Get all profile users Expenses
 // @access    Private
 router.get('/', auth, async (req, res) => {
   try {
-    const bills = await Bill.find().sort({ date: -1 });
-    res.json(bills);
+    const expenses = await Expense.find().sort({ date: -1 });
+    res.json(expenses);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
   }
 });
 
-// @route    DELETE api/bills/:id
-// @desc     Delete a bill
+// @route    DELETE api/expense/:id
+// @desc     Delete a Expense
 // @access   Private
 
 router.put('/:id', auth, async (req, res) => {
   try {
     const { title, amount, paid } = req.body;
 
-    const billFields = {};
-    if (title) billFields.title = title;
-    if (amount) billFields.amount = amount;
-    if (paid !== null) billFields.paid = paid;
+    const expenseFields = {};
+    if (title) expenseFields.title = title;
+    if (amount) expenseFields.amount = amount;
+    if (paid !== null) expenseFields.paid = paid;
 
-    await Bill.findByIdAndUpdate(
+    await Expense.findByIdAndUpdate(
       { _id: req.params.id },
-      { $set: billFields },
+      { $set: expenseFields },
       { new: true, upsert: true },
     );
 
-    const bills = await Bill.find().sort({ date: -1 });
-    res.json(bills);
+    const expenses = await Expense.find().sort({ date: -1 });
+    res.json(expenses);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Bill not found' });
+      return res.status(404).json({ msg: 'Expense not found' });
     }
     res.status(500).send('Server Error');
   }
 });
 
-// @route    DELETE api/bills/:id
-// @desc     Delete a bill
+// @route    DELETE api/expense/:id
+// @desc     Delete a expense
 // @access   Private
 router.delete('/:id', auth, async (req, res) => {
   try {
-    const bill = await Bill.findById(req.params.id);
+    const expense = await Expense.findById(req.params.id);
 
-    if (!bill) {
-      return res.status(404).json({ msg: 'Bill not found' });
+    if (!expense) {
+      return res.status(404).json({ msg: 'Expense not found' });
     }
 
     // Check user
-    if (bill.user.toString() !== req.user.id) {
+    if (expense.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'User not authorized' });
     }
 
-    await bill.remove();
-    const bills = await Bill.find().sort({ date: -1 });
-    res.json(bills);
+    await expense.remove();
+    const expenses = await Expense.find().sort({ date: -1 });
+    res.json(expenses);
     // res.json({ msg: 'Post removed' });
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Bill not found' });
+      return res.status(404).json({ msg: 'Expense not found' });
     }
     res.status(500).send('Server Error');
   }

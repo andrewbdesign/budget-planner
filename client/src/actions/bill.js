@@ -23,7 +23,6 @@ export const addBill = formData => async dispatch => {
     };
 
     const res = await axios.post('/api/bill', formData, config);
-    console.log('res', res);
     dispatch({
       type: ADD_BILL,
       payload: res.data,

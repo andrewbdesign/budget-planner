@@ -28,9 +28,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   };
 
   const onHandleSubmit = async e => {
-    console.log('hello');
     e.preventDefault();
-    // console.log('success');
     if (!password.length > 0) {
       setAlert('congrats you win', 'success');
     } else {

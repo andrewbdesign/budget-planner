@@ -11,7 +11,7 @@ import Loader from '../layout/Loader';
 import Overview from './Overview/Overview';
 import Progress from './Overview/Progress';
 import Summary from './Overview/Summary';
-import MonthlyExpenses from './MonthlyExpenses/MonthlyExpenses';
+import MonthlyBills from './MonthlyBills/MonthlyBills';
 import Expenses from './Expenses/Expenses';
 import Dreams from './Dreams/Dreams';
 
@@ -24,7 +24,7 @@ const Dashboard = ({
     getCurrentProfile();
     // eslint-disable-next-line
   }, [getCurrentProfile]);
-  console.log({ user });
+
   return loading && profile === null ? (
     <Loader />
   ) : (
@@ -40,7 +40,7 @@ const Dashboard = ({
               </div>
             </div>
           </section>
-          <MonthlyExpenses />
+          <MonthlyBills />
           <Expenses />
           <Dreams />
         </Fragment>

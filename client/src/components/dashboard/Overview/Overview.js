@@ -6,8 +6,6 @@ import { getCurrentMonth } from '../../../utils/dates';
 import { getTotalSum } from '../../../utils/bill';
 
 const Overview = ({ user, profile: { profile }, bill: { bills } }) => {
-  console.log('bills', bills);
-
   const renderOverviewStats = () => {
     const stats = [
       {

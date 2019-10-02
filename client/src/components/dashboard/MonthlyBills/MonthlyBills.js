@@ -48,7 +48,6 @@ const MonthlyExpenses = ({
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log('formData', formData);
     addBill(formData);
     setFormData({
       ...formData,
@@ -190,10 +189,6 @@ const MonthlyExpenses = ({
                         <div
                           className="button button-secondary"
                           onClick={() => {
-                            console.log('{ ...formData }', {
-                              ...formData,
-                              // paid: !formData.paid,
-                            });
                             updateBill({ ...formData });
                             setFormData({
                               ...formData,

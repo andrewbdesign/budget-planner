@@ -29,7 +29,6 @@ export const createProfile = (
   };
   try {
     const res = await axios.post('/api/profile', formData, config);
-    console.log('res', res);
     dispatch({
       type: GET_PROFILE,
       payload: res.data,

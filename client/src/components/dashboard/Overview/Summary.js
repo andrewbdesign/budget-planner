@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 
 // Helpers
 import { numberWithCommas } from '../../../utils/numberFormatter';
+import { getTotalSum } from '../../../utils/bill';
 
-const Summary = ({ profile: { profile } }) => {
+const Summary = ({ profile: { profile }, bill: { bills } }) => {
   const { savingCommitment, savingFrequency } = profile;
   return (
     <div className="dashboard__summary">
@@ -24,7 +25,7 @@ const Summary = ({ profile: { profile } }) => {
         </p>
         <br />
         <p>Monthly Income: $****.**</p>
-        <p>Monthly Bills: $0.00</p>
+        <p>Monthly Bills: ${bills ? getTotalSum(bills) : 0}</p>
         <p>Money left: $0.00</p>
         <br />
         <h2>This month you have spent $0.00</h2>
@@ -45,10 +46,12 @@ const Summary = ({ profile: { profile } }) => {
 
 Summary.propTypes = {
   profile: PropTypes.object.isRequired,
+  bill: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
+  bill: state.bill,
 });
 
 export default connect(mapStateToProps)(Summary);

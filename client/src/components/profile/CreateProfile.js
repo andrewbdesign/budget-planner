@@ -41,11 +41,9 @@ const CreateProfile = ({ createProfile, history }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(formData);
     createProfile(formData, history);
   };
 
-  // console.log({ sectionOne });
   useEffect(() => {
     TweenMax.set(sectionTwo.current.children, { autoAlpha: 0, y: -20 });
     TweenMax.set(sectionThree.current, { autoAlpha: 0, y: -20 });
