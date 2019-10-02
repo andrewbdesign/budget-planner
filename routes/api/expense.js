@@ -30,7 +30,7 @@ router.post(
       const newExpense = new Expense({
         title: req.body.title,
         amount: req.body.amount,
-        paid: req.body.paid,
+        // paid: req.body.paid,
         date: req.body.date,
         name: user.name,
         user: req.user.id,
@@ -71,7 +71,7 @@ router.put('/:id', auth, async (req, res) => {
     const expenseFields = {};
     if (title) expenseFields.title = title;
     if (amount) expenseFields.amount = amount;
-    if (paid !== null) expenseFields.paid = paid;
+    // if (paid !== null) expenseFields.paid = paid;
 
     await Expense.findByIdAndUpdate(
       { _id: req.params.id },

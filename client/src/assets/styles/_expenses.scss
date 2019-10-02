@@ -1,6 +1,7 @@
 .expenses {
   padding: 50px 0;
   background: linear-gradient(45deg, #5fa9fd, #5bc7fe 20%, #b069ea);
+
 }
 
 .expenses__body {
@@ -83,5 +84,48 @@
   .button-warning:hover {
     background: red;
     color: #fff;
+  }
+
+  .button-secondary {
+    border: 1px solid #fff;
+    background: none;
+    color: #fff;
+    text-align: center;
+
+    &:hover {
+      background: $navy;
+      border: 1px solid $navy;
+    }
+  }
+
+  .button-tertiary {
+    background: transparent;
+    color: #fff;
+    text-decoration: underline;
+    padding: 0;
+
+    &:hover {
+      color: #ee0000;
+    }
+  }
+
+  form {
+    display: flex;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      position: relative;
+
+      input {
+        margin-top: 5px;
+        margin-right: 5px;
+        padding: 5px;
+        font-size: 1.6rem;
+      }
+    }
   }
 }

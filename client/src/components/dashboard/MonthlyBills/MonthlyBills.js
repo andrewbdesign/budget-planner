@@ -119,14 +119,6 @@ const MonthlyExpenses = ({
     });
   };
 
-  // const calculateMonthlyBillsCost = () => {
-  //   let sum = 0;
-  //   bills.forEach(bill => {
-  //     sum += parseFloat(bill.amount);
-  //   });
-  //   return sum;
-  // };
-
   return (
     <section className="monthly-expenses">
       <div className="container">
