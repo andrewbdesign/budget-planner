@@ -7,8 +7,8 @@ import {
   removeBill,
   updateBill,
 } from '../../../actions/bill';
-import { numberWithCommas } from '../../../utlis/numberFormatter';
-import { totalSum } from '../../../utlis/bill';
+import { numberWithCommas } from '../../../utils/numberFormatter';
+import { getTotalSum } from '../../../utils/bill';
 
 const MonthlyExpenses = ({
   getBills,
@@ -152,7 +152,7 @@ const MonthlyExpenses = ({
                 </tbody>
               </table>
               <h1>Total Bills amount</h1>
-              <p>${numberWithCommas(totalSum(bills))} / month</p>
+              <p>${numberWithCommas(getTotalSum(bills))} / month</p>
 
               <div className="monthly-expenses__button">
                 {showAddBill ? (

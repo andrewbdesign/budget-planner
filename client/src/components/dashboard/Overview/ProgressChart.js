@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // Helpers
-import { numberWithCommas } from '../../../utlis/numberFormatter';
+import { numberWithCommas } from '../../../utils/numberFormatter';
 
 const ProgressChart = ({ profile: { profile } }) => {
   const chartEl = useRef(null);

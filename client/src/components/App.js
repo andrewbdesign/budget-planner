@@ -6,7 +6,7 @@ import PrivateRoute from '../components/routing/PrivateRoute';
 import { Provider } from 'react-redux';
 import store from '../store';
 import { loadUser } from '../actions/auth';
-import setAuthToken from '../utlis/setAuthToken';
+import setAuthToken from '../utils/setAuthToken';
 
 // Components
 import Landing from './Landing';

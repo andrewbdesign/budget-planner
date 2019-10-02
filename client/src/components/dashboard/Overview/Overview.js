@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { numberWithCommas } from '../../../utlis/numberFormatter';
-import { getCurrentMonth } from '../../../utlis/dates';
+import { numberWithCommas } from '../../../utils/numberFormatter';
+import { getCurrentMonth } from '../../../utils/dates';
+import { getTotalSum } from '../../../utils/bill';
 
 const Overview = ({ user, profile: { profile }, bill: { bills } }) => {
   console.log('bills', bills);
@@ -31,7 +32,7 @@ const Overview = ({ user, profile: { profile }, bill: { bills } }) => {
       },
       {
         title: `${getCurrentMonth()} Expenses`,
-        value: '0',
+        value: `${bills ? getTotalSum(bills) : 0}`,
       },
     ];
 

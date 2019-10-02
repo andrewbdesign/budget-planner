@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // Helpers
-import { numberWithCommas } from '../../../utlis/numberFormatter';
+import { numberWithCommas } from '../../../utils/numberFormatter';
 
 const Summary = ({ profile: { profile } }) => {
   const { savingCommitment, savingFrequency } = profile;
