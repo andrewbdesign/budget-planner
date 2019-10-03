@@ -1,0 +1,30 @@
+.goals {
+
+  .goals__container {
+    display: flex;
+    align-items: center;
+  }
+
+  .goals__heading {
+    font-size: 4rem;
+    margin-bottom: 10px;
+  }
+
+  .goals__copy {
+    margin: 0 auto;
+  }
+
+  .benefit__group {
+    width: 100%;
+  }
+
+  .copy-section,
+  .lottie-section {
+    width: 100%;
+  }
+
+  .lottie-container {
+    padding: 4rem 0;
+    margin: 0 auto;
+  }
+}

@@ -12,19 +12,20 @@ const defaultOptionsLottie = lottie => {
   };
 };
 
-const Benefits = () => {
+const SpendingLimit = () => {
   return (
-    <section className="benefits">
+    <section className="spending-limit">
       <div className="container">
-        <div className="benefits__container">
-          <h1 className="benefits__heading">Set your goals</h1>
-          <p className="benefits__copy">
-            Long or short. And see how quickly you will be able to achieve them.
-            Seriously!
-          </p>
-          <div className="lottie-container">
+        <div className="spending-limit__container">
+          <div className="copy-section">
+            <h1 className="spending-limit__heading">See your spending limit</h1>
+            <p className="spending-limit__copy">
+              Don't scramble for money towards next pay day.
+            </p>
+          </div>
+          <div className="lottie-section">
             <Lottie
-              options={defaultOptionsLottie('success')}
+              options={defaultOptionsLottie('payment-success')}
               isStopped={false}
               isPaused={false}
             />
@@ -35,4 +36,4 @@ const Benefits = () => {
   );
 };
 
-export default Benefits;
+export default SpendingLimit;

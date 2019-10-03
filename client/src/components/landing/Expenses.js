@@ -11,23 +11,23 @@ const defaultOptionsLottie = lottie => {
     },
   };
 };
-
-const Benefits = () => {
+const Expenses = () => {
   return (
-    <section className="benefits">
+    <section className="tracking-expenses">
       <div className="container">
-        <div className="benefits__container">
-          <h1 className="benefits__heading">Set your goals</h1>
-          <p className="benefits__copy">
-            Long or short. And see how quickly you will be able to achieve them.
-            Seriously!
-          </p>
-          <div className="lottie-container">
+        <div className="expenses__container">
+          <div className="lottie-section">
             <Lottie
-              options={defaultOptionsLottie('success')}
+              options={defaultOptionsLottie('biking')}
               isStopped={false}
               isPaused={false}
             />
+          </div>
+          <div className="copy-section">
+            <h1 className="expenses__heading">Track down everything</h1>
+            <p className="expenses__copy">
+              From Netflix to gym membership. Track it all.
+            </p>
           </div>
         </div>
       </div>
@@ -35,4 +35,4 @@ const Benefits = () => {
   );
 };
 
-export default Benefits;
+export default Expenses;

@@ -6,6 +6,10 @@ import { Redirect } from 'react-router-dom';
 // Components
 import Header from './Header';
 import Benefits from './Benefits';
+import Features from './Features';
+import Goals from './Goals';
+import Expenses from './Expenses';
+import SpendingLimit from './SpendingLimit';
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
@@ -16,6 +20,10 @@ const Landing = ({ isAuthenticated }) => {
     <Fragment>
       <Header />
       <Benefits />
+      <Features />
+      <Goals />
+      <Expenses />
+      <SpendingLimit />
     </Fragment>
   );
 };

@@ -12,19 +12,20 @@ const defaultOptionsLottie = lottie => {
   };
 };
 
-const Benefits = () => {
+const Goals = () => {
   return (
-    <section className="benefits">
+    <section className="goals">
       <div className="container">
-        <div className="benefits__container">
-          <h1 className="benefits__heading">Set your goals</h1>
-          <p className="benefits__copy">
-            Long or short. And see how quickly you will be able to achieve them.
-            Seriously!
-          </p>
-          <div className="lottie-container">
+        <div className="goals__container">
+          <div className="copy-section">
+            <h1 className="goals__heading">Write down your goals</h1>
+            <p className="goals__copy">
+              See how long it will take for you to achieve it.
+            </p>
+          </div>
+          <div className="lottie-section">
             <Lottie
-              options={defaultOptionsLottie('success')}
+              options={defaultOptionsLottie('hero-typing')}
               isStopped={false}
               isPaused={false}
             />
@@ -35,4 +36,4 @@ const Benefits = () => {
   );
 };
 
-export default Benefits;
+export default Goals;
