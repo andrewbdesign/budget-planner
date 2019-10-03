@@ -9,7 +9,7 @@ import { loadUser } from '../actions/auth';
 import setAuthToken from '../utils/setAuthToken';
 
 // Components
-import Landing from './Landing';
+import Landing from './landing/Landing';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import Navbar from './layout/Navbar';

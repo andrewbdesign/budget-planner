@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Lottie from '../assets/libraries/react-lottie';
+import Lottie from '../../assets/libraries/react-lottie';
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
@@ -13,7 +13,7 @@ const Landing = ({ isAuthenticated }) => {
     return {
       loop: true,
       autoplay: true,
-      animationData: require(`../assets/lotties/${lottie}.json`),
+      animationData: require(`../../assets/lotties/${lottie}.json`),
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice',
       },
