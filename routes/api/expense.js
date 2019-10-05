@@ -109,7 +109,6 @@ router.delete('/:id', auth, async (req, res) => {
     await expense.remove();
     const expenses = await Expense.find().sort({ date: -1 });
     res.json(expenses);
-    // res.json({ msg: 'Post removed' });
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {

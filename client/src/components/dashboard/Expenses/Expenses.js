@@ -82,6 +82,7 @@ const Expenses = ({
 
   const onSubmit = e => {
     e.preventDefault();
+    console.log('expenses formData', formData);
     addExpense(formData);
     setFormData({
       ...formData,
