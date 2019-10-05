@@ -10,6 +10,7 @@ import Features from './Features';
 import Goals from './Goals';
 import Expenses from './Expenses';
 import SpendingLimit from './SpendingLimit';
+import CallToAction from './CallToAction';
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
@@ -24,6 +25,7 @@ const Landing = ({ isAuthenticated }) => {
       <Goals />
       <Expenses />
       <SpendingLimit />
+      <CallToAction />
     </Fragment>
   );
 };

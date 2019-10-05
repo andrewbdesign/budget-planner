@@ -1,0 +1,20 @@
+.call-to-action {
+  // background: $navy;
+  background-image: linear-gradient(45deg, #6e2bd3, #6e2bd3 0, #b73587 48%, #fe7077 87%, #fe7077 0, #ffc18e);
+  color: #fff;
+  text-align: center;
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  .button {
+    background: #FFC107;
+    color: #212121;
+  }
+
+}
