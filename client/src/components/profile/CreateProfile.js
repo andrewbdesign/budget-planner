@@ -27,6 +27,10 @@ const CreateProfile = ({ createProfile, history }) => {
     savingDurationYears: '', // 0+ years
   });
 
+  const sectionOneA = useRef(null);
+  const sectionOneB = useRef(null);
+  const sectionOneC = useRef(null);
+  const sectionOneD = useRef(null);
   const sectionTwo = useRef(null);
   const sectionThree = useRef(null);
 
@@ -45,8 +49,23 @@ const CreateProfile = ({ createProfile, history }) => {
   };
 
   useEffect(() => {
+    const introElements = [
+      sectionOneA.current,
+      sectionOneB.current,
+      sectionOneC.current,
+      sectionOneD.current,
+    ];
     TweenMax.set(sectionTwo.current.children, { autoAlpha: 0, y: -20 });
     TweenMax.set(sectionThree.current, { autoAlpha: 0, y: -20 });
+    TweenMax.set(introElements, { y: -20 });
+    const tl = new TimelineMax();
+    tl.staggerTo(
+      introElements,
+      0.8,
+      { autoAlpha: 1, y: 0, ease: Power1.easeOut },
+      '0.2',
+      1,
+    );
   }, []);
 
   const showSecondQuestions = () => {
@@ -79,14 +98,21 @@ const CreateProfile = ({ createProfile, history }) => {
     <section className="create-profile">
       <div className="container">
         <div className="create-profile__container">
-          <h1>Profile setup</h1>
-          <h2>I want to:</h2>
+          <h1 className="create-profile__heading" ref={sectionOneA}>
+            Profile setup
+          </h1>
+          <h2 className="create-profile__heading" ref={sectionOneB}>
+            I want to:
+          </h2>
 
           <div className={`question first-section save-by-${saveBy}`}>
-            <div onClick={() => onHandleSetSaveBy('date')}>
+            <div ref={sectionOneC} onClick={() => onHandleSetSaveBy('date')}>
               See how much I need to save
             </div>
-            <div onClick={() => onHandleSetSaveBy('duration')}>
+            <div
+              ref={sectionOneD}
+              onClick={() => onHandleSetSaveBy('duration')}
+            >
               See how long it will take to save
             </div>
           </div>

@@ -1,10 +1,47 @@
 footer {
-  background: $navy;
+  background: #151a27;
   color: $white;
-  text-align: center;
   padding: 50px 0;
 
-  p {
-    font-size: 1.2rem;
+  .footer__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .logo-section {
+    width: 50%;
+
+    p {
+      line-height: 1.8;
+      max-width: 350px;
+
+    }
+  }
+
+  .footer-links {
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    a {
+      color: $grey;
+      display: block;
+      font-size: 1.4rem;
+      line-height: 1.8;
+
+      // margin-bottom: 8px;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .logo-footer {
+    width: 180px;
+    margin-bottom: 10px;
   }
 }
