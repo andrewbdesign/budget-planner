@@ -6,7 +6,8 @@
   "scripts": {
     "client": "npm run start --prefix client",
     "server": "node server",
-    "dev:server": "nodemon server"
+    "dev:server": "nodemon server",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Andrew Bonifacio",
   "license": "ISC",
