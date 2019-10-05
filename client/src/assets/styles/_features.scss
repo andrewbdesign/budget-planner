@@ -1,8 +1,7 @@
 .features {
-  padding: 15rem 0;
+  padding: 5rem 0;
   color: #fff;
   background: linear-gradient(45deg, #5922ad, #9c2770);
-  clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
 
   .features__heading {
     font-size: 4rem;
@@ -12,7 +11,7 @@
 
   .features__copy {
     text-align: center;
-    width: 40rem;
+    max-width: 40rem;
     margin: 0 auto;
   }
 
@@ -24,11 +23,16 @@
   }
 
   .features__group {
-    width: 80%;
-    column-count: 3;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: auto;
+
+    column-count: 1;
     list-style: none;
     font-size: 1.6rem;
     line-height: 1.7;
+    padding: 0;
 
     li:before {
       content: '';
@@ -55,4 +59,24 @@
     display: inline-block;
   }
 
+}
+
+@media screen and (min-width: 660px) {
+  .features {
+    padding: 15rem 0;
+    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
+
+    .features__group {
+      column-count: 2;
+    }
+  }
+}
+
+@media screen and (min-width: 860px) {
+  .features {
+    .features__group {
+      width: 80%;
+      column-count: 3;
+    }
+  }
 }

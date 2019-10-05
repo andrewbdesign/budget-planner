@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   height: 100%;
+  flex-direction: column;
 
 
   .copy-section,
@@ -30,5 +31,13 @@
   .header-button {
     background: #FFC107;
     color: #212121;
+  }
+}
+
+@media screen and (min-width: 660px) {
+  .header {
+    .header__container {
+      flex-direction: row;
+    }
   }
 }

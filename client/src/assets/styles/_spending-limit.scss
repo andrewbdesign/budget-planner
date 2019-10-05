@@ -5,6 +5,8 @@
   .spending-limit__container {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    text-align: center;
   }
 
   .spending-limit__heading {
@@ -25,8 +27,25 @@
     width: 100%;
   }
 
+  .lottie-section {
+    max-width: 300px;
+  }
+
   .lottie-container {
     padding: 4rem 0;
     margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 660px) {
+  .spending-limit {
+    .spending-limit__container {
+      text-align: left;
+      flex-direction: row;
+    }
+
+    .lottie-section {
+      max-width: 100%;
+    }
   }
 }

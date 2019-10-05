@@ -6,6 +6,7 @@ footer {
   .footer__container {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
   }
 
   .logo-section {
@@ -22,7 +23,7 @@ footer {
 
     h2 {
       font-size: 1.6rem;
-      margin-bottom: 20px;
+      margin: 30px 0 0;
     }
 
     a {
@@ -43,5 +44,19 @@ footer {
   .logo-footer {
     width: 180px;
     margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 660px) {
+  footer {
+    .footer__container {
+      flex-direction: row;
+    }
+
+    .footer-links {
+      h2 {
+        margin: 0 0 20px;
+      }
+    }
   }
 }
