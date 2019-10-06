@@ -4,26 +4,28 @@
 @import 'base.scss';
 
 // layouts
-@import 'navbar.scss';
-@import 'footer.scss';
-@import 'loader.scss';
+@import 'layout/navbar.scss';
+@import 'layout/footer.scss';
+@import 'layout/loader.scss';
 
-// components
-@import 'landing.scss';
-@import 'login.scss';
-@import 'register.scss';
-@import 'benefits.scss';
-@import 'dashboard.scss';
-@import 'monthly-expenses.scss';
-@import 'expenses.scss';
-@import 'dreams.scss';
-@import 'goals.scss';
-@import 'tracking-expenses.scss';
-@import 'spending-limit.scss';
-@import 'features.scss';
+// auth
+@import 'auth/login.scss';
+@import 'auth/register.scss';
 
 // Landing
-@import './landing/call-to-action';
+@import 'landing/landing.scss';
+@import 'landing/benefits.scss';
+@import 'landing/call-to-action';
+@import 'landing/dreams.scss';
+@import 'landing/goals.scss';
+@import 'landing/tracking-expenses.scss';
+@import 'landing/spending-limit.scss';
+@import 'landing/features.scss';
+
+// Dashboard page
+@import 'dashboard/dashboard.scss';
+@import 'dashboard/monthly-expenses.scss';
+@import 'dashboard/expenses.scss';
 
 // pages
 @import './profile/index'

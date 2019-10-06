@@ -10,7 +10,7 @@ footer {
   }
 
   .logo-section {
-    width: 50%;
+    width: 100%;
 
     p {
       line-height: 1.8;
@@ -49,6 +49,11 @@ footer {
 
 @media screen and (min-width: 660px) {
   footer {
+
+    .logo-section {
+      width: 50%;
+    }
+
     .footer__container {
       flex-direction: row;
     }
