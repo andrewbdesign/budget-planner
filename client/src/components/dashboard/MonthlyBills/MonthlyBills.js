@@ -76,14 +76,14 @@ const MonthlyExpenses = ({
         <tr
           key={_id}
           className={'bill ' + (paid && 'paid')}
-          onClick={() => {
-            updateBill({
-              title,
-              amount,
-              paid: !paid,
-              id: _id,
-            });
-          }}
+          // onClick={() => {
+          //   updateBill({
+          //     title,
+          //     amount,
+          //     paid: !paid,
+          //     id: _id,
+          //   });
+          // }}
         >
           <td>{title}</td>
           <td>${amount}</td>

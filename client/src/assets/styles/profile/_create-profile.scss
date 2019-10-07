@@ -70,12 +70,13 @@
 .question.first-section {
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
 
   div {
     padding: 40px 0;
     border: 1px solid #dadada;
     font-size: 1.4rem;
-    width: 50%;
+    width: 100%;
     text-align: center;
     cursor: pointer;
     opacity: 0;
@@ -90,7 +91,8 @@
   }
 
   div:nth-child(1) {
-    border-right: none;
+    border-bottom: none;
+    // border-right: none;
   }
 }
 
@@ -111,11 +113,12 @@
 .question.second-section {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 
   div {
     padding: 40px 0;
     border: 1px solid #dadada;
-    width: 50%;
+    width: 100%;
     text-align: center;
     cursor: pointer;
     opacity: 0;
@@ -136,18 +139,17 @@
   }
 
   div:nth-child(2) {
-    border-left: none;
-    border-right: none;
+    border-top: none;
+    border-bottom: none;
   }
 }
 
 .question.third-section {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   background: #f4f4f4;
-  border: 1px solid #dadada;
-  padding: 20px;
   opacity: 0;
 
   p {
@@ -155,9 +157,12 @@
   }
 
   div {
+    border: 1px solid #dadada;
+    padding: 40px 0;
     width: 100%;
     display: flex;
     justify-content: space-around;
+    // flex-direction: column;
     align-items: center;
 
 
@@ -174,6 +179,10 @@
 
     }
   }
+
+  div:nth-child(1) {
+    border-bottom: none;
+  }
 }
 
 .icon-target,
@@ -186,4 +195,61 @@
 
 .dollar-prefix {
   display: inline-block;
+}
+
+.create-profile__container {
+
+  .answer-section {
+    background: $navy;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+
+    .budget-plan {
+      background: #FFC107;
+      color: #212121;
+    }
+  }
+}
+
+
+@media screen and (min-width: 660px) {
+
+  .question.first-section {
+
+    div:nth-child(1) {
+      border-bottom: 1px solid #dadada;
+      border-right: none;
+    }
+  }
+
+  .question.second-section {
+
+    div:nth-child(2) {
+      border-top: 1px solid #dadada;
+      border-bottom: 1px solid #dadada;
+      border-left: none;
+      border-right: none;
+    }
+  }
+
+  .question.first-section,
+  .question.second-section {
+    flex-direction: row;
+  }
+
+  .question.third-section {
+    flex-direction: row;
+
+    div {
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    div:nth-child(1) {
+      border-bottom: 1px solid #dadada;
+      border-right: none;
+    }
+  }
+
 }

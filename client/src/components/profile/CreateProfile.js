@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, Fragment } from 'react';
 import { TimelineMax, Power1, TweenMax } from 'gsap';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import Target from '../../assets/icons/target.svg';
 import Money from '../../assets/icons/money.svg';
 import Wallet from '../../assets/icons/wallet.svg';
+// import { numberWithCommas } from '../../utils/numberFormatter';
 
 const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
@@ -35,6 +36,7 @@ const CreateProfile = ({ createProfile, history }) => {
   const sectionThree = useRef(null);
 
   const [saveBy, setSaveBy] = useState('');
+  const [showAnswer, setShowAnswer] = useState(false);
 
   const onChange = e => {
     setFormData({
@@ -94,6 +96,63 @@ const CreateProfile = ({ createProfile, history }) => {
     setSaveBy(type);
   };
 
+  const result = () => {
+    const {
+      goalTarget,
+      totalSaved,
+      savingCommitment,
+      savingFrequency,
+    } = formData;
+    const amountLeftToSave = parseFloat(goalTarget) - parseFloat(totalSaved);
+    const numberOfPayments = Math.ceil(
+      amountLeftToSave / parseInt(savingCommitment),
+    );
+
+    let daysLeft, monthsLeft, yearsLeft, remainingMonths;
+    switch (savingFrequency) {
+      case 'day':
+        daysLeft = numberOfPayments;
+        break;
+      case 'week':
+        daysLeft = numberOfPayments * 7;
+        break;
+      case 'fortnight':
+        daysLeft = numberOfPayments * 14;
+        break;
+      case 'month':
+        daysLeft = numberOfPayments * 30;
+        break;
+      default:
+        daysLeft = numberOfPayments;
+    }
+
+    let answer;
+    // START
+    if (daysLeft < 30) {
+      daysLeft === 1 ? (answer = '1 day') : (answer = daysLeft + ' days');
+    } else if (daysLeft >= 30) {
+      monthsLeft = Math.ceil(daysLeft / 30);
+      if (monthsLeft === 1) {
+        answer = '1 month';
+      } else if (monthsLeft < 12) {
+        answer = monthsLeft + ' months';
+      } else {
+        yearsLeft = Math.floor(monthsLeft / 12);
+        remainingMonths = monthsLeft % 12;
+        if (yearsLeft === 1) {
+          answer = '1 year';
+        } else {
+          answer = yearsLeft + ' years';
+        }
+        if (remainingMonths) {
+          answer += ' and ' + remainingMonths + ' months';
+        }
+      }
+    }
+    // END
+    return answer;
+  };
+
   return (
     <section className="create-profile">
       <div className="container">
@@ -119,23 +178,23 @@ const CreateProfile = ({ createProfile, history }) => {
 
           <div ref={sectionTwo} className="question second-section">
             <div>
-              <label htmlFor="goal-title">I want to save up for</label>
-              <img className="icon-target" src={Target} alt="" />
-              <input id="goal-title" name="goalTitle" onChange={onChange} />
-            </div>
-            <div>
-              <label htmlFor="goal-target">This will cost me</label>
+              <label htmlFor="goal-target">I want to save up</label>
               <img className="icon-money" src={Money} alt="" />
               <span className="dollar-prefix">$</span>
               <input id="goal-target" name="goalTarget" onChange={onChange} />
             </div>
             <div>
-              <label htmlFor="total-saved">I have saved</label>
+              <label htmlFor="total-saved">So far I have saved</label>
               <img className="icon-wallet" src={Wallet} alt="" />
               <span className="dollar-prefix">$</span>
+              <input id="total-saved" name="totalSaved" onChange={onChange} />
+            </div>
+            <div>
+              <label htmlFor="goal-title">Because my goal is to get </label>
+              <img className="icon-target" src={Target} alt="" />
               <input
-                id="total-saved"
-                name="totalSaved"
+                id="goal-title"
+                name="goalTitle"
                 onChange={e => {
                   onChange(e);
                   showThirdQuestions();
@@ -146,7 +205,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
           <div ref={sectionThree} className="question third-section">
             <div>
-              <label htmlFor="saving-commitment">I will be saving</label>
+              <label htmlFor="saving-commitment">I will be saving</label>${' '}
               <input
                 id="saving-commitment"
                 name="savingCommitment"
@@ -160,17 +219,30 @@ const CreateProfile = ({ createProfile, history }) => {
                 name="savingFrequency"
                 onChange={onChange}
               >
-                <option default value=""></option>
                 <option value="day">Day</option>
                 <option value="week">Week</option>
-                <option value="fortnight">Fortnight</option>
+                <option default value="fortnight">
+                  Fortnight
+                </option>
                 <option value="month">Month</option>
               </select>
-              <button className="button" onClick={onSubmit}>
+              <button className="button" onClick={() => setShowAnswer(true)}>
                 Calculate
               </button>
             </div>
           </div>
+          {showAnswer && (
+            <Fragment>
+              <div className="answer-section">
+                <p>
+                  You will get your {formData.goalTitle} in {result()}.
+                </p>
+                <div className="button budget-plan" onClick={onSubmit}>
+                  Confirm budget plan
+                </div>
+              </div>
+            </Fragment>
+          )}
         </div>
       </div>
     </section>
