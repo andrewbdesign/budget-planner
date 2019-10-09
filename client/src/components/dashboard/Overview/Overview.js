@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { numberWithCommas } from '../../../utils/numberFormatter';
 import { getCurrentMonth } from '../../../utils/dates';
 import { getTotalSum } from '../../../utils/bill';
+import moment from 'moment';
 
 const Overview = ({
   user,
@@ -50,7 +51,10 @@ const Overview = ({
   return (
     <div className="overview">
       <div className="overview__heading">
-        <h1>Hello, {user && <span>{user.name}</span>}.</h1>
+        <h1>
+          Hello, {user && <span>{user.name}</span>}. It is{' '}
+          {moment().format('MMM Do, YYYY')}
+        </h1>
         <p>Welcome to your savings overview</p>
       </div>
       <div className="overview__body">

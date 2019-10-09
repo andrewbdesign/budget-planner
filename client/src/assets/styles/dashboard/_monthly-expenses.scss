@@ -41,7 +41,7 @@
       background: #eee;
     }
 
-    tbody tr {
+    tbody tr.bills {
       height: 60px;
 
     }
@@ -130,7 +130,7 @@
     margin-bottom: 20px;
     flex-direction: column;
 
-    div {
+    div.form-section {
       display: flex;
       flex-direction: column;
       width: 100%;

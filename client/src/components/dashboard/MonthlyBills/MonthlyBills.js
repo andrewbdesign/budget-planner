@@ -10,6 +10,11 @@ import {
 import { numberWithCommas } from '../../../utils/numberFormatter';
 import { getTotalSum } from '../../../utils/bill';
 
+import { SingleDatePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+import moment from 'moment';
+import uuid from 'uuid';
+
 const MonthlyExpenses = ({
   getBills,
   bills: { bills },
@@ -26,9 +31,11 @@ const MonthlyExpenses = ({
   const [formData, setFormData] = useState({
     title: '',
     amount: '',
-    date: Date.now(),
+    date: moment(),
     paid: false,
   });
+
+  const [calendarFocused, setCalendarFocused] = useState(false);
 
   const { title, amount, paid } = formData;
 
@@ -119,6 +126,17 @@ const MonthlyExpenses = ({
     });
   };
 
+  const onDateChange = createdAt => {
+    setFormData({
+      ...formData,
+      date: createdAt,
+    });
+  };
+
+  const onFocusChange = ({ focused }) => {
+    setCalendarFocused(focused);
+  };
+
   return (
     <section className="monthly-expenses">
       <div className="container">
@@ -150,7 +168,7 @@ const MonthlyExpenses = ({
                 {showAddBill ? (
                   <Fragment>
                     <form autoComplete="off">
-                      <div>
+                      <div className="form-section">
                         <label htmlFor="title">Title</label>
                         <input
                           id="title"
@@ -159,7 +177,7 @@ const MonthlyExpenses = ({
                           onChange={onChange}
                         />
                       </div>
-                      <div>
+                      <div className="form-section">
                         <label htmlFor="amount">Cost</label>
                         <input
                           id="amout"
@@ -168,7 +186,21 @@ const MonthlyExpenses = ({
                           onChange={onChange}
                         />
                       </div>
+
                       <div>
+                        <label>Date</label>
+                        <SingleDatePicker
+                          date={formData.date}
+                          onDateChange={onDateChange}
+                          focused={calendarFocused}
+                          onFocusChange={onFocusChange}
+                          numberOfMonths={1}
+                          id={uuid.v4()}
+                          isOutsideRange={() => false}
+                        />
+                      </div>
+
+                      <div className="form-section">
                         <label htmlFor="paid">Completed</label>
                         <input
                           type="checkbox"
@@ -253,7 +285,7 @@ const MonthlyExpenses = ({
                       onChange={onChange}
                     />
                   </div>
-                  <div>
+                  <div className="form-section">
                     <label htmlFor="amount">Cost</label>
                     <input
                       id="amout"
@@ -262,7 +294,7 @@ const MonthlyExpenses = ({
                       onChange={onChange}
                     />
                   </div>
-                  <div>
+                  <div className="form-section">
                     <label htmlFor="paid">Completed</label>
                     <input
                       type="checkbox"

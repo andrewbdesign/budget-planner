@@ -118,7 +118,7 @@ const Expenses = ({
                 {showAddExpense ? (
                   <Fragment>
                     <form autoComplete="off">
-                      <div>
+                      <div className="form-section">
                         <label htmlFor="title">Title</label>
                         <input
                           id="title"
@@ -127,7 +127,7 @@ const Expenses = ({
                           onChange={onChange}
                         />
                       </div>
-                      <div>
+                      <div className="form-section">
                         <label htmlFor="amount">Cost</label>
                         <input
                           id="amout"
@@ -202,7 +202,7 @@ const Expenses = ({
               <p>You do not have any bills yet. Add your first bill</p>
               <div className="monthly-expenses__button">
                 <form autoComplete="off">
-                  <div>
+                  <div className="form-section">
                     <label htmlFor="title">Title</label>
                     <input
                       id="title"
@@ -211,7 +211,7 @@ const Expenses = ({
                       onChange={onChange}
                     />
                   </div>
-                  <div>
+                  <div className="form-section">
                     <label htmlFor="amount">Cost</label>
                     <input
                       id="amout"
