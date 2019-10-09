@@ -5,7 +5,12 @@ import { numberWithCommas } from '../../../utils/numberFormatter';
 import { getCurrentMonth } from '../../../utils/dates';
 import { getTotalSum } from '../../../utils/bill';
 
-const Overview = ({ user, profile: { profile }, bill: { bills } }) => {
+const Overview = ({
+  user,
+  profile: { profile },
+  bill: { bills },
+  expense: { expenses },
+}) => {
   const renderOverviewStats = () => {
     const stats = [
       {
@@ -30,7 +35,7 @@ const Overview = ({ user, profile: { profile }, bill: { bills } }) => {
       },
       {
         title: `${getCurrentMonth()} Expenses`,
-        value: `${bills ? getTotalSum(bills) : 0}`,
+        value: `${expenses ? getTotalSum(expenses) : 0}`,
       },
     ];
 
@@ -59,11 +64,13 @@ const Overview = ({ user, profile: { profile }, bill: { bills } }) => {
 Overview.propTypes = {
   profile: PropTypes.object.isRequired,
   bill: PropTypes.object.isRequired,
+  expense: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
   bill: state.bill,
+  expense: state.expense,
 });
 const mapDispatchToProps = {};
 
