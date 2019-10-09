@@ -138,6 +138,7 @@ const MonthlyExpenses = ({
                     <th>Cost</th>
                     <th>Day</th>
                     <th>Due</th>
+                    <th>Modify</th>
                   </tr>
                   {renderBills()}
                 </tbody>
