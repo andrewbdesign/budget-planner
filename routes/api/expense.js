@@ -30,7 +30,6 @@ router.post(
       const newExpense = new Expense({
         title: req.body.title,
         amount: req.body.amount,
-        // paid: req.body.paid,
         date: req.body.date,
         name: user.name,
         user: req.user.id,
@@ -39,7 +38,11 @@ router.post(
       await newExpense.save();
 
       const expenses = await Expense.find().sort({ date: -1 });
-      res.json(expenses);
+      // Filter by user
+      const result = expenses.filter(
+        expense => expense.user.toString() === req.user.id,
+      );
+      res.json(result);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -53,7 +56,12 @@ router.post(
 router.get('/', auth, async (req, res) => {
   try {
     const expenses = await Expense.find().sort({ date: -1 });
-    res.json(expenses);
+    // res.json(expenses);
+    // Filter by user
+    const result = expenses.filter(
+      expense => expense.user.toString() === req.user.id,
+    );
+    res.json(result);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -66,12 +74,11 @@ router.get('/', auth, async (req, res) => {
 
 router.put('/:id', auth, async (req, res) => {
   try {
-    const { title, amount, paid } = req.body;
+    const { title, amount } = req.body;
 
     const expenseFields = {};
     if (title) expenseFields.title = title;
     if (amount) expenseFields.amount = amount;
-    // if (paid !== null) expenseFields.paid = paid;
 
     await Expense.findByIdAndUpdate(
       { _id: req.params.id },
@@ -80,7 +87,11 @@ router.put('/:id', auth, async (req, res) => {
     );
 
     const expenses = await Expense.find().sort({ date: -1 });
-    res.json(expenses);
+    // Filter by user
+    const result = expenses.filter(
+      expense => expense.user.toString() === req.user.id,
+    );
+    res.json(result);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
@@ -108,7 +119,11 @@ router.delete('/:id', auth, async (req, res) => {
 
     await expense.remove();
     const expenses = await Expense.find().sort({ date: -1 });
-    res.json(expenses);
+    // Filter by user
+    const result = expenses.filter(
+      expense => expense.user.toString() === req.user.id,
+    );
+    res.json(result);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {

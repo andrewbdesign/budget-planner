@@ -38,7 +38,9 @@ router.post(
       await newGoal.save();
 
       const goals = await Goal.find().sort({ date: -1 });
-      res.json(goals);
+      // Filter by user
+      const result = goals.filter(goal => goal.user.toString() === req.user.id);
+      res.json(result);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -52,7 +54,9 @@ router.post(
 router.get('/', auth, async (req, res) => {
   try {
     const goals = await Goal.find().sort({ date: -1 });
-    res.json(goals);
+    // Filter by user
+    const result = goals.filter(goal => goal.user.toString() === req.user.id);
+    res.json(result);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -78,7 +82,9 @@ router.put('/:id', auth, async (req, res) => {
     );
 
     const goals = await Goal.find().sort({ date: -1 });
-    res.json(goals);
+    // Filter by user
+    const result = goals.filter(goal => goal.user.toString() === req.user.id);
+    res.json(result);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
@@ -106,7 +112,9 @@ router.delete('/:id', auth, async (req, res) => {
 
     await goal.remove();
     const goals = await Goal.find().sort({ date: -1 });
-    res.json(goals);
+    // Filter by user
+    const result = goals.filter(goal => goal.user.toString() === req.user.id);
+    res.json(result);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
