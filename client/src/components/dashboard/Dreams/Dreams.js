@@ -1,96 +1,101 @@
-import React from 'react';
-
-const being = [
-  {
-    title: 'cook',
-    achieved: true,
-  },
-  {
-    title: 'cook',
-    achieved: true,
-  },
-  {
-    title: 'cook',
-    achieved: true,
-  },
-  {
-    title: 'cook',
-    achieved: true,
-  },
-  {
-    title: 'cook',
-    achieved: true,
-  },
-];
-
-const doing = [
-  {
-    title: 'cook',
-    achieved: true,
-  },
-  {
-    title: 'cook',
-    achieved: true,
-  },
-  {
-    title: 'cook',
-    achieved: true,
-  },
-  {
-    title: 'cook',
-    achieved: true,
-  },
-  {
-    title: 'cook',
-    achieved: true,
-  },
-];
-
-const having = [
-  {
-    title: 'car',
-    achieved: true,
-  },
-  {
-    title: 'computer',
-    achieved: true,
-  },
-  {
-    title: 'guitar',
-    achieved: true,
-  },
-  {
-    title: 'shoes',
-    achieved: true,
-  },
-  {
-    title: 'house',
-    achieved: true,
-  },
-];
+import React, { useState, Fragment } from 'react';
 
 const renderDreamList = items => {
-  return items.map((item, index) => <li key={index}>{item.title}</li>);
+  return items.map((item, index) => (
+    <li key={index}>
+      {item.title} <span>x</span> | <span>edit</span>
+    </li>
+  ));
 };
 
 const Dreams = () => {
+  const [dreamItem, setDreamItem] = useState({
+    title: '',
+    achieved: false,
+  });
+
+  const onChange = e => {
+    setDreamItem({
+      ...dreamItem,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onChangeCheckbox = e => {
+    // console.log('e.currentTarget.checked', e.currentTarget.checked);
+    setDreamItem({
+      ...dreamItem,
+      achieved: e.currentTarget.checked,
+    });
+  };
+
+  const havingList = [];
+  const beingListEditMode = false;
+
   return (
     <section className="dreams">
       <div className="container">
-        <h1>Dreams</h1>
-        <p>In 6 months I dream of:</p>
         <div className="dreams__container">
-          <div className="being">
-            <h2>Being</h2>
-            <ol>{renderDreamList(being)}</ol>
-          </div>
-          <div className="doing">
-            <h2>Doing</h2>
-            <ol>{renderDreamList(doing)}</ol>
-          </div>
           <div className="having">
-            <h2>Having</h2>
-            <ol>{renderDreamList(having)}</ol>
+            <h1>Dreams</h1>
+            <p>In 6 months I dream of having:</p>
+            <hr />
+            {havingList ? (
+              <Fragment>
+                <p>You do not have any list things</p>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <ol>{renderDreamList(havingList)}</ol>
+              </Fragment>
+            )}
+          </div>
+          <div className="form-section">
+            {beingListEditMode ? (
+              <Fragment>
+                <input />
+                <div className="button">Add</div>
+                <div
+                  className="button"
+                  // onClick={() => setBeingListEditMode(false)}
+                >
+                  Cancel
+                </div>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <form className="dreams-form" autoComplete="off">
+                  <label>
+                    <span className="label-title">Goal</span>
+                    <input
+                      type="text"
+                      name="title"
+                      value={dreamItem.title}
+                      onChange={onChange}
+                    />
+                  </label>
+                  <label className="label-checkbox">
+                    <span className="label-title">Completed</span>
+                    <input
+                      type="checkbox"
+                      name="achieved"
+                      onChange={e => onChangeCheckbox(e)}
+                    />
+                  </label>
+                  <div className="button-group">
+                    <div className="button button-primary">Add Goal</div>
+                    <div
+                      className="button button-secondary"
+                      onClick={() =>
+                        setDreamItem({ title: '', achieved: false })
+                      }
+                    >
+                      Cancel
+                    </div>
+                  </div>
+                </form>
+              </Fragment>
+            )}
           </div>
         </div>
       </div>

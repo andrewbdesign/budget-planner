@@ -17,8 +17,9 @@ import Footer from './layout/Footer';
 import Alert from './layout/Alert';
 import CreateProfile from './profile/CreateProfile';
 import Dashboard from './dashboard/Dashboard';
-import Expenses from './expenses/Expenses';
+import Expenses from './dashboard/Expenses/Expenses';
 import Goals from './goals/Goals';
+import MonthlyBills from './dashboard/MonthlyBills/MonthlyBills';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -44,6 +45,11 @@ const App = () => {
               exact
               path="/create-profile"
               component={CreateProfile}
+            />
+            <PrivateRoute
+              exact
+              path="/monthly-bills"
+              component={MonthlyBills}
             />
             <PrivateRoute exact path="/expenses" component={Expenses} />
             <PrivateRoute exact path="/goals" component={Goals} />

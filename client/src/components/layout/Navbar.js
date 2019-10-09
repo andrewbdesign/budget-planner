@@ -17,6 +17,9 @@ const Navbar = ({ logout, auth }) => {
         <Link to="/expenses">Expenses</Link>
       </li>
       <li>
+        <Link to="/monthly-bills">Bills</Link>
+      </li>
+      <li>
         <Link to="/goals">Goals</Link>
       </li>
       <li>

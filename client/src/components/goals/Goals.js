@@ -15,18 +15,13 @@ const Goals = () => {
       saved: 6000,
     },
     {
-      name: 'San Francisco',
+      name: 'Holiday in San Francisco',
       target: 24000,
       saved: 0,
     },
     {
-      name: 'Car',
-      target: 20000,
-      saved: 6000,
-    },
-    {
-      name: 'Holiday',
-      target: 24000,
+      name: 'Mirorless Camera',
+      target: 600,
       saved: 0,
     },
   ];

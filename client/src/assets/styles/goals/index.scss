@@ -1,4 +1,8 @@
+@import 'dreams-form';
+
 .goals-overview {
+  min-height: calc(100vh - 322px);
+
   .goals__container {
     background: #f4f4f4;
     padding: 20px;

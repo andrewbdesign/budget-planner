@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
-const Bill = require('../../models/Bill');
+const Goal = require('../../models/Goal');
 const User = require('../../models/User');
 const { check, validationResult } = require('express-validator');
 
-// @route    POST api/bill
-// @desc     Create a bill
+// @route    POST api/goal
+// @desc     Create a goal
 // @access   Private
 router.post(
   '/',
@@ -27,19 +27,18 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select('-password');
 
-      const newBill = new Bill({
+      const newGoal = new Goal({
         title: req.body.title,
-        amount: req.body.amount,
-        paid: req.body.paid,
+        achieved: req.body.achieved,
         date: req.body.date,
         name: user.name,
         user: req.user.id,
       });
 
-      await newBill.save();
+      await newGoal.save();
 
-      const bills = await Bill.find().sort({ date: -1 });
-      res.json(bills);
+      const goals = await Goal.find().sort({ date: -1 });
+      res.json(goals);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -52,39 +51,38 @@ router.post(
 // @access    Private
 router.get('/', auth, async (req, res) => {
   try {
-    const bills = await Bill.find().sort({ date: -1 });
-    res.json(bills);
+    const goals = await Goal.find().sort({ date: -1 });
+    res.json(goals);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
   }
 });
 
-// @route    Update api/bills/:id
-// @desc     Delete a bill
+// @route    Update api/goal/:id
+// @desc     Update a goal
 // @access   Private
 
 router.put('/:id', auth, async (req, res) => {
   try {
-    const { title, amount, paid } = req.body;
+    const { title, achieved } = req.body;
 
-    const billFields = {};
-    if (title) billFields.title = title;
-    if (amount) billFields.amount = amount;
-    if (paid !== null) billFields.paid = paid;
+    const goalFields = {};
+    if (title) goalFields.title = title;
+    if (achieved !== null) goalFields.achieved = achieved;
 
-    await Bill.findByIdAndUpdate(
+    await Goal.findByIdAndUpdate(
       { _id: req.params.id },
-      { $set: billFields },
+      { $set: goalFields },
       { new: true, upsert: true },
     );
 
-    const bills = await Bill.find().sort({ date: -1 });
-    res.json(bills);
+    const goals = await Goal.find().sort({ date: -1 });
+    res.json(goals);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Bill not found' });
+      return res.status(404).json({ msg: 'Goal not found' });
     }
     res.status(500).send('Server Error');
   }
@@ -95,25 +93,24 @@ router.put('/:id', auth, async (req, res) => {
 // @access   Private
 router.delete('/:id', auth, async (req, res) => {
   try {
-    const bill = await Bill.findById(req.params.id);
+    const goal = await Goal.findById(req.params.id);
 
-    if (!bill) {
-      return res.status(404).json({ msg: 'Bill not found' });
+    if (!goal) {
+      return res.status(404).json({ msg: 'Goal not found' });
     }
 
     // Check user
-    if (bill.user.toString() !== req.user.id) {
+    if (goal.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'User not authorized' });
     }
 
-    await bill.remove();
-    const bills = await Bill.find().sort({ date: -1 });
-    res.json(bills);
-    // res.json({ msg: 'Post removed' });
+    await goal.remove();
+    const goals = await Goal.find().sort({ date: -1 });
+    res.json(goals);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Bill not found' });
+      return res.status(404).json({ msg: 'Goal not found' });
     }
     res.status(500).send('Server Error');
   }

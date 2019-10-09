@@ -1,0 +1,44 @@
+.dreams-form {
+  label {
+    display: inline-block;
+    padding: 0 0 20px;
+  }
+
+  .label-title {
+    display: block;
+    font-size: 1.6rem;
+  }
+
+  .label-checkbox {
+    position: relative;
+    top: -10px;
+  }
+
+  input {
+    // width: 100%;
+    margin-top: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    font-size: 1.6rem;
+  }
+
+  .button {
+    display: inline-block;
+  }
+
+  .button-primary {
+    background: #FFC107;
+    color: #212121;
+  }
+
+  .button-secondary {
+    // border: 1px solid #fff;
+    text-decoration: underline;
+
+    &:hover {
+      background: transparent;
+      color: #fff;
+    }
+  }
+
+}

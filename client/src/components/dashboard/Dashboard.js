@@ -87,9 +87,6 @@ const Dashboard = ({
       )}
     </Fragment>
   );
-  // } else {
-  //   return <div></div>;
-  // }
 };
 
 Dashboard.propTypes = {
