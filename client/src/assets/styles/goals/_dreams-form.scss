@@ -41,4 +41,33 @@
     }
   }
 
+
+}
+
+.having {
+  li {
+    .button-secondary {
+      border: 1px solid;
+      padding: 4px 10px;
+      margin: 0 5px;
+
+      &:hover {
+        background: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+      }
+    }
+
+    .button-tertiary {
+      text-decoration: underline;
+      padding: 4px 10px;
+      margin: 0 5px;
+
+      &:hover {
+        background: transparent;
+        color: #e00;
+      }
+    }
+  }
+
 }

@@ -31,7 +31,7 @@
 
   .dreams__container {
     display: flex;
-    // margin-top: 30px;
+    flex-direction: column;
 
     &>div {
       width: 100%;
@@ -48,6 +48,14 @@
       li {
         margin: 4px 0;
       }
+    }
+  }
+}
+
+@media screen and (min-width: 660px) {
+  .dreams {
+    .dreams__container {
+      flex-direction: row;
     }
   }
 }
