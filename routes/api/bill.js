@@ -39,7 +39,9 @@ router.post(
       await newBill.save();
 
       const bills = await Bill.find().sort({ date: -1 });
-      res.json(bills);
+      // Filter by user
+      const result = bills.filter(bill => bill.user.toString() === req.user.id);
+      res.json(result);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -53,7 +55,9 @@ router.post(
 router.get('/', auth, async (req, res) => {
   try {
     const bills = await Bill.find().sort({ date: -1 });
-    res.json(bills);
+    // Filter by user
+    const result = bills.filter(bill => bill.user.toString() === req.user.id);
+    res.json(result);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -80,7 +84,9 @@ router.put('/:id', auth, async (req, res) => {
     );
 
     const bills = await Bill.find().sort({ date: -1 });
-    res.json(bills);
+    // Filter by user
+    const result = bills.filter(bill => bill.user.toString() === req.user.id);
+    res.json(result);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
@@ -108,8 +114,9 @@ router.delete('/:id', auth, async (req, res) => {
 
     await bill.remove();
     const bills = await Bill.find().sort({ date: -1 });
-    res.json(bills);
-    // res.json({ msg: 'Post removed' });
+    // Filter by user
+    const result = bills.filter(bill => bill.user.toString() === req.user.id);
+    res.json(result);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {

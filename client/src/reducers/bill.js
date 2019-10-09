@@ -16,23 +16,8 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case GET_BILLS:
-      return {
-        ...state,
-        bills: payload,
-        loading: false,
-      };
     case ADD_BILL:
-      return {
-        ...state,
-        bills: payload,
-        loading: false,
-      };
     case REMOVE_BILL:
-      return {
-        ...state,
-        bills: payload,
-        loading: false,
-      };
     case UPDATE_BILL:
       return {
         ...state,
