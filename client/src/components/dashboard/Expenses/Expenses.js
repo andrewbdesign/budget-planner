@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import moment from 'moment';
 
 // Redux
 import { connect } from 'react-redux';
@@ -29,7 +30,7 @@ const Expenses = ({
         <tr key={_id} className="expense">
           <td>{title}</td>
           <td>${amount}</td>
-          <td>{date}</td>
+          <td>{moment(date).format('MMM Do')}</td>
           <td>
             <div
               className="button button-secondary"

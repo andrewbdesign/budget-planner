@@ -95,7 +95,7 @@ const MonthlyExpenses = ({
           <td>{title}</td>
           <td>${amount}</td>
           <td>${dailyBreakdown(amount)}</td>
-          <td>{date}</td>
+          <td>{moment(date).format('MMM Do')}</td>
           <td>
             <div
               className="button button-secondary"
