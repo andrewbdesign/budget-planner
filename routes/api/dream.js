@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
-const Goal = require('../../models/Goal');
+const Dream = require('../../models/Dream');
 const User = require('../../models/User');
 const { check, validationResult } = require('express-validator');
 
-// @route    POST api/goal
-// @desc     Create a goal
+// @route    POST api/dream
+// @desc     Create a dream
 // @access   Private
 router.post(
   '/',
@@ -27,7 +27,7 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select('-password');
 
-      const newGoal = new Goal({
+      const newDream = new Dream({
         title: req.body.title,
         achieved: req.body.achieved,
         date: req.body.date,
@@ -35,11 +35,13 @@ router.post(
         user: req.user.id,
       });
 
-      await newGoal.save();
+      await newDream.save();
 
-      const goals = await Goal.find().sort({ date: -1 });
+      const dreams = await Dream.find().sort({ date: -1 });
       // Filter by user
-      const result = goals.filter(goal => goal.user.toString() === req.user.id);
+      const result = dreams.filter(
+        dream => dream.user.toString() === req.user.id,
+      );
       res.json(result);
     } catch (err) {
       console.error(err.message);
@@ -48,14 +50,16 @@ router.post(
   },
 );
 
-// @route     GET /api/bills
-// @desc      Get all profile users bills
+// @route     GET /api/dream
+// @desc      Get all profile users dreams
 // @access    Private
 router.get('/', auth, async (req, res) => {
   try {
-    const goals = await Goal.find().sort({ date: -1 });
+    const dreams = await Dream.find().sort({ date: -1 });
     // Filter by user
-    const result = goals.filter(goal => goal.user.toString() === req.user.id);
+    const result = dreams.filter(
+      dream => dream.user.toString() === req.user.id,
+    );
     res.json(result);
   } catch (err) {
     console.error(err.message);
@@ -63,32 +67,34 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// @route    Update api/goal/:id
-// @desc     Update a goal
+// @route    Update api/dream/:id
+// @desc     Update a dream
 // @access   Private
 
 router.put('/:id', auth, async (req, res) => {
   try {
     const { title, achieved } = req.body;
 
-    const goalFields = {};
-    if (title) goalFields.title = title;
-    if (achieved !== null) goalFields.achieved = achieved;
+    const dreamFields = {};
+    if (title) dreamFields.title = title;
+    if (achieved !== null) dreamFields.achieved = achieved;
 
-    await Goal.findByIdAndUpdate(
+    await Dream.findByIdAndUpdate(
       { _id: req.params.id },
-      { $set: goalFields },
+      { $set: dreamFields },
       { new: true, upsert: true },
     );
 
-    const goals = await Goal.find().sort({ date: -1 });
+    const dreams = await Dream.find().sort({ date: -1 });
     // Filter by user
-    const result = goals.filter(goal => goal.user.toString() === req.user.id);
+    const result = dreams.filter(
+      dream => dream.user.toString() === req.user.id,
+    );
     res.json(result);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Goal not found' });
+      return res.status(404).json({ msg: 'Dream not found' });
     }
     res.status(500).send('Server Error');
   }
@@ -99,26 +105,28 @@ router.put('/:id', auth, async (req, res) => {
 // @access   Private
 router.delete('/:id', auth, async (req, res) => {
   try {
-    const goal = await Goal.findById(req.params.id);
+    const dream = await Dream.findById(req.params.id);
 
-    if (!goal) {
-      return res.status(404).json({ msg: 'Goal not found' });
+    if (!dream) {
+      return res.status(404).json({ msg: 'Dream not found' });
     }
 
     // Check user
-    if (goal.user.toString() !== req.user.id) {
+    if (dream.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'User not authorized' });
     }
 
-    await goal.remove();
-    const goals = await Goal.find().sort({ date: -1 });
+    await dream.remove();
+    const dreams = await Dream.find().sort({ date: -1 });
     // Filter by user
-    const result = goals.filter(goal => goal.user.toString() === req.user.id);
+    const result = dreams.filter(
+      dream => dream.user.toString() === req.user.id,
+    );
     res.json(result);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Goal not found' });
+      return res.status(404).json({ msg: 'Dream not found' });
     }
     res.status(500).send('Server Error');
   }

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const GoalSchema = new Schema({
+const DreamSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'user',
@@ -20,4 +20,4 @@ const GoalSchema = new Schema({
   },
 });
 
-module.exports = Goal = mongoose.model('Goal', GoalSchema);
+module.exports = Dream = mongoose.model('Dream', DreamSchema);

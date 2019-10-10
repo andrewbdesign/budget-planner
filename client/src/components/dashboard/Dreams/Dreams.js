@@ -2,24 +2,24 @@ import React, { useState, Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  getGoals,
-  addGoal,
-  updateGoal,
-  removeGoal,
-} from '../../../actions/goal';
+  getDreams,
+  addDream,
+  updateDream,
+  removeDream,
+} from '../../../actions/dream';
 
 const Dreams = ({
-  goal: { goals },
-  getGoals,
-  addGoal,
-  updateGoal,
-  removeGoal,
+  dream: { dreams },
+  getDreams,
+  addDream,
+  updateDream,
+  removeDream,
 }) => {
   const [dreamItem, setDreamItem] = useState({
     title: '',
     achieved: false,
   });
-  const [isUpdatingGoal, setIsUpdatingGoal] = useState(false);
+  const [isUpdatingDream, setIsUpdatingDream] = useState(false);
 
   const renderDreamList = items => {
     return items.map((item, index) => (
@@ -28,9 +28,8 @@ const Dreams = ({
         <span
           className="button button-secondary"
           onClick={() => {
-            setIsUpdatingGoal(true);
-            console.log('isUpdatingGoal', isUpdatingGoal);
-            editGoal(item);
+            setIsUpdatingDream(true);
+            editDream(item);
           }}
         >
           Edit
@@ -38,7 +37,7 @@ const Dreams = ({
         <span
           className="button button-tertiary"
           onClick={() => {
-            removeGoal(item._id);
+            removeDream(item._id);
           }}
         >
           Delete
@@ -47,7 +46,7 @@ const Dreams = ({
     ));
   };
 
-  const editGoal = item => {
+  const editDream = item => {
     setDreamItem({
       title: item.title,
       achieved: item.achieved,
@@ -56,8 +55,8 @@ const Dreams = ({
   };
 
   useEffect(() => {
-    getGoals();
-  }, [getGoals]);
+    getDreams();
+  }, [getDreams]);
 
   const onChange = e => {
     setDreamItem({
@@ -67,7 +66,6 @@ const Dreams = ({
   };
 
   const onChangeCheckbox = e => {
-    // console.log('e.currentTarget.checked', e.currentTarget.checked);
     setDreamItem({
       ...dreamItem,
       achieved: e.currentTarget.checked,
@@ -75,7 +73,7 @@ const Dreams = ({
   };
 
   const onSubmit = () => {
-    addGoal(dreamItem);
+    addDream(dreamItem);
     setDreamItem({ title: '', achieved: false });
   };
 
@@ -87,9 +85,9 @@ const Dreams = ({
             <h1>Dreams</h1>
             <p>In 6 months I dream of having:</p>
             <hr />
-            {goals && goals.length > 0 ? (
+            {dreams && dreams.length > 0 ? (
               <Fragment>
-                <ol>{renderDreamList(goals)}</ol>
+                <ol>{renderDreamList(dreams)}</ol>
               </Fragment>
             ) : (
               <Fragment>
@@ -103,7 +101,7 @@ const Dreams = ({
           <div className="form-section">
             <form className="dreams-form" autoComplete="off">
               <label>
-                <span className="label-title">Goal</span>
+                <span className="label-title">Dream</span>
                 <input
                   type="text"
                   name="title"
@@ -120,27 +118,27 @@ const Dreams = ({
                 />
               </label>
               <div className="button-group">
-                {isUpdatingGoal ? (
+                {isUpdatingDream ? (
                   <Fragment>
                     <div
                       className="button button-primary"
                       onClick={() => {
-                        updateGoal({
+                        updateDream({
                           ...dreamItem,
                           title: dreamItem.title,
                           achieved: dreamItem.achieved,
                         });
-                        setIsUpdatingGoal(false);
+                        setIsUpdatingDream(false);
                         setDreamItem({ title: '', achieved: false });
                       }}
                     >
-                      Update Goal
+                      Update Dream
                     </div>
                     <div
                       className="button button-secondary"
                       onClick={() => {
                         setDreamItem({ title: '', achieved: false });
-                        setIsUpdatingGoal(false);
+                        setIsUpdatingDream(false);
                       }}
                     >
                       Cancel
@@ -149,7 +147,7 @@ const Dreams = ({
                 ) : (
                   <Fragment>
                     <div className="button button-primary" onClick={onSubmit}>
-                      Add Goal
+                      Add Dream
                     </div>
                     <div
                       className="button button-secondary"
@@ -171,22 +169,22 @@ const Dreams = ({
 };
 
 Dreams.propTypes = {
-  goal: PropTypes.object.isRequired,
-  getGoals: PropTypes.func.isRequired,
-  addGoal: PropTypes.func.isRequired,
-  updateGoal: PropTypes.func.isRequired,
-  removeGoal: PropTypes.func.isRequired,
+  dream: PropTypes.object.isRequired,
+  getDreams: PropTypes.func.isRequired,
+  addDream: PropTypes.func.isRequired,
+  updateDream: PropTypes.func.isRequired,
+  removeDream: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  goal: state.goal,
+  dream: state.dream,
 });
 
 const mapDispatchToProps = {
-  getGoals,
-  addGoal,
-  updateGoal,
-  removeGoal,
+  getDreams,
+  addDream,
+  updateDream,
+  removeDream,
 };
 
 export default connect(
