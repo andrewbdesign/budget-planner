@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import Target from '../../assets/icons/target.svg';
 import Money from '../../assets/icons/money.svg';
 import Wallet from '../../assets/icons/wallet.svg';
-// import { numberWithCommas } from '../../utils/numberFormatter';
 
 const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
