@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import moment from 'moment';
 
 // Redux
 import { connect } from 'react-redux';
@@ -15,6 +14,11 @@ import {
 import { numberWithCommas } from '../../../utils/numberFormatter';
 import { getTotalSum } from '../../../utils/bill';
 import { getCurrentMonth } from '../../../utils/dates';
+
+import { SingleDatePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+import moment from 'moment';
+import uuid from 'uuid';
 
 const Expenses = ({
   getExpenses,
@@ -66,10 +70,11 @@ const Expenses = ({
 
   const [showAddExpense, setShowAddExpense] = useState(false);
   const [updatingExpense, setUpdatingExpense] = useState(false);
+  const [calendarFocused, setCalendarFocused] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     amount: '',
-    date: Date.now(),
+    date: moment(),
   });
 
   const { title, amount } = formData;
@@ -81,9 +86,19 @@ const Expenses = ({
     });
   };
 
+  const onDateChange = createdAt => {
+    setFormData({
+      ...formData,
+      date: createdAt,
+    });
+  };
+
+  const onFocusChange = ({ focused }) => {
+    setCalendarFocused(focused);
+  };
+
   const onSubmit = e => {
     e.preventDefault();
-    console.log('expenses formData', formData);
     addExpense(formData);
     setFormData({
       ...formData,
@@ -114,7 +129,7 @@ const Expenses = ({
               </table>
               <h1>{getCurrentMonth()} Expenses</h1>
 
-              <p>${numberWithCommas(getTotalSum(expenses))}</p>
+              <p>${numberWithCommas(getTotalSum(expenses).toFixed(2))}</p>
               <div className="monthly-expenses__button">
                 {showAddExpense ? (
                   <Fragment>
@@ -135,6 +150,19 @@ const Expenses = ({
                           name="amount"
                           value={amount}
                           onChange={onChange}
+                        />
+                      </div>
+
+                      <div className="form-section-calendar">
+                        <label>Date</label>
+                        <SingleDatePicker
+                          date={formData.date}
+                          onDateChange={onDateChange}
+                          focused={calendarFocused}
+                          onFocusChange={onFocusChange}
+                          numberOfMonths={1}
+                          id={uuid.v4()}
+                          isOutsideRange={() => false}
                         />
                       </div>
                     </form>
@@ -212,6 +240,7 @@ const Expenses = ({
                       onChange={onChange}
                     />
                   </div>
+
                   <div className="form-section">
                     <label htmlFor="amount">Cost</label>
                     <input
@@ -219,6 +248,19 @@ const Expenses = ({
                       name="amount"
                       value={amount}
                       onChange={onChange}
+                    />
+                  </div>
+
+                  <div className="form-section-calendar">
+                    <label>Date</label>
+                    <SingleDatePicker
+                      date={formData.date}
+                      onDateChange={onDateChange}
+                      focused={calendarFocused}
+                      onFocusChange={onFocusChange}
+                      numberOfMonths={1}
+                      id={uuid.v4()}
+                      isOutsideRange={() => false}
                     />
                   </div>
                 </form>

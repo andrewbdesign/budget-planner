@@ -149,7 +149,7 @@ const MonthlyExpenses = ({
           <hr />
           {bills && bills.length > 0 ? (
             <Fragment>
-              <table>
+              <table className="monthly-expenses-table">
                 <tbody>
                   <tr>
                     <th>Expense</th>
@@ -162,7 +162,7 @@ const MonthlyExpenses = ({
                 </tbody>
               </table>
               <h1>Total Bills amount</h1>
-              <p>${numberWithCommas(getTotalSum(bills))} / month</p>
+              <p>${numberWithCommas(getTotalSum(bills).toFixed(2))} / month</p>
 
               <div className="monthly-expenses__button">
                 {showAddBill ? (
@@ -187,7 +187,7 @@ const MonthlyExpenses = ({
                         />
                       </div>
 
-                      <div>
+                      <div className="form-section-calendar">
                         <label>Date</label>
                         <SingleDatePicker
                           date={formData.date}

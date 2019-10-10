@@ -29,11 +29,12 @@ const Summary = ({
         </p>
         <br />
         <p>Monthly Income: $****.**</p>
-        <p>Monthly Bills: ${bills ? getTotalSum(bills) : 0}</p>
+        <p>Monthly Bills: ${bills ? getTotalSum(bills).toFixed(2) : 0}</p>
         <p>Money left: $0.00</p>
         <br />
         <h2>
-          This month you have spent ${expenses ? getTotalSum(expenses) : 0}
+          This month you have spent $
+          {expenses ? getTotalSum(expenses).toFixed(2) : 0}
         </h2>
         <p>You have $0.00 left to spend til next pay.</p>
         <p>
