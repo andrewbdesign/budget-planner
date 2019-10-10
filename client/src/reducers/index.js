@@ -5,4 +5,14 @@ import profile from './profile';
 import bill from './bill';
 import expense from './expense';
 import dream from './dream';
-export default combineReducers({ alert, auth, profile, bill, expense, dream });
+import goal from './goal';
+
+export default combineReducers({
+  alert,
+  auth,
+  profile,
+  bill,
+  expense,
+  dream,
+  goal,
+});
