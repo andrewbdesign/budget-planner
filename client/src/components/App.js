@@ -20,6 +20,7 @@ import Dashboard from './dashboard/Dashboard';
 import Expenses from './dashboard/Expenses/Expenses';
 import Goals from './goals/Goals';
 import CreateGoal from './goals/CreateGoal';
+import EditGoal from './goals/EditGoal';
 import MonthlyBills from './dashboard/MonthlyBills/MonthlyBills';
 
 if (localStorage.token) {
@@ -55,6 +56,7 @@ const App = () => {
             <PrivateRoute exact path="/expenses" component={Expenses} />
             <PrivateRoute exact path="/goals" component={Goals} />
             <PrivateRoute exact path="/create-goal" component={CreateGoal} />
+            <PrivateRoute path="/edit-goal/:id" component={EditGoal} />
           </Switch>
           <Footer />
         </Router>

@@ -3,6 +3,7 @@ import {
   ADD_GOAL,
   REMOVE_GOAL,
   UPDATE_GOAL,
+  GET_GOAL,
 } from '../actions/types';
 
 const initialState = {
@@ -22,6 +23,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         goals: payload,
+        loading: false,
+      };
+    case GET_GOAL:
+      return {
+        ...state,
+        goal: payload,
         loading: false,
       };
     default:

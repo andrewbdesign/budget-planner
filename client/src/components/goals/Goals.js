@@ -8,9 +8,9 @@ import PlusIcon from '../../assets/icons/plus.svg';
 // Redux
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getGoals } from '../../actions/goal';
+import { getGoals, removeGoal } from '../../actions/goal';
 
-const Goals = ({ goal: { goals }, getGoals }) => {
+const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
   useEffect(() => {
     getGoals();
   }, [getGoals]);
@@ -40,9 +40,9 @@ const Goals = ({ goal: { goals }, getGoals }) => {
 
   const renderGoalsCard = () => {
     return goals.map((goal, index) => {
-      const { goalTitle, goalTarget, totalSaved } = goal;
+      const { goalTitle, goalTarget, totalSaved, _id } = goal;
       return (
-        <Link className="card__link" key={index} to="/dashboard">
+        <a href="#!" className="card__link" key={index}>
           <div className="card">
             <h2 className="card__name">{goalTitle}</h2>
             <p className="card__saved">
@@ -51,10 +51,28 @@ const Goals = ({ goal: { goals }, getGoals }) => {
             <p className="card__target">
               Target: ${numberWithCommas(goalTarget)}
             </p>
-            {/*<div className="button button-secondary">Edit</div>
-            <div className="button button-tertiary">Delete</div>*/}
+            <div className="button-container">
+              <Link
+                to={`/edit-goal/${_id}`}
+                // onClick={e => {
+                //   e.preventDefault();
+                // }}
+                className="button button-secondary"
+              >
+                Edit
+              </Link>
+              <div
+                className="button button-tertiary"
+                onClick={e => {
+                  e.preventDefault();
+                  removeGoal(_id);
+                }}
+              >
+                Delete
+              </div>
+            </div>
           </div>
-        </Link>
+        </a>
       );
     });
   };
@@ -110,6 +128,7 @@ const Goals = ({ goal: { goals }, getGoals }) => {
 Goals.propType = {
   goal: PropTypes.object.isRequired,
   getGoals: PropTypes.func.isRequired,
+  removeGoal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -118,6 +137,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getGoals,
+  removeGoal,
 };
 
 export default connect(

@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { GET_GOALS, ADD_GOAL, UPDATE_GOAL, REMOVE_GOAL } from './types';
+import {
+  GET_GOALS,
+  ADD_GOAL,
+  UPDATE_GOAL,
+  REMOVE_GOAL,
+  GET_GOAL,
+} from './types';
 import { setAlert } from './alert';
 
 export const getGoals = () => async dispatch => {
@@ -36,7 +42,7 @@ export const addGoal = (formData, history, edit = false) => async dispatch => {
   }
 };
 
-export const updateGoal = formData => async dispatch => {
+export const updateGoal = (formData, history) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -49,8 +55,21 @@ export const updateGoal = formData => async dispatch => {
       type: UPDATE_GOAL,
       payload: res.data,
     });
+    history.push('/goals');
   } catch (err) {
     dispatch(setAlert("Can't update the goal man"));
+  }
+};
+
+export const getGoal = goalID => async dispatch => {
+  try {
+    const res = await axios.get(`/api/goal/${goalID}`);
+    dispatch({
+      type: GET_GOAL,
+      payload: res.data,
+    });
+  } catch (err) {
+    setAlert('Cant remove the goal man');
   }
 };
 

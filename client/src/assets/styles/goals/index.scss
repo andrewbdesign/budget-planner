@@ -1,4 +1,5 @@
 @import 'dreams-form';
+@import 'edit-goal';
 
 .goals-overview {
   min-height: calc(100vh - 322px);
@@ -57,6 +58,50 @@
     &:hover {
       background: $navy;
       color: #fff;
+
+      .button-container {
+        .button-secondary {
+          border: 1px solid #fff;
+          color: #fff;
+
+          &:hover {
+            background: #fff;
+            color: $navy;
+          }
+        }
+
+        .button-tertiary {
+          color: #fff;
+
+          &:hover {
+            color: #f36f6d;
+          }
+        }
+      }
+    }
+
+  }
+
+  .button-container {
+    opacity: 1;
+    margin-top: 10px;
+    transition: opacity .3s ease-in-out;
+
+    div {
+      margin: 0;
+    }
+
+    .button-secondary {
+      background: transparent;
+      border: 1px solid $navy;
+      color: $navy;
+    }
+
+    .button-tertiary {
+      background: transparent;
+      border: none;
+      color: $navy;
+      text-decoration: underline;
     }
   }
 
@@ -70,9 +115,11 @@
       height: 42px;
     }
 
-    &:hover {
-      background: #fff;
-    }
+    // &:hover {
+    //   background: #fff;
+    // }
+
+
   }
 
   .card__name {
@@ -88,6 +135,8 @@
   .card__saved {
     font-size: 1.2rem;
   }
+
+
 }
 
 @media screen and (min-width: 660px) {
