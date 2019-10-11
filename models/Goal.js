@@ -20,7 +20,7 @@ const GoalSchema = new Schema({
   },
   achieved: {
     type: Boolean,
-    required: true,
+    default: false,
   },
   savingFrequency: {
     type: String,

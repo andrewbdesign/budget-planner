@@ -14,7 +14,7 @@ export const getGoals = () => async dispatch => {
   }
 };
 
-export const addGoal = formData => async dispatch => {
+export const addGoal = (formData, history, edit = false) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -23,11 +23,14 @@ export const addGoal = formData => async dispatch => {
     };
 
     const res = await axios.post('/api/goal', formData, config);
-
     dispatch({
       type: ADD_GOAL,
       payload: res.data,
     });
+    dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created'));
+    if (!edit) {
+      history.push('/goals');
+    }
   } catch (err) {
     dispatch(setAlert("Can't add any goals man"));
   }
