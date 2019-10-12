@@ -55,7 +55,7 @@ export const updateGoal = (formData, history) => async dispatch => {
       type: UPDATE_GOAL,
       payload: res.data,
     });
-    history.push('/goals');
+    history.push('/dashboard');
   } catch (err) {
     dispatch(setAlert("Can't update the goal man"));
   }

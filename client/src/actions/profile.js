@@ -35,7 +35,7 @@ export const createProfile = (
     });
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created'));
     if (!edit) {
-      history.push('/dashboard');
+      history.push('/goals');
     }
   } catch (err) {
     const errors = err.response.data.errors;

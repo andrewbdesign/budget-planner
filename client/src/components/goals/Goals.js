@@ -42,7 +42,7 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
     return goals.map((goal, index) => {
       const { goalTitle, goalTarget, totalSaved, _id } = goal;
       return (
-        <a href="#!" className="card__link" key={index}>
+        <div className="card__link" key={index}>
           <div className="card">
             <h2 className="card__name">{goalTitle}</h2>
             <p className="card__saved">
@@ -52,17 +52,14 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
               Target: ${numberWithCommas(goalTarget)}
             </p>
             <div className="button-container">
-              <Link
-                to={`/edit-goal/${_id}`}
-                // onClick={e => {
-                //   e.preventDefault();
-                // }}
-                className="button button-secondary"
-              >
+              <Link to="/dashboard" className="button button-secondary">
+                Go
+              </Link>
+              <Link to={`/edit-goal/${_id}`} className="button button-tertiary">
                 Edit
               </Link>
               <div
-                className="button button-tertiary"
+                className="button button-delete"
                 onClick={e => {
                   e.preventDefault();
                   removeGoal(_id);
@@ -72,7 +69,7 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
               </div>
             </div>
           </div>
-        </a>
+        </div>
       );
     });
   };

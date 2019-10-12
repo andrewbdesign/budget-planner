@@ -7,9 +7,10 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  goals: null,
+  goals: [],
   loading: true,
   error: {},
+  goal: null,
 };
 
 export default function(state = initialState, action) {
@@ -24,6 +25,7 @@ export default function(state = initialState, action) {
         ...state,
         goals: payload,
         loading: false,
+        // goal: null,
       };
     case GET_GOAL:
       return {

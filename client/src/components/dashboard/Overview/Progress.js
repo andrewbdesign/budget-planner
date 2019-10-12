@@ -21,7 +21,7 @@ const Progress = ({ profile: { profile } }) => {
       </div>
       <div className="overview__body">
         <h2>You've saved ${numberWithCommas(profile.totalSaved)}</h2>
-        <p>You are {getPercentage()}% there.</p>
+        <p>You are {getPercentage().toFixed(0)}% the way there.</p>
         <ProgressChart />
       </div>
     </div>
