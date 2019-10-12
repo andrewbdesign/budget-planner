@@ -27,43 +27,6 @@ const Expenses = ({
   updateExpense,
   removeExpense,
 }) => {
-  const renderExpenses = expenses => {
-    return expenses.map(expense => {
-      const { title, amount, date, _id } = expense;
-      return (
-        <tr key={_id} className="expense">
-          <td>{title}</td>
-          <td>${amount}</td>
-          <td>{moment(date).format('MMM Do')}</td>
-          <td>
-            <div
-              className="button button-secondary"
-              onClick={() => {
-                setFormData({
-                  title,
-                  amount,
-                  id: _id,
-                });
-                setUpdatingExpense(true);
-                setShowAddExpense(true);
-              }}
-            >
-              Edit
-            </div>
-            <div
-              className="button button-tertiary"
-              onClick={() => {
-                removeExpense(_id);
-              }}
-            >
-              Delete
-            </div>
-          </td>
-        </tr>
-      );
-    });
-  };
-
   useEffect(() => {
     getExpenses();
   }, [getExpenses]);
@@ -106,6 +69,43 @@ const Expenses = ({
       amount: '',
     });
     setShowAddExpense(!showAddExpense);
+  };
+
+  const renderExpenses = expenses => {
+    return expenses.map(expense => {
+      const { title, amount, date, _id } = expense;
+      return (
+        <tr key={_id} className="expense">
+          <td>{title}</td>
+          <td>${amount}</td>
+          <td>{moment(date).format('MMM Do')}</td>
+          <td>
+            <div
+              className="button button-secondary"
+              onClick={() => {
+                setFormData({
+                  title,
+                  amount,
+                  id: _id,
+                });
+                setUpdatingExpense(true);
+                setShowAddExpense(true);
+              }}
+            >
+              Edit
+            </div>
+            <div
+              className="button button-tertiary"
+              onClick={() => {
+                removeExpense(_id);
+              }}
+            >
+              Delete
+            </div>
+          </td>
+        </tr>
+      );
+    });
   };
 
   return (
@@ -228,7 +228,7 @@ const Expenses = ({
             </Fragment>
           ) : (
             <Fragment>
-              <p>You do not have any bills yet. Add your first bill</p>
+              <p>You do not have any bills yet. Add your first bills</p>
               <div className="monthly-expenses__button">
                 <form autoComplete="off">
                   <div className="form-section">

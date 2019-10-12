@@ -28,9 +28,11 @@ const App = () => {
   return (
     <Provider store={store}>
       <Fragment>
-        <Router>
+        <Router onUpdate={() => window.scrollTo(0, 0)}>
           <Navbar />
-          <Alert />
+          <div className="alert-container">
+            <Alert />
+          </div>
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route component={Routes} />

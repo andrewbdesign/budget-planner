@@ -80,18 +80,7 @@ const MonthlyExpenses = ({
     return bills.map(bill => {
       const { _id, paid, title, amount, date } = bill;
       return (
-        <tr
-          key={_id}
-          className={'bill ' + (paid && 'paid')}
-          // onClick={() => {
-          //   updateBill({
-          //     title,
-          //     amount,
-          //     paid: !paid,
-          //     id: _id,
-          //   });
-          // }}
-        >
+        <tr key={_id} className={'bill ' + (paid && 'paid')}>
           <td>{title}</td>
           <td>${amount}</td>
           <td>${dailyBreakdown(amount)}</td>
@@ -137,6 +126,46 @@ const MonthlyExpenses = ({
     setCalendarFocused(focused);
   };
 
+  const addMonthlyBillForm = (
+    <Fragment>
+      <form autoComplete="off">
+        <div className="form-section">
+          <label htmlFor="title">Title</label>
+          <input id="title" name="title" value={title} onChange={onChange} />
+        </div>
+        <div className="form-section">
+          <label htmlFor="amount">Cost</label>
+          <input id="amout" name="amount" value={amount} onChange={onChange} />
+        </div>
+
+        <div className="form-section-calendar">
+          <label>Date</label>
+          <SingleDatePicker
+            date={formData.date}
+            onDateChange={onDateChange}
+            focused={calendarFocused}
+            onFocusChange={onFocusChange}
+            numberOfMonths={1}
+            id={uuid.v4()}
+            isOutsideRange={() => false}
+          />
+        </div>
+        <div className="form-section">
+          <label htmlFor="paid">Completed</label>
+          <input
+            type="checkbox"
+            checked={paid}
+            onChange={onChangeCheckbox}
+          ></input>
+        </div>
+      </form>
+
+      <div className="button button-success" onClick={onSubmit}>
+        Add
+      </div>
+    </Fragment>
+  );
+
   return (
     <section className="monthly-expenses">
       <div className="container">
@@ -167,48 +196,7 @@ const MonthlyExpenses = ({
               <div className="monthly-expenses__button">
                 {showAddBill ? (
                   <Fragment>
-                    <form autoComplete="off">
-                      <div className="form-section">
-                        <label htmlFor="title">Title</label>
-                        <input
-                          id="title"
-                          name="title"
-                          value={title}
-                          onChange={onChange}
-                        />
-                      </div>
-                      <div className="form-section">
-                        <label htmlFor="amount">Cost</label>
-                        <input
-                          id="amout"
-                          name="amount"
-                          value={amount}
-                          onChange={onChange}
-                        />
-                      </div>
-
-                      <div className="form-section-calendar">
-                        <label>Date</label>
-                        <SingleDatePicker
-                          date={formData.date}
-                          onDateChange={onDateChange}
-                          focused={calendarFocused}
-                          onFocusChange={onFocusChange}
-                          numberOfMonths={1}
-                          id={uuid.v4()}
-                          isOutsideRange={() => false}
-                        />
-                      </div>
-
-                      <div className="form-section">
-                        <label htmlFor="paid">Completed</label>
-                        <input
-                          type="checkbox"
-                          checked={paid}
-                          onChange={onChangeCheckbox}
-                        ></input>
-                      </div>
-                    </form>
+                    {addMonthlyBillForm}
                     {updatingBill ? (
                       <Fragment>
                         <div
@@ -231,6 +219,7 @@ const MonthlyExpenses = ({
                           className="button button-tertiary"
                           onClick={() => {
                             setUpdatingBill(false);
+                            setShowAddBill(false);
                             setFormData({
                               ...formData,
                               title: '',
@@ -273,40 +262,9 @@ const MonthlyExpenses = ({
             </Fragment>
           ) : (
             <Fragment>
-              <p>You do not have any bills yet. Add your first bill</p>
+              <p>You do not have any bills yet. Add your first bills.</p>
               <div className="monthly-expenses__button">
-                <form autoComplete="off">
-                  <div>
-                    <label htmlFor="title">Title</label>
-                    <input
-                      id="title"
-                      name="title"
-                      value={title}
-                      onChange={onChange}
-                    />
-                  </div>
-                  <div className="form-section">
-                    <label htmlFor="amount">Cost</label>
-                    <input
-                      id="amout"
-                      name="amount"
-                      value={amount}
-                      onChange={onChange}
-                    />
-                  </div>
-                  <div className="form-section">
-                    <label htmlFor="paid">Completed</label>
-                    <input
-                      type="checkbox"
-                      checked={paid}
-                      onChange={onChangeCheckbox}
-                    ></input>
-                  </div>
-                </form>
-
-                <div className="button button-success" onClick={onSubmit}>
-                  Add
-                </div>
+                {addMonthlyBillForm}
               </div>
             </Fragment>
           )}

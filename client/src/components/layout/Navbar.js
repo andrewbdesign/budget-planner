@@ -14,13 +14,10 @@ const Navbar = ({ logout, auth }) => {
         <Link to="/dashboard">Dashboard</Link>
       </li>
       <li>
-        <Link to="/expenses">Expenses</Link>
-      </li>
-      <li>
-        <Link to="/monthly-bills">Bills</Link>
-      </li>
-      <li>
         <Link to="/goals">Goals</Link>
+      </li>
+      <li>
+        <Link to="/profile">Profile</Link>
       </li>
       <li>
         <a href="#!" onClick={logout}>

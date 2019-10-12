@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import Lottie from '../../assets/libraries/react-lottie';
 import { numberWithCommas } from '../../utils/numberFormatter';
 import { TimelineMax, Power1 } from 'gsap';
+
 import PlusIcon from '../../assets/icons/plus.svg';
+import CrossIcon from '../../assets/icons/cross.svg';
 
 // Redux
 import { connect } from 'react-redux';
@@ -65,7 +67,7 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
                   removeGoal(_id);
                 }}
               >
-                Delete
+                <img src={CrossIcon} alt="delete" />
               </div>
             </div>
           </div>

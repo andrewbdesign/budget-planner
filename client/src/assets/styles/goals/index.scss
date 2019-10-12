@@ -35,6 +35,7 @@
     }
   }
 
+
   .card__link {
     width: calc(100% - 20px);
     height: calc(100% - 20px);
@@ -42,6 +43,8 @@
   }
 
   .card {
+    position: relative;
+    top: 0;
     width: 100%;
     height: 200px;
     opacity: 0;
@@ -53,33 +56,30 @@
     color: #212121;
     box-shadow: 0px 0px 9px 0 rgba(0, 0, 0, 0.03);
     padding: 20px;
-    transition: background .2s ease-in-out, color .2s ease-in-out;
+    transition: top .2s ease-in-out, box-shadow .2s ease-in-out;
+    cursor: pointer;
 
     &:hover {
-      background: $navy;
-      color: #fff;
-
-      .button-container {
-        .button-secondary {
-          border: 1px solid #fff;
-          color: #fff;
-
-          &:hover {
-            background: #fff;
-            color: $navy;
-          }
-        }
-
-        .button-tertiary {
-          color: #fff;
-
-          &:hover {
-            color: #f36f6d;
-          }
-        }
-      }
+      top: -10px;
+      box-shadow: 0px 10px 16px 9px rgba(0, 0, 0, 0.1);
     }
 
+  }
+
+  .button-delete {
+    background: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    img {
+      width: 18px;
+      height: 18px;
+      padding: 3px;
+      position: relative;
+      top: 3px;
+      right: 3px;
+    }
   }
 
   .button-container {
@@ -95,6 +95,9 @@
       background: transparent;
       border: 1px solid $navy;
       color: $navy;
+      padding: 8px 18px;
+      margin-right: 20px;
+      margin-top: 8px;
     }
 
     .button-tertiary {
@@ -102,6 +105,7 @@
       border: none;
       color: $navy;
       text-decoration: underline;
+      padding: 0;
     }
   }
 

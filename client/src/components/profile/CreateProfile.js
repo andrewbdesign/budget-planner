@@ -12,10 +12,6 @@ import Wallet from '../../assets/icons/wallet.svg';
 
 const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
-    // goal: '',
-    // cost: '',
-    // savings: '',
-    // Second part
     goalTitle: '',
     goalTarget: '',
     totalSaved: '',
@@ -23,8 +19,9 @@ const CreateProfile = ({ createProfile, history }) => {
     savingFrequency: '', // [day, week, fortnight, 3weeks, month]
     savingCommitment: '', // $100
     // Saving duration
-    savingDurationMonths: '', // 0-11 months
-    savingDurationYears: '', // 0+ years
+    monthlyIncome: '', // Optional.
+    payDay: '', // Required if monthly income is filled
+    currentBankBalance: '', // required
   });
 
   const sectionOneA = useRef(null);

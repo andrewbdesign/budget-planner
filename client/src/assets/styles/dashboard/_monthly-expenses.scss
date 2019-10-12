@@ -69,6 +69,12 @@
     height: 40px;
   }
 
+  .bill.false {
+    td:last-child {
+      border-right: 10px solid transparent;
+    }
+  }
+
   .bill.paid {
     background: #eee;
     text-decoration: line-through;

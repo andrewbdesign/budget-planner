@@ -1,0 +1,23 @@
+.alert-container {
+  position: relative;
+  height: 0;
+}
+
+.alert {
+  padding: 20px;
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+  margin: 0 auto 10px;
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #ff001e, #990002 100%, #7db9e8 0);
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #39a969, #00F268 100%, #7db9e8 0);
+
+}

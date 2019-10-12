@@ -116,13 +116,23 @@ const CreateGoal = ({ addGoal, history }) => {
               <label htmlFor="goal-target">I want to save up</label>
               <img className="icon-money" src={Money} alt="" />
               <span className="dollar-prefix">$</span>
-              <input id="goal-target" name="goalTarget" onChange={onChange} />
+              <input
+                id="goal-target"
+                name="goalTarget"
+                onChange={onChange}
+                autoComplete="off"
+              />
             </div>
             <div>
               <label htmlFor="total-saved">So far I have saved</label>
               <img className="icon-wallet" src={Wallet} alt="" />
               <span className="dollar-prefix">$</span>
-              <input id="total-saved" name="totalSaved" onChange={onChange} />
+              <input
+                id="total-saved"
+                name="totalSaved"
+                onChange={onChange}
+                autoComplete="off"
+              />
             </div>
             <div>
               <label htmlFor="goal-title">Because my goal is to get </label>
@@ -134,6 +144,7 @@ const CreateGoal = ({ addGoal, history }) => {
                   onChange(e);
                   showThirdQuestions();
                 }}
+                autoComplete="off"
               />
             </div>
           </div>
@@ -145,6 +156,7 @@ const CreateGoal = ({ addGoal, history }) => {
                 id="saving-commitment"
                 name="savingCommitment"
                 onChange={onChange}
+                autoComplete="off"
               />
             </div>
             <div>
@@ -162,7 +174,7 @@ const CreateGoal = ({ addGoal, history }) => {
                 <option value="month">Month</option>
               </select>
               <button className="button" onClick={onSubmit}>
-                Calculate
+                Create Goal
               </button>
             </div>
           </div>
