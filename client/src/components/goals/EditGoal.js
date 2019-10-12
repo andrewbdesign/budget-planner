@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateGoal, getGoal } from '../../actions/goal';
 import PropTypes from 'prop-types';
@@ -19,19 +19,7 @@ const EditGoal = ({
     params: { id },
   },
 }) => {
-  const [formData, setFormData] = useState({
-    goalTitle: '',
-    goalTarget: '',
-    totalSaved: '',
-    savingFrequency: '',
-    savingCommitment: '',
-  });
-
-  const [saveBy, setSaveBy] = useState('date');
-
-  useEffect(() => {
-    getGoal(id);
-
+  const updateForm = () => {
     if (goal !== null) {
       setFormData({
         id: loading || !id ? '' : id,
@@ -45,7 +33,21 @@ const EditGoal = ({
         achieved: false,
       });
     }
-  }, [loading, id, getGoal]);
+  };
+
+  const [saveBy, setSaveBy] = useState('date');
+  const [formData, setFormData] = useState({
+    goalTitle: '',
+    goalTarget: '',
+    totalSaved: '',
+    savingFrequency: '',
+    savingCommitment: '',
+  });
+
+  useEffect(() => {
+    getGoal(id);
+    updateForm();
+  }, [loading, getGoal, id]);
 
   const onChange = e => {
     setFormData({
@@ -78,7 +80,6 @@ const EditGoal = ({
     newFormData.achieved = achieved;
 
     updateGoal(newFormData, history);
-    getGoal(id);
   };
 
   if (loading) {
@@ -108,6 +109,7 @@ const EditGoal = ({
             name="goalTarget"
             value={formData.goalTarget}
             onChange={onChange}
+            autoCorrect="off"
           />
         </div>
         <div>
@@ -119,6 +121,7 @@ const EditGoal = ({
             name="totalSaved"
             value={formData.totalSaved}
             onChange={onChange}
+            autoCorrect="off"
           />
         </div>
         <div>
@@ -129,6 +132,7 @@ const EditGoal = ({
             name="goalTitle"
             value={formData.goalTitle}
             onChange={onChange}
+            autoCorrect="off"
           />
         </div>
       </div>
@@ -144,6 +148,7 @@ const EditGoal = ({
           name="savingCommitment"
           value={formData.savingCommitment}
           onChange={onChange}
+          autoCorrect="off"
         />
       </div>
       <div>
@@ -161,9 +166,13 @@ const EditGoal = ({
           </option>
           <option value="month">Month</option>
         </select>
+
         <button className="button" onClick={onSubmit}>
           Update
         </button>
+        <Link to="/goals" className="button button-secondary">
+          Cancel
+        </Link>
       </div>
     </div>
   );
@@ -172,15 +181,11 @@ const EditGoal = ({
     <section className="edit-goal">
       <div className="container">
         <div className="edit-goal__container">
-          <h1 className="edit-goal__heading">Update goal</h1>
-
           {goal !== null && (
             <Fragment>
-              {goal.goalTitle && goal.goalTitle.length > 0 && (
-                <Fragment>
-                  <h1>{goal.goalTitle}</h1>
-                </Fragment>
-              )}
+              <h1 className="edit-goal__heading">
+                Editing goal: {goal.goalTitle}
+              </h1>
               {firstQuestions}
               {secondQuestions}
               {thirdQuestions}

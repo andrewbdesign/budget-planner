@@ -35,7 +35,7 @@ export const addGoal = (formData, history, edit = false) => async dispatch => {
     });
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created'));
     if (!edit) {
-      history.push('/goals');
+      history.push('/dashboard');
     }
   } catch (err) {
     dispatch(setAlert("Can't add any goals man"));

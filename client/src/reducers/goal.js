@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
         ...state,
         goals: payload,
         loading: false,
-        // goal: null,
+        goal: null,
       };
     case GET_GOAL:
       return {
