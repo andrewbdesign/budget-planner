@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Lottie from '../../assets/libraries/react-lottie';
 import { numberWithCommas } from '../../utils/numberFormatter';
@@ -13,6 +13,8 @@ import PropTypes from 'prop-types';
 import { getGoals, removeGoal } from '../../actions/goal';
 
 const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
+  const [isEditingGoal, setIsEditingGoal] = useState(false);
+
   useEffect(() => {
     getGoals();
   }, [getGoals]);
@@ -57,9 +59,15 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
               <Link to="/dashboard" className="button button-secondary">
                 Go
               </Link>
-              <Link to={`/edit-goal/${_id}`} className="button button-tertiary">
+              <div
+                className="button button-tertiary"
+                onClick={() => {
+                  console.log('editing goal:', goal);
+                  setIsEditingGoal(true);
+                }}
+              >
                 Edit
-              </Link>
+              </div>
               <div
                 className="button button-delete"
                 onClick={e => {
@@ -112,12 +120,18 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
             )}
           </p>
           {lottiElement}
-          <div className="card__container">
-            {goals && goals.length > 0 && (
-              <Fragment>{renderGoalsCard()}</Fragment>
-            )}
-            {createNewGoalCard()}
-          </div>
+          {isEditingGoal ? (
+            <Fragment>Form to edit goal</Fragment>
+          ) : (
+            <Fragment>
+              <div className="card__container">
+                {goals && goals.length > 0 && (
+                  <Fragment>{renderGoalsCard()}</Fragment>
+                )}
+                {createNewGoalCard()}
+              </div>
+            </Fragment>
+          )}
         </div>
       </div>
     </section>

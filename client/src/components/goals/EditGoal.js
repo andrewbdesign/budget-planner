@@ -46,8 +46,7 @@ const EditGoal = ({
 
   useEffect(() => {
     getGoal(id);
-    updateForm();
-  }, [loading, getGoal, id]);
+  }, [getGoal, id]);
 
   const onChange = e => {
     setFormData({
@@ -85,6 +84,12 @@ const EditGoal = ({
   if (loading) {
     return <Loader />;
   }
+
+  if (!goal) {
+    return <div>Something went wrong</div>;
+  }
+
+  console.log('goal', goal);
 
   const firstQuestions = (
     <Fragment>

@@ -25,7 +25,7 @@ const Routes = () => {
         <PrivateRoute exact path="/expenses" component={Expenses} />
         <PrivateRoute exact path="/goals" component={Goals} />
         <PrivateRoute exact path="/create-goal" component={CreateGoal} />
-        <PrivateRoute exact path="/edit-goal/:id" component={EditGoal} />
+        <PrivateRoute path="/edit-goal/:id" component={EditGoal} />
       </Switch>
     </Fragment>
   );
