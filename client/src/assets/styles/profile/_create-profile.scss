@@ -3,7 +3,8 @@
 }
 
 .profile-setup,
-.create-profile {
+.create-profile,
+.edit-goal {
   min-height: calc(100vh - 318px);
 
   .profile-setup__container {
@@ -12,14 +13,14 @@
   }
 
   .profile-setup__container,
-  .create-profile__container {
+  .create-profile__container,
+  .goals__container {
     padding: 30px;
     border-radius: 5px;
 
     h1 {
       font-size: 4rem;
       font-weight: 500;
-      // font-weight: 700;
       margin-bottom: 16px;
       text-align: center;
     }

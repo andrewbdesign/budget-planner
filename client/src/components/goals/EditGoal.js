@@ -89,7 +89,7 @@ const EditGoal = ({
     return <div>Something went wrong</div>;
   }
 
-  console.log('goal', goal);
+  // console.log('goal', goal);
 
   const firstQuestions = (
     <Fragment>

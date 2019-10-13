@@ -7,13 +7,74 @@ import { TimelineMax, Power1 } from 'gsap';
 import PlusIcon from '../../assets/icons/plus.svg';
 import CrossIcon from '../../assets/icons/cross.svg';
 
+// Edit form icons
+import Target from '../../assets/icons/target.svg';
+import Money from '../../assets/icons/money.svg';
+import Wallet from '../../assets/icons/wallet.svg';
+
 // Redux
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getGoals, removeGoal } from '../../actions/goal';
+import { getGoals, removeGoal, updateGoal } from '../../actions/goal';
 
-const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
+const Goals = ({ goal: { goals }, getGoals, removeGoal, updateGoal }) => {
   const [isEditingGoal, setIsEditingGoal] = useState(false);
+  const [formData, setFormData] = useState({
+    goalTitle: '',
+    goalTarget: '',
+    totalSaved: '',
+    savingFrequency: '',
+    savingCommitment: '',
+    id: '',
+    achieved: '',
+  });
+
+  const clearForm = () => {
+    setFormData({
+      goalTitle: '',
+      goalTarget: '',
+      totalSaved: '',
+      savingFrequency: '',
+      savingCommitment: '',
+      id: '',
+      achieved: '',
+    });
+  };
+
+  const onChange = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+
+    const {
+      id,
+      goalTitle,
+      goalTarget,
+      totalSaved,
+      savingFrequency,
+      savingCommitment,
+      achieved,
+    } = formData;
+
+    const newFormData = {};
+    if (id) newFormData.id = id;
+    if (goalTitle) newFormData.goalTitle = goalTitle;
+    if (goalTarget) newFormData.goalTarget = parseFloat(goalTarget);
+    if (totalSaved) newFormData.totalSaved = parseFloat(totalSaved);
+    if (savingFrequency) newFormData.savingFrequency = savingFrequency;
+    if (savingCommitment)
+      newFormData.savingCommitment = parseFloat(savingCommitment);
+    newFormData.achieved = achieved;
+
+    updateGoal(newFormData);
+    setIsEditingGoal(false);
+    clearForm();
+  };
 
   useEffect(() => {
     getGoals();
@@ -29,6 +90,25 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
       0.2,
       0,
     );
+  };
+
+  const animateCardsOut = () => {
+    setIsEditingGoal(true);
+    // const tl = new TimelineMax();
+    // tl.staggerTo(
+    //   '.card',
+    //   0.3,
+    //   {
+    //     autoAlpha: 0,
+    //     y: 10,
+    //     ease: Power1.easeOut,
+    //     onComplete() {
+    //       setIsEditingGoal(true);
+    //     },
+    //   },
+    //   0.2,
+    //   0.5,
+    // );
   };
 
   const defaultOptionsLottie = lottie => {
@@ -62,8 +142,17 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
               <div
                 className="button button-tertiary"
                 onClick={() => {
-                  console.log('editing goal:', goal);
-                  setIsEditingGoal(true);
+                  animateCardsOut();
+                  setFormData({
+                    ...formData,
+                    goalTitle: goal.goalTitle,
+                    goalTarget: goal.goalTarget,
+                    totalSaved: goal.totalSaved,
+                    savingFrequency: goal.savingFrequency,
+                    savingCommitment: goal.savingCommitment,
+                    id: goal._id,
+                    achieved: goal.achieved,
+                  });
                 }}
               >
                 Edit
@@ -107,23 +196,127 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal }) => {
     </div>
   );
 
+  const [saveBy, setSaveBy] = useState('date');
+
+  const firstQuestions = (
+    <Fragment>
+      <div className={`question first-section save-by-${saveBy}`}>
+        <div onClick={() => setSaveBy('date')}>See how much I need to save</div>
+        <div onClick={() => setSaveBy('duration')}>
+          See how long it will take to save
+        </div>
+      </div>
+    </Fragment>
+  );
+
+  const secondQuestions = (
+    <Fragment>
+      <div className="question second-section">
+        <div>
+          <label htmlFor="goal-target">I want to save up</label>
+          <img className="icon-money" src={Money} alt="" />
+          <span className="dollar-prefix">$</span>
+          <input
+            id="goal-target"
+            name="goalTarget"
+            value={formData.goalTarget}
+            onChange={onChange}
+            autoComplete="off"
+          />
+        </div>
+        <div>
+          <label htmlFor="total-saved">So far I have saved</label>
+          <img className="icon-wallet" src={Wallet} alt="" />
+          <span className="dollar-prefix">$</span>
+          <input
+            id="total-saved"
+            name="totalSaved"
+            value={formData.totalSaved}
+            onChange={onChange}
+            autoComplete="off"
+          />
+        </div>
+        <div>
+          <label htmlFor="goal-title">Because my goal is to get </label>
+          <img className="icon-target" src={Target} alt="" />
+          <input
+            id="goal-title"
+            name="goalTitle"
+            value={formData.goalTitle}
+            onChange={onChange}
+            autoComplete="off"
+          />
+        </div>
+      </div>
+    </Fragment>
+  );
+
+  const thirdQuestions = (
+    <div className="question third-section">
+      <div>
+        <label htmlFor="saving-commitment">I will be saving</label>${' '}
+        <input
+          id="saving-commitment"
+          name="savingCommitment"
+          value={formData.savingCommitment}
+          onChange={onChange}
+          autoComplete="off"
+        />
+      </div>
+      <div>
+        <label htmlFor="saving-frequency">Every</label>
+        <select
+          id="saving-frequency"
+          name="savingFrequency"
+          value={formData.savingFrequency}
+          onChange={onChange}
+        >
+          <option value="day">Day</option>
+          <option value="week">Week</option>
+          <option default value="fortnight">
+            Fortnight
+          </option>
+          <option value="month">Month</option>
+        </select>
+
+        <button className="button" onClick={onSubmit}>
+          Update
+        </button>
+        <button
+          className="button button-secondary"
+          onClick={() => {
+            clearForm();
+            setIsEditingGoal(false);
+          }}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+
   return (
-    <section className="goals-overview">
+    <section className={isEditingGoal ? 'edit-goal' : 'goals-overview'}>
       <div className="container">
         <div className="goals__container">
-          <h1 className="goals__heading">Goals</h1>
-          <p className="goals__copy">
-            {goals && goals.length > 0 ? (
-              <Fragment>Please select one of your goals</Fragment>
-            ) : (
-              <Fragment>Click create goal</Fragment>
-            )}
-          </p>
-          {lottiElement}
           {isEditingGoal ? (
-            <Fragment>Form to edit goal</Fragment>
+            <Fragment>
+              <h1 className="goals__heading">Edit goal:</h1>
+              {firstQuestions}
+              {secondQuestions}
+              {thirdQuestions}
+            </Fragment>
           ) : (
             <Fragment>
+              <h1 className="goals__heading">Goals</h1>
+              <p className="goals__copy">
+                {goals && goals.length > 0 ? (
+                  <Fragment>Please select one of your goals</Fragment>
+                ) : (
+                  <Fragment>Click create goal</Fragment>
+                )}
+              </p>
+              {lottiElement}
               <div className="card__container">
                 {goals && goals.length > 0 && (
                   <Fragment>{renderGoalsCard()}</Fragment>
@@ -142,6 +335,7 @@ Goals.propType = {
   goal: PropTypes.object.isRequired,
   getGoals: PropTypes.func.isRequired,
   removeGoal: PropTypes.func.isRequired,
+  updateGoal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -151,6 +345,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getGoals,
   removeGoal,
+  updateGoal,
 };
 
 export default connect(
