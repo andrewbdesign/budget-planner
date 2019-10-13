@@ -19,21 +19,21 @@ const EditGoal = ({
     params: { id },
   },
 }) => {
-  const updateForm = () => {
-    if (goal !== null) {
-      setFormData({
-        id: loading || !id ? '' : id,
-        goalTitle: loading || !goal.goalTitle ? '' : goal.goalTitle,
-        goalTarget: loading || !goal.goalTarget ? '' : goal.goalTarget,
-        totalSaved: loading || !goal.totalSaved ? '' : goal.totalSaved,
-        savingFrequency:
-          loading || !goal.savingFrequency ? '' : goal.savingFrequency,
-        savingCommitment:
-          loading || !goal.savingCommitment ? '' : goal.savingCommitment,
-        achieved: false,
-      });
-    }
-  };
+  // const updateForm = () => {
+  //   if (goal !== null) {
+  //     setFormData({
+  //       id: loading || !id ? '' : id,
+  //       goalTitle: loading || !goal.goalTitle ? '' : goal.goalTitle,
+  //       goalTarget: loading || !goal.goalTarget ? '' : goal.goalTarget,
+  //       totalSaved: loading || !goal.totalSaved ? '' : goal.totalSaved,
+  //       savingFrequency:
+  //         loading || !goal.savingFrequency ? '' : goal.savingFrequency,
+  //       savingCommitment:
+  //         loading || !goal.savingCommitment ? '' : goal.savingCommitment,
+  //       achieved: false,
+  //     });
+  //   }
+  // };
 
   const [saveBy, setSaveBy] = useState('date');
   const [formData, setFormData] = useState({

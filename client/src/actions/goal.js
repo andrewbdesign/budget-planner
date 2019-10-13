@@ -33,7 +33,7 @@ export const addGoal = (formData, history, edit = false) => async dispatch => {
       type: ADD_GOAL,
       payload: res.data,
     });
-    dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
+    dispatch(setAlert(edit ? 'Goal Updated' : 'Goal Added', 'success'));
     if (!edit) {
       history.push('/dashboard');
     }
@@ -55,6 +55,7 @@ export const updateGoal = (formData, history) => async dispatch => {
       type: UPDATE_GOAL,
       payload: res.data,
     });
+    dispatch(setAlert('Goal Updated', 'success'));
     history.push('/dashboard');
   } catch (err) {
     dispatch(setAlert("Can't update the goal man"));
