@@ -60,7 +60,8 @@ router.post(
 // @access    Private
 router.get('/', auth, async (req, res) => {
   try {
-    const goals = await Goal.find().sort({ date: -1 });
+    // const goals = await Goal.find().sort({ date: -1 });
+    const goals = await Goal.find().sort({ date: 1 });
     // Filter by user
     const result = goals.filter(goal => goal.user.toString() === req.user.id);
     res.json(result);

@@ -1,17 +1,31 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
+
+// Redux
+import { connect } from 'react-redux';
+import { getGoals } from '../../../actions/goal';
+
+// Utils
 import { numberWithCommas } from '../../../utils/numberFormatter';
 import { getCurrentMonth } from '../../../utils/dates';
 import { getTotalSum } from '../../../utils/bill';
-import moment from 'moment';
+
+// Images
+import PlusIcon from '../../../assets/icons/plus.svg';
 
 const Overview = ({
   user,
   profile: { profile },
-  bill: { bills },
   expense: { expenses },
+  getGoals,
+  goal: { goals, loading },
 }) => {
+  useEffect(() => {
+    getGoals();
+  }, [getGoals]);
+
   const renderOverviewStats = () => {
     const stats = [
       {
@@ -48,8 +62,36 @@ const Overview = ({
     ));
   };
 
+  const renderGoalsMenu = () => {
+    if (goals.length > 0 && !loading) {
+      return goals.map((goal, index) => {
+        const { goalTitle, _id } = goal;
+        return (
+          <div key={_id} className={`goal-item ${index === 0 && 'active'}`}>
+            {goalTitle}
+          </div>
+        );
+      });
+    } else {
+      return <div>You Have no goals</div>;
+    }
+  };
+
   return (
     <div className="overview">
+      {!loading && goals.length > 0 && (
+        <Fragment>
+          <div className="goals__section">
+            <div className="goals-menu">
+              {renderGoalsMenu()}
+              <Link to="/create-goal" className="goal-item">
+                Add new goal <img src={PlusIcon} alt="plus icon" />{' '}
+              </Link>
+            </div>
+          </div>
+        </Fragment>
+      )}
+
       <div className="overview__heading">
         <h1>
           Hello, {user && <span>{user.name}</span>}. It is{' '}
@@ -67,16 +109,16 @@ const Overview = ({
 
 Overview.propTypes = {
   profile: PropTypes.object.isRequired,
-  bill: PropTypes.object.isRequired,
   expense: PropTypes.object.isRequired,
+  getGoals: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  bill: state.bill,
   expense: state.expense,
+  goal: state.goal,
 });
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getGoals };
 
 export default connect(
   mapStateToProps,
