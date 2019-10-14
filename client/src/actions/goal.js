@@ -17,7 +17,7 @@ export const getGoals = () => async dispatch => {
       payload: res.data,
     });
   } catch (err) {
-    dispatch(setAlert("Can't find any goals man"));
+    dispatch(setAlert('Error loading goals', 'error'));
   }
 };
 
@@ -39,7 +39,7 @@ export const addGoal = (formData, history, edit = false) => async dispatch => {
       history.push('/dashboard');
     }
   } catch (err) {
-    dispatch(setAlert("Can't add any goals man"));
+    dispatch(setAlert('Error loading goals', 'error'));
   }
 };
 
@@ -71,7 +71,7 @@ export const getGoal = goalID => async dispatch => {
       payload: res.data,
     });
   } catch (err) {
-    setAlert('Cant remove the goal man');
+    dispatch(setAlert('Error loading goal', 'error'));
   }
 };
 
@@ -83,7 +83,7 @@ export const removeGoal = goalID => async dispatch => {
       payload: res.data,
     });
   } catch (err) {
-    setAlert('Cant remove the goal man');
+    dispatch(setAlert('Error removing goal', 'error'));
   }
 };
 

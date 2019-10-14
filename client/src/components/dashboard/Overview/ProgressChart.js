@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 // Helpers
 import { numberWithCommas } from '../../../utils/numberFormatter';
 
+let chartElement = null;
+
 const ProgressChart = ({ goal: { goals, goalFocus } }) => {
   const chartEl = useRef(null);
   // eslint-disable-next-line
@@ -34,13 +36,12 @@ const ProgressChart = ({ goal: { goals, goalFocus } }) => {
     };
 
     const { totalSaved, goalTarget } = goals[goalFocus];
+
     const data = {
+      labels: ['Saved', 'Left to go'],
       datasets: [
         {
-          data: [
-            parseInt(totalSaved),
-            parseInt(goalTarget) - parseInt(totalSaved),
-          ],
+          label: 'Saved',
           backgroundColor: ['rgba(116, 103, 195, 1)', 'rgba(230, 126, 181, 1)'],
           hoverBackgroundColor: [
             'rgba(116, 103, 195, .7)',
@@ -48,15 +49,21 @@ const ProgressChart = ({ goal: { goals, goalFocus } }) => {
           ],
           borderColor: 'transparent',
           borderWidth: 0,
+          data: [
+            parseInt(totalSaved),
+            parseInt(goalTarget) - parseInt(totalSaved),
+          ],
         },
       ],
-      labels: ['Saved', 'Left to go'],
     };
 
     const chartRef = chartEl.current;
     chartRef.getContext('2d');
 
-    new Chart(chartRef, {
+    if (chartElement) {
+      chartElement.destroy();
+    }
+    chartElement = new Chart(chartRef, {
       data,
       options,
       type: 'doughnut',
