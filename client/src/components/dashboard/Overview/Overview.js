@@ -78,7 +78,7 @@ const Overview = ({
         );
       });
     } else {
-      return <div>You Have no goals</div>;
+      return <div></div>;
     }
   };
 
