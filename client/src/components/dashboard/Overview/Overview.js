@@ -5,7 +5,7 @@ import moment from 'moment';
 
 // Redux
 import { connect } from 'react-redux';
-import { getGoals } from '../../../actions/goal';
+import { getGoals, setGoalFocus } from '../../../actions/goal';
 
 // Utils
 import { numberWithCommas } from '../../../utils/numberFormatter';
@@ -20,7 +20,8 @@ const Overview = ({
   profile: { profile },
   expense: { expenses },
   getGoals,
-  goal: { goals, loading },
+  goal: { goals, loading, goalFocus },
+  setGoalFocus,
 }) => {
   useEffect(() => {
     getGoals();
@@ -30,15 +31,15 @@ const Overview = ({
     const stats = [
       {
         title: 'Target goal',
-        value: `${profile.goalTarget}`,
+        value: `${goals[goalFocus].goalTarget}`,
       },
       {
         title: 'Current savings',
-        value: `${profile.totalSaved}`,
+        value: `${goals[goalFocus].totalSaved}`,
       },
       {
         title: 'Difference',
-        value: `${profile.goalTarget - profile.totalSaved}`,
+        value: `${goals[goalFocus].goalTarget - goals[goalFocus].totalSaved}`,
       },
       {
         title: 'Current balance',
@@ -67,7 +68,11 @@ const Overview = ({
       return goals.map((goal, index) => {
         const { goalTitle, _id } = goal;
         return (
-          <div key={_id} className={`goal-item ${index === 0 && 'active'}`}>
+          <div
+            key={_id}
+            className={`goal-item ${index === goalFocus && 'active'}`}
+            onClick={() => setGoalFocus(index)}
+          >
             {goalTitle}
           </div>
         );
@@ -77,40 +82,45 @@ const Overview = ({
     }
   };
 
-  return (
-    <div className="overview">
-      {!loading && goals.length > 0 && (
-        <Fragment>
-          <div className="goals__section">
-            <div className="goals-menu">
-              {renderGoalsMenu()}
-              <Link to="/create-goal" className="goal-item">
-                Add new goal <img src={PlusIcon} alt="plus icon" />{' '}
-              </Link>
+  if (goals.length > 0) {
+    return (
+      <div className="overview">
+        {!loading && goals.length > 0 && (
+          <Fragment>
+            <div className="goals__section">
+              <div className="goals-menu">
+                {renderGoalsMenu()}
+                <Link to="/create-goal" className="goal-item">
+                  Add new goal <img src={PlusIcon} alt="plus icon" />{' '}
+                </Link>
+              </div>
             </div>
-          </div>
-        </Fragment>
-      )}
+          </Fragment>
+        )}
 
-      <div className="overview__heading">
-        <h1>
-          Hello, {user && <span>{user.name}</span>}. It is{' '}
-          {moment().format('MMM Do, YYYY')}
-        </h1>
-        <p>Welcome to your savings overview</p>
+        <div className="overview__heading">
+          <h1>
+            Hello, {user && <span>{user.name}</span>}. It is{' '}
+            {moment().format('MMM Do, YYYY')}
+          </h1>
+          <p>Welcome to your savings overview</p>
+        </div>
+        <div className="overview__body">
+          <div className="overview__section"></div>
+          <div className="overview__stats">{renderOverviewStats()}</div>
+        </div>
       </div>
-      <div className="overview__body">
-        <div className="overview__section"></div>
-        <div className="overview__stats">{renderOverviewStats()}</div>
-      </div>
-    </div>
-  );
+    );
+  }
+
+  return <div>Loading</div>;
 };
 
 Overview.propTypes = {
   profile: PropTypes.object.isRequired,
   expense: PropTypes.object.isRequired,
   getGoals: PropTypes.func.isRequired,
+  setGoalFocus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -118,7 +128,7 @@ const mapStateToProps = state => ({
   expense: state.expense,
   goal: state.goal,
 });
-const mapDispatchToProps = { getGoals };
+const mapDispatchToProps = { getGoals, setGoalFocus };
 
 export default connect(
   mapStateToProps,

@@ -8,9 +8,9 @@ import PropTypes from 'prop-types';
 // Helpers
 import { numberWithCommas } from '../../../utils/numberFormatter';
 
-const ProgressChart = ({ profile: { profile } }) => {
+const ProgressChart = ({ goal: { goals, goalFocus } }) => {
   const chartEl = useRef(null);
-
+  // eslint-disable-next-line
   const generateChart = () => {
     const options = {
       legend: { display: false },
@@ -33,7 +33,7 @@ const ProgressChart = ({ profile: { profile } }) => {
       },
     };
 
-    const { totalSaved, goalTarget } = profile;
+    const { totalSaved, goalTarget } = goals[goalFocus];
     const data = {
       datasets: [
         {
@@ -64,9 +64,11 @@ const ProgressChart = ({ profile: { profile } }) => {
   };
 
   useEffect(() => {
-    generateChart();
+    if (goals.length > 0) {
+      generateChart();
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [goals, generateChart]);
 
   return (
     <div className="chart__container">
@@ -76,11 +78,11 @@ const ProgressChart = ({ profile: { profile } }) => {
 };
 
 ProgressChart.propTypes = {
-  profile: PropTypes.object.isRequired,
+  goal: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
+  goal: state.goal,
 });
 
 export default connect(mapStateToProps)(ProgressChart);

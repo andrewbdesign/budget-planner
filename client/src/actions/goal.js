@@ -5,6 +5,7 @@ import {
   UPDATE_GOAL,
   REMOVE_GOAL,
   GET_GOAL,
+  SET_GOAL_FOCUS,
 } from './types';
 import { setAlert } from './alert';
 
@@ -84,4 +85,11 @@ export const removeGoal = goalID => async dispatch => {
   } catch (err) {
     setAlert('Cant remove the goal man');
   }
+};
+
+export const setGoalFocus = goalFocus => dispatch => {
+  dispatch({
+    type: SET_GOAL_FOCUS,
+    payload: goalFocus,
+  });
 };

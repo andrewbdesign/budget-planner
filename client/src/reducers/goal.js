@@ -4,6 +4,7 @@ import {
   REMOVE_GOAL,
   UPDATE_GOAL,
   GET_GOAL,
+  SET_GOAL_FOCUS,
 } from '../actions/types';
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   loading: true,
   error: {},
   goal: null,
+  goalFocus: 0,
 };
 
 export default function(state = initialState, action) {
@@ -25,12 +27,17 @@ export default function(state = initialState, action) {
         ...state,
         goals: payload,
         loading: false,
-        goal: null,
       };
     case GET_GOAL:
       return {
         ...state,
         goal: payload,
+        loading: false,
+      };
+    case SET_GOAL_FOCUS:
+      return {
+        ...state,
+        goalFocus: payload,
         loading: false,
       };
     default:
