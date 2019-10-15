@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Redux
 import { connect } from 'react-redux';
@@ -9,11 +9,13 @@ import { numberWithCommas } from '../../../utils/numberFormatter';
 import { getTotalSum } from '../../../utils/bill';
 
 const Summary = ({
-  profile: { profile },
+  profile: { profile, loading },
   bill: { bills },
   expense: { expenses },
   goal: { goals, goalFocus },
 }) => {
+  const [showDetails, setShowDetails] = useState(false);
+
   const getTimeLeft = (
     goalTarget,
     totalSaved,
@@ -70,7 +72,7 @@ const Summary = ({
     return answer;
   };
 
-  if (goals.length > 0) {
+  if (goals.length > 0 && !loading && profile) {
     console.log('goals', goals);
     const { goalTarget, totalSaved, savingCommitment, savingFrequency } = goals[
       goalFocus
@@ -99,7 +101,10 @@ const Summary = ({
             {savingFrequency}
           </p>
           <br />
-          <p>Monthly Income: $****.**</p>
+          <p>
+            Monthly Income:{' '}
+            <span>${numberWithCommas(profile.monthlyIncome)}</span>
+          </p>
           <p>Monthly Bills: ${bills ? getTotalSum(bills).toFixed(2) : 0}</p>
           <p>Money left: $0.00</p>
           <br />

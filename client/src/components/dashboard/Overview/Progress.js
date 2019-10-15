@@ -32,7 +32,7 @@ const Progress = ({ goal: { goals, goalFocus } }) => {
     );
   }
 
-  return <div>Loading</div>;
+  return <div></div>;
 };
 
 Progress.propTypes = {

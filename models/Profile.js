@@ -5,35 +5,17 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   },
-  goalTitle: {
-    type: String,
-    required: true,
-  },
-  goalTarget: {
+  monthlyIncome: {
     type: Number,
     required: true,
   },
-  totalSaved: {
-    type: Number,
-  },
-  currentBalance: {
-    type: Number,
-  },
-  savingCommitment: {
-    type: Number,
-  },
-  savingDurationMonths: {
+  payDay: {
     type: String,
+    required: true,
   },
-  savingDurationYears: {
-    type: String,
-  },
-  savingFrequency: {
-    type: String,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
+  currentBankBalance: {
+    type: Number,
+    required: true,
   },
 });
 

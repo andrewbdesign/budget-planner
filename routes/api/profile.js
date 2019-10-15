@@ -34,13 +34,13 @@ router.post(
   [
     auth,
     [
-      check('goalTitle', 'Goal title is required')
+      check('monthlyIncome', 'Your monthly income is required')
         .not()
         .isEmpty(),
-      check('goalTarget', 'Goal target is required')
+      check('payDay', 'Your payday is required')
         .not()
         .isEmpty(),
-      check('totalSaved', 'Total saved is required')
+      check('currentBankBalance', 'Current bank balanceis required')
         .not()
         .isEmpty(),
     ],
@@ -51,26 +51,13 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const {
-      goalTitle,
-      goalTarget,
-      totalSaved,
-      savingFrequency,
-      savingCommitment,
-      savingDurationMonths,
-      savingDurationYears,
-    } = req.body;
+    const { monthlyIncome, payDay, currentBankBalance } = req.body;
 
     const profileFields = {};
-    if (goalTitle) profileFields.goalTitle = goalTitle;
-    if (goalTarget) profileFields.goalTarget = goalTarget;
-    if (totalSaved) profileFields.totalSaved = totalSaved;
-    if (savingFrequency) profileFields.savingFrequency = savingFrequency;
-    if (savingCommitment) profileFields.savingCommitment = savingCommitment;
-    if (savingDurationMonths)
-      profileFields.savingDurationMonths = savingDurationMonths;
-    if (savingDurationYears)
-      profileFields.savingDurationYears = savingDurationYears;
+
+    profileFields.monthlyIncome = monthlyIncome;
+    profileFields.payDay = payDay;
+    profileFields.currentBankBalance = currentBankBalance;
 
     try {
       // Using upsert option (creates new doc if no match is found):

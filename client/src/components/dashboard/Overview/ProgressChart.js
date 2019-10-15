@@ -38,23 +38,23 @@ const ProgressChart = ({ goal: { goals, goalFocus } }) => {
     const { totalSaved, goalTarget } = goals[goalFocus];
 
     const data = {
-      labels: ['Saved', 'Left to go'],
       datasets: [
         {
-          label: 'Saved',
-          backgroundColor: ['rgba(116, 103, 195, 1)', 'rgba(230, 126, 181, 1)'],
-          hoverBackgroundColor: [
-            'rgba(116, 103, 195, .7)',
-            'rgba(230, 126, 181, .7)',
-          ],
-          borderColor: 'transparent',
-          borderWidth: 0,
           data: [
             parseInt(totalSaved),
             parseInt(goalTarget) - parseInt(totalSaved),
           ],
+          backgroundColor: ['rgba(116, 103, 195, 1)', 'rgba(230, 126, 181, 1)'],
+          label: 'Saved222',
+          // hoverBackgroundColor: [
+          //   'rgba(116, 103, 195, .7)',
+          //   'rgba(230, 126, 181, .7)',
+          // ],
+          borderColor: 'transparent',
+          borderWidth: 0,
         },
       ],
+      labels: ['Saved1', 'Left to go'],
     };
 
     const chartRef = chartEl.current;

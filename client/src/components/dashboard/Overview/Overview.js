@@ -30,20 +30,20 @@ const Overview = ({
   const renderOverviewStats = () => {
     const stats = [
       {
-        title: 'Target goal',
+        title: `Target goal for: ${goals[goalFocus].goalTitle}`,
         value: `${goals[goalFocus].goalTarget}`,
       },
       {
-        title: 'Current savings',
+        title: 'Current savings for goal',
         value: `${goals[goalFocus].totalSaved}`,
       },
       {
-        title: 'Difference',
+        title: 'Money left to save',
         value: `${goals[goalFocus].goalTarget - goals[goalFocus].totalSaved}`,
       },
       {
         title: 'Current balance',
-        value: '0',
+        value: `${profile.currentBankBalance}`,
       },
       {
         title: 'Daily limit',
@@ -113,7 +113,7 @@ const Overview = ({
     );
   }
 
-  return <div>Loading</div>;
+  return <div></div>;
 };
 
 Overview.propTypes = {

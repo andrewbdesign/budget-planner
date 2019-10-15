@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PROFILE, PROFILE_ERROR } from './types';
+import { GET_PROFILE, PROFILE_ERROR, CREATE_PROFILE } from './types';
 import { setAlert } from './alert';
 
 export const getCurrentProfile = () => async dispatch => {
@@ -30,10 +30,10 @@ export const createProfile = (
   try {
     const res = await axios.post('/api/profile', formData, config);
     dispatch({
-      type: GET_PROFILE,
+      type: CREATE_PROFILE,
       payload: res.data,
     });
-    dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created'));
+    dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
     if (!edit) {
       history.push('/create-goal');
     }

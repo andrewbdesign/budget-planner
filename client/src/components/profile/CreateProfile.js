@@ -1,10 +1,18 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
-import Target from '../../assets/icons/target.svg';
-import Money from '../../assets/icons/money.svg';
+// Redux
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { createProfile } from '../../actions/profile';
+import { withRouter } from 'react-router-dom';
+
 import Wallet from '../../assets/icons/wallet.svg';
+import Calendar from '../../assets/icons/calendar.svg';
+import Money from '../../assets/icons/money.svg';
 
-const CreateProfile = () => {
+import Lottie from '../../assets/libraries/react-lottie';
+
+const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
     monthlyIncome: '', // Optional.
     payDay: '', // Required if monthly income is filled
@@ -20,7 +28,25 @@ const CreateProfile = () => {
 
   const onSubmit = () => {
     console.log('formData', formData);
+    createProfile(formData, history);
   };
+
+  const defaultOptionsLottie = lottie => {
+    return {
+      loop: false,
+      autoplay: true,
+      animationData: require(`../../assets/lotties/${lottie}.json`),
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice',
+      },
+    };
+  };
+
+  const lottiElement = (
+    <div className="lottie-container">
+      <Lottie width={300} options={defaultOptionsLottie('pencil')} />
+    </div>
+  );
 
   const questions = (
     <div className="question second-section">
@@ -44,7 +70,7 @@ const CreateProfile = () => {
       </div>
       <div style={{ opacity: 1 }}>
         <label htmlFor="pay-day">I get paid on</label>
-        <img className="icon-target" src={Target} alt="" />
+        <img className="icon-target" src={Calendar} alt="" />
         <input id="pay-day" name="payDay" onChange={onChange} />
       </div>
     </div>
@@ -55,10 +81,11 @@ const CreateProfile = () => {
       <div className="container">
         <div className="create-profile__container">
           <h1>Profile setup</h1>
+          {lottiElement}
           {questions}
           <div className="answer-section">
             <div className="button budget-plan" onClick={onSubmit}>
-              Create our first goal
+              Create Profile
             </div>
           </div>
         </div>
@@ -67,7 +94,23 @@ const CreateProfile = () => {
   );
 };
 
-export default CreateProfile;
+CreateProfile.propTypes = {
+  profile: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile,
+});
+
+const mapStateToDispatch = {
+  createProfile,
+};
+
+export default connect(
+  mapStateToProps,
+  mapStateToDispatch,
+)(withRouter(CreateProfile));
 
 // import React, { useState, useRef, useEffect, Fragment } from 'react';
 // import { TimelineMax, Power1, TweenMax } from 'gsap';
