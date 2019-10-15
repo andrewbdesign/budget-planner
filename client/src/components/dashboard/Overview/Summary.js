@@ -73,7 +73,6 @@ const Summary = ({
   };
 
   if (goals.length > 0 && !loading && profile) {
-    console.log('goals', goals);
     const { goalTarget, totalSaved, savingCommitment, savingFrequency } = goals[
       goalFocus
     ];
@@ -103,7 +102,13 @@ const Summary = ({
           <br />
           <p>
             Monthly Income:{' '}
-            <span>${numberWithCommas(profile.monthlyIncome)}</span>
+            <span
+              className={`income ${showDetails ? 'show' : 'blur'}`}
+              onMouseOver={() => setShowDetails(true)}
+              onMouseOut={() => setShowDetails(false)}
+            >
+              ${numberWithCommas(profile.monthlyIncome)}
+            </span>
           </p>
           <p>Monthly Bills: ${bills ? getTotalSum(bills).toFixed(2) : 0}</p>
           <p>Money left: $0.00</p>

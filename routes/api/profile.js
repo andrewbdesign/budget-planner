@@ -4,6 +4,10 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
 const Profile = require('../../models/Profile');
+const Expense = require('../../models/Expense');
+const Goal = require('../../models/Goal');
+const Bill = require('../../models/Bill');
+const User = require('../../models/User');
 
 // @route   GET api/profile/me
 // @desc    Get current users profile details
@@ -73,5 +77,29 @@ router.post(
     }
   },
 );
+
+// @route   Delete api/profile
+// @desc    Delete profile and expenses, goals, dreams, bills
+// @access  Private
+router.delete('/', auth, async (req, res) => {
+  try {
+    // Remove user Expenses
+    await Expense.deleteMany({ user: req.user.id });
+    // Remove user Goals
+    await Goal.deleteMany({ user: req.user.id });
+    // Remove user Dreams
+    await Dream.deleteMany({ user: req.user.id });
+    // Remove user Bills
+    await Bill.deleteMany({ user: req.user.id });
+    // Remove user Profile
+    await Profile.findOneAndRemove({ user: req.user.id });
+    // Remove user User
+    await User.findOneAndRemove({ _id: req.user.id });
+    res.json({ msg: 'User deleted' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

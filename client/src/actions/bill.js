@@ -33,7 +33,6 @@ export const addBill = formData => async dispatch => {
 };
 
 export const removeBill = billID => async dispatch => {
-  // console.log('billID', billID);
   try {
     const res = await axios.delete(`/api/bill/${billID}`);
     dispatch({

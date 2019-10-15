@@ -38,7 +38,6 @@ const CreateGoal = ({ addGoal, history }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    // console.log('formData', formData);
     addGoal(formData, history);
   };
 
@@ -166,6 +165,9 @@ const CreateGoal = ({ addGoal, history }) => {
                 name="savingFrequency"
                 onChange={onChange}
               >
+                <option value="" hidden>
+                  Select option
+                </option>
                 <option value="day">Day</option>
                 <option value="week">Week</option>
                 <option default value="fortnight">

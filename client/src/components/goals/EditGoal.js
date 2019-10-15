@@ -89,8 +89,6 @@ const EditGoal = ({
     return <div>Something went wrong</div>;
   }
 
-  // console.log('goal', goal);
-
   const firstQuestions = (
     <Fragment>
       <div className={`question first-section save-by-${saveBy}`}>
@@ -164,6 +162,9 @@ const EditGoal = ({
           value={formData.savingFrequency}
           onChange={onChange}
         >
+          <option value="" hidden>
+            Select option
+          </option>
           <option value="day">Day</option>
           <option value="week">Week</option>
           <option default value="fortnight">

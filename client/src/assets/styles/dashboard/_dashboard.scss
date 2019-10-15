@@ -110,6 +110,18 @@
   }
 }
 
+.income {
+  transition: filter .2s ease-in-out;
+}
+
+.income.blur {
+  filter: blur(3px);
+}
+
+.income.show {
+  filter: blur(0);
+}
+
 .overview {
 
   .overview__section {
