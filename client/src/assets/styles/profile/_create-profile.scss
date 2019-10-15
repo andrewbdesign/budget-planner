@@ -58,7 +58,44 @@
       font-size: 1.6rem;
     }
   }
+
+  .lottie-container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .button.button-cancel {
+    color: #fff;
+    background: transparent;
+    text-decoration: underline;
+
+  }
+
+  .button.button-alert {
+    background: transparent;
+    color: #263149;
+    text-decoration: underline;
+    margin-right: 0;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  .profile-details {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px 0;
+
+    .profile-title {
+      margin-bottom: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+  }
+
 }
+
 
 .question {
   margin-bottom: 30px;
