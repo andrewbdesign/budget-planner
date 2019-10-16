@@ -3,13 +3,14 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth';
 import PropTypes from 'prop-types';
+import { setAlert } from '../../actions/alert';
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
+  const [errors, setErrors] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
 
   const { email, password } = formData;
@@ -27,7 +28,30 @@ const Login = ({ login, isAuthenticated }) => {
 
   const onHandleSubmit = async e => {
     e.preventDefault();
-    login(email, password);
+    validateForm();
+    if (errors.length === 0) {
+      login(email, password);
+    }
+  };
+
+  const validateForm = () => {
+    const errorsArr = [];
+    if (!email.length >= 3) {
+      errorsArr.push({
+        msg: 'Please use a valid email',
+      });
+    }
+
+    if (password.length < 6) {
+      errorsArr.push({
+        msg: 'Please enter a password with 6 or more characters',
+      });
+    }
+
+    setErrors(errorsArr);
+    if (errorsArr.length > 0) {
+      errorsArr.forEach(err => setAlert(err.msg, 'danger'));
+    }
   };
 
   if (isAuthenticated) {
@@ -69,7 +93,12 @@ const Login = ({ login, isAuthenticated }) => {
               ></input>
             </p>
 
-            <button className="button">Login</button>
+            <button
+              className="button"
+              disabled={password.length < 6 && email.length < 3}
+            >
+              Login
+            </button>
           </form>
         </div>
       </div>
@@ -80,10 +109,11 @@ const Login = ({ login, isAuthenticated }) => {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
-const mapDispatchToProps = { login };
+const mapDispatchToProps = { login, setAlert };
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
 

@@ -62,13 +62,11 @@
       margin-left: 10px;
     }
 
-    // button {
-    //   background: $navy;
-    //   color: $white;
-    //   padding: 30px;
-    // }
-
-
+    button:disabled {
+      background: #dadada;
+      color: #656262;
+      cursor: not-allowed;
+    }
 
   }
 }

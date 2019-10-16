@@ -12,6 +12,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     password: '',
   });
 
+  const [errors, setErrors] = useState([]);
   const { name, email, password } = formData;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -29,10 +30,35 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   const onHandleSubmit = async e => {
     e.preventDefault();
-    if (!password.length > 0) {
-      setAlert('congrats you win', 'success');
-    } else {
-      register({ name, email, password });
+    validateForm();
+    if (errors.length === 0) {
+      // register({ name, email, password });
+    }
+  };
+
+  const validateForm = () => {
+    const errorsArr = [];
+    if (!name.length >= 1) {
+      errorsArr.push({
+        msg: 'Please enter a name',
+      });
+    }
+
+    if (!email.length >= 3) {
+      errorsArr.push({
+        msg: 'Please use a valid email',
+      });
+    }
+
+    if (password.length < 6) {
+      errorsArr.push({
+        msg: 'Please enter a password with 6 or more characters',
+      });
+    }
+
+    setErrors(errorsArr);
+    if (errorsArr.length > 0) {
+      errorsArr.forEach(err => setAlert(err.msg, 'danger'));
     }
   };
 
@@ -83,7 +109,14 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               ></input>
             </p>
 
-            <button className="button">Register</button>
+            <button
+              className="button"
+              disabled={
+                name.length < 1 || password.length < 6 || email.length < 3
+              }
+            >
+              Register
+            </button>
           </form>
         </div>
       </div>
