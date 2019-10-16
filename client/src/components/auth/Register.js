@@ -32,7 +32,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     e.preventDefault();
     validateForm();
     if (errors.length === 0) {
-      // register({ name, email, password });
+      register({ name, email, password });
     }
   };
 

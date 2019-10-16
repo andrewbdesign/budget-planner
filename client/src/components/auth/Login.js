@@ -95,7 +95,7 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
 
             <button
               className="button"
-              disabled={password.length < 6 && email.length < 3}
+              disabled={password.length < 6 || email.length < 3}
             >
               Login
             </button>
