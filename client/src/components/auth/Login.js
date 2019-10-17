@@ -13,6 +13,9 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
   const [errors, setErrors] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
 
+  const [passwordError, setPasswordError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+
   const { email, password } = formData;
 
   const onHandleChange = e => {
@@ -65,21 +68,43 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
           <h2>Login</h2>
           <p>Your dreams are waiting</p>
           <form onSubmit={onHandleSubmit}>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">
+              Email:{' '}
+              {emailError && (
+                <span className="input-warning-text">
+                  Please put valid email
+                </span>
+              )}
+            </label>
             <input
               id="email"
               name="email"
               type="email"
               value={formData.email}
               onChange={onHandleChange}
+              className={`${emailError ? 'input-warning' : 'input-clear'}`}
+              onBlur={() => {
+                setEmailError(formData.email.length < 6);
+              }}
             />
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">
+              Password:{' '}
+              {passwordError && (
+                <span className="input-warning-text">
+                  Please enter a password that is 6 or more characters
+                </span>
+              )}
+            </label>
             <input
               id="password"
               name="password"
               type={showPassword ? 'text' : 'password'}
               value={formData.password}
               onChange={onHandleChange}
+              className={`${passwordError ? 'input-warning' : 'input-clear'}`}
+              onBlur={() => {
+                setPasswordError(formData.password.length < 6);
+              }}
             />
 
             <p>
