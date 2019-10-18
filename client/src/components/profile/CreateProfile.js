@@ -11,13 +11,21 @@ import Calendar from '../../assets/icons/calendar.svg';
 import Money from '../../assets/icons/money.svg';
 
 import Lottie from '../../assets/libraries/react-lottie';
+import { setAlert } from '../../actions/alert';
 
-const CreateProfile = ({ createProfile, history }) => {
+const CreateProfile = ({ createProfile, setAlert, history }) => {
   const [formData, setFormData] = useState({
     monthlyIncome: '', // Optional.
     payDay: '', // Required if monthly income is filled
     currentBankBalance: '', // required
   });
+
+  const { monthlyIncome, payDay, currentBankBalance } = formData;
+
+  const [monthlyIncomeError, setMonthlyIncomeError] = useState(false);
+  const [payDayError, setPayDayError] = useState(false);
+  const [currentBankBalanceError, setCurrentBankBalanceError] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const onChange = e => {
     setFormData({
@@ -27,8 +35,49 @@ const CreateProfile = ({ createProfile, history }) => {
   };
 
   const onSubmit = () => {
-    console.log('formData', formData);
-    createProfile(formData, history);
+    validateForm();
+    if (errors.length === 0) {
+      createProfile(formData, history);
+    }
+  };
+
+  const validateForm = () => {
+    const errorsArr = [];
+
+    // Check if fields are empty
+    if (!monthlyIncome.length >= 1) {
+      errorsArr.push({
+        msg: 'Please enter your monthly income',
+      });
+    }
+    if (!payDay.length >= 1) {
+      errorsArr.push({
+        msg: "Please enter when it's your payday",
+      });
+    }
+    if (!currentBankBalance.length >= 1) {
+      errorsArr.push({
+        msg: 'Please enter your current bank balance',
+      });
+    }
+
+    // Check if the inputs are valid numbers
+    if (isNaN(monthlyIncome)) {
+      errorsArr.push({
+        msg: 'Please enter a valid monthly income',
+      });
+    }
+
+    if (isNaN(currentBankBalance)) {
+      errorsArr.push({
+        msg: 'Please enter a valid current Bank Balance',
+      });
+    }
+
+    setErrors(errorsArr);
+    if (errorsArr.length > 0) {
+      errorsArr.forEach(err => setAlert(err.msg, 'danger'));
+    }
   };
 
   const defaultOptionsLottie = lottie => {
@@ -60,7 +109,14 @@ const CreateProfile = ({ createProfile, history }) => {
           value={formData.monthlyIncome}
           onChange={onChange}
           autoComplete="off"
+          className={`${monthlyIncomeError ? 'input-warning' : 'input-clear'}`}
+          onBlur={() => {
+            setMonthlyIncomeError(monthlyIncome.length <= 1);
+          }}
         />
+        {monthlyIncomeError && (
+          <p className="input-warning-text">Please put valid monthly income</p>
+        )}
       </div>
       <div style={{ opacity: 1 }}>
         <label htmlFor="current-bank-balance">
@@ -74,7 +130,18 @@ const CreateProfile = ({ createProfile, history }) => {
           value={formData.currentBankBalance}
           onChange={onChange}
           autoComplete="off"
+          className={`${
+            currentBankBalanceError ? 'input-warning' : 'input-clear'
+          }`}
+          onBlur={() => {
+            setCurrentBankBalanceError(currentBankBalance.length <= 1);
+          }}
         />
+        {currentBankBalanceError && (
+          <p className="input-warning-text">
+            Please put a valid current bank balance
+          </p>
+        )}
       </div>
       <div style={{ opacity: 1 }}>
         <label htmlFor="pay-day">I get paid on</label>
@@ -85,7 +152,14 @@ const CreateProfile = ({ createProfile, history }) => {
           value={formData.payDay}
           onChange={onChange}
           autoComplete="off"
+          className={`${payDayError ? 'input-warning' : 'input-clear'}`}
+          onBlur={() => {
+            setPayDayError(payDay.length <= 1);
+          }}
         />
+        {payDayError && (
+          <p className="input-warning-text">Please put your payday</p>
+        )}
       </div>
     </div>
   );
@@ -111,6 +185,7 @@ const CreateProfile = ({ createProfile, history }) => {
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
   createProfile: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -119,6 +194,7 @@ const mapStateToProps = state => ({
 
 const mapStateToDispatch = {
   createProfile,
+  setAlert,
 };
 
 export default connect(
