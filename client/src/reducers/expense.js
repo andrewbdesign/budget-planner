@@ -3,6 +3,9 @@ import {
   ADD_EXPENSE,
   REMOVE_EXPENSE,
   UPDATE_EXPENSE,
+  GET_MONTH,
+  INCREASE_MONTH,
+  DECREASE_MONTH,
 } from '../actions/types';
 
 const initialState = {
@@ -37,6 +40,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         expenses: payload,
+        loading: false,
+      };
+    case GET_MONTH:
+    case INCREASE_MONTH:
+    case DECREASE_MONTH:
+      return {
+        ...state,
+        monthFocus: payload,
         loading: false,
       };
     default:

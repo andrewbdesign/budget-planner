@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import MonthPicker from './MonthPicker';
 
 // Redux
 import { connect } from 'react-redux';
@@ -114,6 +115,7 @@ const Expenses = ({
         <div className="expenses__body">
           <h1>Monthly Expenses</h1>
           <p>Because the small things add up</p>
+          <MonthPicker />
           <hr />
           {expenses && expenses.length > 0 ? (
             <Fragment>
@@ -271,6 +273,7 @@ const Expenses = ({
               </div>
             </Fragment>
           )}
+          <MonthPicker />
         </div>
       </div>
     </section>

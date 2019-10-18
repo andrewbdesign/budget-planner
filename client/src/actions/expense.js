@@ -4,8 +4,12 @@ import {
   ADD_EXPENSE,
   REMOVE_EXPENSE,
   UPDATE_EXPENSE,
+  GET_MONTH,
+  INCREASE_MONTH,
+  DECREASE_MONTH,
 } from './types';
 import { setAlert } from './alert';
+import moment from 'moment';
 
 export const getExpenses = () => async dispatch => {
   try {
@@ -69,4 +73,25 @@ export const updateExpense = formData => async dispatch => {
   } catch (err) {
     dispatch(setAlert('Cant remove expense man'));
   }
+};
+
+export const getMonth = () => dispatch => {
+  dispatch({
+    type: GET_MONTH,
+    payload: moment(),
+  });
+};
+
+export const increaseMonth = updatedMonth => dispatch => {
+  dispatch({
+    type: INCREASE_MONTH,
+    payload: updatedMonth,
+  });
+};
+
+export const decreaseMonth = updatedMonth => dispatch => {
+  dispatch({
+    type: DECREASE_MONTH,
+    payload: updatedMonth,
+  });
 };

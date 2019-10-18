@@ -4,6 +4,54 @@
 
 }
 
+.month-picker {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.month-previous,
+.month-next,
+.month-displayer {
+  padding: 18px 20px;
+  display: inline-block;
+  color: #fff;
+  background: $navy;
+  font-size: 1.4rem;
+}
+
+.month-previous {
+  // padding-left: 30px;
+  border-radius: 5px 0 0 5px;
+}
+
+.month-next {
+  // padding-right: 30px;
+  border-radius: 0 5px 5px 0;
+}
+
+.month-previous,
+.month-next {
+  background: #151b27;
+  position: relative;
+  cursor: pointer;
+}
+
+.month-picker-arrows {
+  width: 7px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.month-previous .month-picker-arrows {
+  left: 18px;
+}
+
+.month-next .month-picker-arrows {
+  right: 18px;
+}
+
 .expenses__body {
   color: #fff;
   border-radius: 5px;
