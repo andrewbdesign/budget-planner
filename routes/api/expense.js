@@ -37,7 +37,7 @@ router.post(
 
       await newExpense.save();
 
-      const expenses = await Expense.find().sort({ date: -1 });
+      const expenses = await Expense.find().sort({ date: 1 });
       // Filter by user
       const result = expenses.filter(
         expense => expense.user.toString() === req.user.id,
@@ -55,7 +55,12 @@ router.post(
 // @access    Private
 router.get('/', auth, async (req, res) => {
   try {
-    const expenses = await Expense.find().sort({ date: -1 });
+    const expenses = await Expense.find({
+      date: {
+        $gte: startOfMonth,
+        $lt: endOfMonth,
+      },
+    }).sort({ date: 1 });
     // res.json(expenses);
     // Filter by user
     const result = expenses.filter(
@@ -131,7 +136,7 @@ router.put('/:id', auth, async (req, res) => {
       { new: true, upsert: true },
     );
 
-    const expenses = await Expense.find().sort({ date: -1 });
+    const expenses = await Expense.find().sort({ date: 1 });
     // Filter by user
     const result = expenses.filter(
       expense => expense.user.toString() === req.user.id,
@@ -163,7 +168,7 @@ router.delete('/:id', auth, async (req, res) => {
     }
 
     await expense.remove();
-    const expenses = await Expense.find().sort({ date: -1 });
+    const expenses = await Expense.find().sort({ date: 1 });
     // Filter by user
     const result = expenses.filter(
       expense => expense.user.toString() === req.user.id,

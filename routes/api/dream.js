@@ -37,7 +37,7 @@ router.post(
 
       await newDream.save();
 
-      const dreams = await Dream.find().sort({ date: -1 });
+      const dreams = await Dream.find().sort({ date: 1 });
       // Filter by user
       const result = dreams.filter(
         dream => dream.user.toString() === req.user.id,
@@ -55,7 +55,7 @@ router.post(
 // @access    Private
 router.get('/', auth, async (req, res) => {
   try {
-    const dreams = await Dream.find().sort({ date: -1 });
+    const dreams = await Dream.find().sort({ date: 1 });
     // Filter by user
     const result = dreams.filter(
       dream => dream.user.toString() === req.user.id,
@@ -85,7 +85,7 @@ router.put('/:id', auth, async (req, res) => {
       { new: true, upsert: true },
     );
 
-    const dreams = await Dream.find().sort({ date: -1 });
+    const dreams = await Dream.find().sort({ date: 1 });
     // Filter by user
     const result = dreams.filter(
       dream => dream.user.toString() === req.user.id,
@@ -117,7 +117,7 @@ router.delete('/:id', auth, async (req, res) => {
     }
 
     await dream.remove();
-    const dreams = await Dream.find().sort({ date: -1 });
+    const dreams = await Dream.find().sort({ date: 1 });
     // Filter by user
     const result = dreams.filter(
       dream => dream.user.toString() === req.user.id,
