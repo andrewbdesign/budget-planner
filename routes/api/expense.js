@@ -68,6 +68,51 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// @route     GET /api/expense/month
+// @desc      Get all profile users Expenses
+// @access    Private
+router.post('/month/current', auth, async (req, res) => {
+  try {
+    const { startOfMonth, endOfMonth } = req.body;
+    const expenses = await Expense.find({
+      date: {
+        $gte: startOfMonth,
+        $lt: endOfMonth,
+      },
+    }).sort({ date: 1 });
+    const result = expenses.filter(
+      expense => expense.user.toString() === req.user.id,
+    );
+
+    res.json(result);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+// @route     GET /api/expense/month
+// @desc      Get all profile users Expenses
+// @access    Private
+router.post('/month', auth, async (req, res) => {
+  try {
+    const { startOfMonth, endOfMonth } = req.body;
+    const expenses = await Expense.find({
+      date: {
+        $gte: startOfMonth,
+        $lt: endOfMonth,
+      },
+    }).sort({ date: 1 });
+    const result = expenses.filter(
+      expense => expense.user.toString() === req.user.id,
+    );
+
+    res.json(result);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // @route    DELETE api/expense/:id
 // @desc     Delete a Expense
 // @access   Private

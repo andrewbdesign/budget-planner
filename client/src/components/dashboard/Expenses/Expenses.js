@@ -23,7 +23,7 @@ import uuid from 'uuid';
 
 const Expenses = ({
   getExpenses,
-  expense: { expenses },
+  expense: { expenses, monthFocusExpenses },
   addExpense,
   updateExpense,
   removeExpense,
@@ -108,7 +108,9 @@ const Expenses = ({
       );
     });
   };
-
+  // if (monthFocusExpenses) {
+  //   console.log('monthFocusExpenses', monthFocusExpenses);
+  // }
   return (
     <section className="expenses">
       <div className="container">

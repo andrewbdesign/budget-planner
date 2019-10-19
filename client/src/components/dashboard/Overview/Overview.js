@@ -51,7 +51,7 @@ const Overview = ({
       },
       {
         title: `${getCurrentMonth()} Expenses`,
-        value: `${expenses ? getTotalSum(expenses) : 0}`,
+        value: `${expenses ? getTotalSum(expenses).toFixed(2) : 0}`,
       },
     ];
 
