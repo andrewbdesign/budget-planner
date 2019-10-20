@@ -27,6 +27,10 @@ const Overview = ({
     getGoals();
   }, [getGoals]);
 
+  const a = moment().endOf('month');
+  const b = moment();
+  const daysTilEndOfMonth = a.diff(b, 'days');
+
   const renderOverviewStats = () => {
     const stats = [
       {
@@ -47,7 +51,7 @@ const Overview = ({
       },
       {
         title: 'Daily limit',
-        value: '0',
+        value: `${(profile.currentBankBalance / daysTilEndOfMonth).toFixed(2)}`,
       },
       {
         title: `${getCurrentMonth()} Expenses`,

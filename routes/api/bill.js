@@ -38,7 +38,7 @@ router.post(
 
       await newBill.save();
 
-      const bills = await Bill.find().sort({ date: -1 });
+      const bills = await Bill.find().sort({ date: 1 });
       // Filter by user
       const result = bills.filter(bill => bill.user.toString() === req.user.id);
       res.json(result);
@@ -54,7 +54,7 @@ router.post(
 // @access    Private
 router.get('/', auth, async (req, res) => {
   try {
-    const bills = await Bill.find().sort({ date: -1 });
+    const bills = await Bill.find().sort({ date: 1 });
     // Filter by user
     const result = bills.filter(bill => bill.user.toString() === req.user.id);
     res.json(result);
@@ -83,7 +83,7 @@ router.put('/:id', auth, async (req, res) => {
       { new: true, upsert: true },
     );
 
-    const bills = await Bill.find().sort({ date: -1 });
+    const bills = await Bill.find().sort({ date: 1 });
     // Filter by user
     const result = bills.filter(bill => bill.user.toString() === req.user.id);
     res.json(result);
@@ -113,7 +113,7 @@ router.delete('/:id', auth, async (req, res) => {
     }
 
     await bill.remove();
-    const bills = await Bill.find().sort({ date: -1 });
+    const bills = await Bill.find().sort({ date: 1 });
     // Filter by user
     const result = bills.filter(bill => bill.user.toString() === req.user.id);
     res.json(result);

@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth');
 const Expense = require('../../models/Expense');
 const User = require('../../models/User');
 const { check, validationResult } = require('express-validator');
+const moment = require('moment');
 
 // @route    POST api/expense
 // @desc     Create a expense
@@ -54,6 +55,13 @@ router.post(
 // @desc      Get all profile users Expenses
 // @access    Private
 router.get('/', auth, async (req, res) => {
+  const month = moment();
+  const startOfMonth = moment(
+    month.startOf('month').format('YYYY-MM-DD hh:mm'),
+  ).toISOString();
+  const endOfMonth = moment(
+    month.endOf('month').format('YYYY-MM-DD hh:mm'),
+  ).toISOString();
   try {
     const expenses = await Expense.find({
       date: {
@@ -79,12 +87,7 @@ router.get('/', auth, async (req, res) => {
 router.post('/month/current', auth, async (req, res) => {
   try {
     const { startOfMonth, endOfMonth } = req.body;
-    const expenses = await Expense.find({
-      date: {
-        $gte: startOfMonth,
-        $lt: endOfMonth,
-      },
-    }).sort({ date: 1 });
+    const expenses = await Expense.find().sort({ date: 1 });
     const result = expenses.filter(
       expense => expense.user.toString() === req.user.id,
     );

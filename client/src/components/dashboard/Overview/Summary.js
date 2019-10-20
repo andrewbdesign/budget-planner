@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 // Helpers
 import { numberWithCommas } from '../../../utils/numberFormatter';
 import { getTotalSum } from '../../../utils/bill';
+import moment from 'moment';
 
 const Summary = ({
   profile: { profile, loading },
@@ -76,6 +77,11 @@ const Summary = ({
     const { goalTarget, totalSaved, savingCommitment, savingFrequency } = goals[
       goalFocus
     ];
+
+    var a = moment().endOf('month');
+    var b = moment();
+    var daysTilEndOfMonth = a.diff(b, 'days');
+
     return (
       <div className="dashboard__summary">
         <div className="overview__heading">
@@ -111,22 +117,27 @@ const Summary = ({
             </span>
           </p>
           <p>Monthly Bills: ${bills ? getTotalSum(bills).toFixed(2) : 0}</p>
-          <p>Money left: $0.00</p>
+          <p>
+            Current bank balance left: ${profile.currentBankBalance.toFixed(2)}
+          </p>
           <br />
           <h2>
             This month you have spent $
             {expenses ? getTotalSum(expenses).toFixed(2) : 0}
           </h2>
-          <p>You have $0.00 left to spend til next pay.</p>
           <p>
-            Which means your daily limit is <span>$0.00</span>.
+            You have ${profile.currentBankBalance.toFixed(2)} in your account
+            until your next pay.
+          </p>
+          <p>
+            Which means your daily limit is{' '}
+            <span>
+              ${(profile.currentBankBalance / daysTilEndOfMonth).toFixed(2)}
+            </span>
+            .
           </p>
           <br />
-          <h2>Days till next pay: 30</h2>
-          <p>
-            If save ${numberWithCommas(savingCommitment)}/{savingFrequency}, you
-            will have: $0.00 left.
-          </p>
+          <h2>Days till next pay: {daysTilEndOfMonth}</h2>
         </div>
       </div>
     );
