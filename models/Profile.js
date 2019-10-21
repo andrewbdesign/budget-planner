@@ -10,7 +10,7 @@ const ProfileSchema = new mongoose.Schema({
     required: true,
   },
   payDay: {
-    type: String,
+    type: Date,
     required: true,
   },
   currentBankBalance: {

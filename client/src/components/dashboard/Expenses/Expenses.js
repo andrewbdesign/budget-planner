@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import MonthPicker from './MonthPicker';
-import { getMonthRange } from '../../../utils/dates';
 
 // Redux
 import { connect } from 'react-redux';
@@ -24,20 +23,14 @@ import uuid from 'uuid';
 
 const Expenses = ({
   getExpenses,
-  expense: { expenses, monthFocusExpenses },
+  expense: { expenses },
   addExpense,
   updateExpense,
   removeExpense,
 }) => {
   useEffect(() => {
     getExpenses();
-    // if (monthFocusExpenses) {
-    //   monthFocusExpenses(getMonthRange());
-    //   // console.log('monthFocusExpenses', monthFocusExpenses(getMonthRange()));
-    // }
   }, [getExpenses]);
-
-  // console.log('getMonthRange', getMonthRange());
 
   const [showAddExpense, setShowAddExpense] = useState(false);
   const [updatingExpense, setUpdatingExpense] = useState(false);

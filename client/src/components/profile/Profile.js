@@ -6,6 +6,7 @@ import { deleteAccount, getCurrentProfile } from '../../actions/profile';
 import Loader from '../../components/layout/Loader';
 import { numberWithCommas } from '../../utils/numberFormatter';
 import Lottie from '../../assets/libraries/react-lottie';
+import moment from 'moment';
 
 const Profile = ({
   deleteAccount,
@@ -14,7 +15,7 @@ const Profile = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
 
   const defaultOptionsLottie = lottie => {
     return {
@@ -60,7 +61,9 @@ const Profile = ({
               </div>
               <div>
                 <h2 className="profile-title">Payday:</h2>{' '}
-                <p className="profile-value">{profile.payDay}</p>
+                <p className="profile-value">
+                  {moment(profile.payDay).format('MMM Do')}
+                </p>
               </div>
             </div>
             <Link to="/edit-profile" className="button button-secondary">

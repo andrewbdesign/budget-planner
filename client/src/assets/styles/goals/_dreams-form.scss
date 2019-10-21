@@ -71,3 +71,14 @@
   }
 
 }
+
+ol li {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+ol li.achieved {
+  text-decoration: line-through;
+  color: #616979;
+}

@@ -154,13 +154,13 @@
   justify-content: space-between;
   flex-direction: column;
 
-  div {
+  div.editing-profile {
     padding: 40px 0;
     border: 1px solid #dadada;
     width: 100%;
     text-align: center;
     cursor: pointer;
-    opacity: 0;
+    // opacity: 0;
 
     input {
       margin: 0 auto;
@@ -181,6 +181,37 @@
     border-top: none;
     border-bottom: none;
   }
+
+  .DateInput_input {
+    padding: 5px 5px 0;
+    font-size: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    // width: 100%;
+    // display: block;
+  }
+}
+
+.CalendarDay:hover {
+  // background: #FFC107 !important;
+  background: $grey !important;
+  color: #fff !important;
+}
+
+.CalendarDay__selected,
+.CalendarDay__selected:active,
+.CalendarDay__selected:hover {
+  background: $navy !important;
+  border: 1px double $navy !important;
+  color: #fff;
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight::before {
+  border-top: 26px solid transparent;
+  border-right: 33px solid $navy !important;
+}
+
+.DayPickerKeyboardShortcuts_panel {
+  color: $navy !important;
 }
 
 .question.third-section {
@@ -264,7 +295,7 @@
 
   .question.second-section {
 
-    div:nth-child(2) {
+    div.editing-profile:nth-child(2) {
       border-top: 1px solid #dadada;
       border-bottom: 1px solid #dadada;
       border-left: none;

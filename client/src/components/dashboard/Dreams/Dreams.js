@@ -24,24 +24,26 @@ const Dreams = ({
   const renderDreamList = items => {
     return items.map((item, index) => (
       <li key={index} className={item.achieved ? 'achieved' : ''}>
-        {item.title}{' '}
-        <span
-          className="button button-secondary"
-          onClick={() => {
-            setIsUpdatingDream(true);
-            editDream(item);
-          }}
-        >
-          Edit
-        </span>
-        <span
-          className="button button-tertiary"
-          onClick={() => {
-            removeDream(item._id);
-          }}
-        >
-          Delete
-        </span>{' '}
+        <div>{item.title} </div>
+        <div>
+          <span
+            className="button button-secondary"
+            onClick={() => {
+              setIsUpdatingDream(true);
+              editDream(item);
+            }}
+          >
+            Edit
+          </span>
+          <span
+            className="button button-tertiary"
+            onClick={() => {
+              removeDream(item._id);
+            }}
+          >
+            Delete
+          </span>{' '}
+        </div>
       </li>
     ));
   };

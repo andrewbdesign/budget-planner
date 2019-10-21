@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 
 // Redux
 import { connect } from 'react-redux';
@@ -13,6 +13,11 @@ import Money from '../../assets/icons/money.svg';
 import Lottie from '../../assets/libraries/react-lottie';
 import Loader from '../layout/Loader';
 
+import { SingleDatePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+import uuid from 'uuid';
+import moment from 'moment';
+
 const EditProfile = ({
   createProfile,
   getCurrentProfile,
@@ -23,24 +28,37 @@ const EditProfile = ({
     getCurrentProfile();
     if (profile) {
       setFormData({
-        monthlyIncome: profile.monthlyIncome || '', // Optional.
-        payDay: profile.payDay || '', // Required if monthly income is filled
-        currentBankBalance: profile.currentBankBalance || '', // required
+        monthlyIncome: profile.monthlyIncome, // Optional.
+        payDay: moment(profile.payDay), // Required if monthly income is filled
+        currentBankBalance: profile.currentBankBalance, // required
       });
     }
+    // eslint-disable-next-line
   }, [loading]);
 
   const [formData, setFormData] = useState({
     monthlyIncome: '', // Optional.
-    payDay: '', // Required if monthly income is filled
+    payDay: moment(), // Required if monthly income is filled
     currentBankBalance: '', // required
   });
+  const [calendarFocused, setCalendarFocused] = useState(false);
 
   const onChange = e => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const onDateChange = createdAt => {
+    setFormData({
+      ...formData,
+      payDay: createdAt,
+    });
+  };
+
+  const onFocusChange = ({ focused }) => {
+    setCalendarFocused(focused);
   };
 
   const onSubmit = () => {
@@ -66,7 +84,7 @@ const EditProfile = ({
 
   const questions = (
     <div className="question second-section">
-      <div style={{ opacity: 1 }}>
+      <div className="editing-profile" style={{ opacity: 1 }}>
         <label htmlFor="monthly-income">Every month I make</label>
         <img className="icon-money" src={Money} alt="" />
         <span className="dollar-prefix">$</span>
@@ -78,7 +96,7 @@ const EditProfile = ({
           autoComplete="off"
         />
       </div>
-      <div style={{ opacity: 1 }}>
+      <div className="editing-profile" style={{ opacity: 1 }}>
         <label htmlFor="current-bank-balance">
           In my bank account I have right now
         </label>
@@ -92,16 +110,29 @@ const EditProfile = ({
           autoComplete="off"
         />
       </div>
-      <div style={{ opacity: 1 }}>
+      <div className="editing-profile" style={{ opacity: 1 }}>
         <label htmlFor="pay-day">I get paid on</label>
         <img className="icon-target" src={Calendar} alt="" />
-        <input
+        {/*<input
           id="pay-day"
           name="payDay"
           onChange={onChange}
           value={formData.payDay}
-          autoComplete="off"
-        />
+        autoComplete="off"
+        /> */}
+        {formData.payDay && (
+          <Fragment>
+            <SingleDatePicker
+              date={formData.payDay}
+              onDateChange={onDateChange}
+              focused={calendarFocused}
+              onFocusChange={onFocusChange}
+              numberOfMonths={1}
+              id={uuid.v4()}
+              isOutsideRange={() => false}
+            />
+          </Fragment>
+        )}
       </div>
     </div>
   );

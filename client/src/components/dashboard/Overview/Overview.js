@@ -27,9 +27,29 @@ const Overview = ({
     getGoals();
   }, [getGoals]);
 
-  const a = moment().endOf('month');
-  const b = moment();
-  const daysTilEndOfMonth = a.diff(b, 'days');
+  const today = moment().date();
+  let payDayNumber = moment(profile.payDay).date();
+  let currentMonth = moment().month();
+  let currentYear = moment().year();
+
+  const now = moment([currentYear, currentMonth, today]);
+  const payDate = moment([currentYear, currentMonth, payDayNumber]);
+
+  let daysTilNextPay;
+  if (now.isBefore(payDate)) {
+    const now = moment([currentYear, currentMonth, today]);
+    const payDate = moment([currentYear, currentMonth, payDayNumber]);
+    daysTilNextPay = payDate.diff(now, 'days');
+  } else if (now.isAfter(payDate)) {
+    const newYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+    const newMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+    const now = moment([currentYear, currentMonth, today]);
+    const payDate = moment([newYear, newMonth, payDayNumber]);
+
+    daysTilNextPay = payDate.diff(now, 'days');
+  } else {
+    daysTilNextPay = 1;
+  }
 
   const renderOverviewStats = () => {
     const stats = [
@@ -51,7 +71,7 @@ const Overview = ({
       },
       {
         title: 'Daily limit',
-        value: `${(profile.currentBankBalance / daysTilEndOfMonth).toFixed(2)}`,
+        value: `${(profile.currentBankBalance / daysTilNextPay).toFixed(2)}`,
       },
       {
         title: `${getCurrentMonth()} Expenses`,

@@ -78,9 +78,29 @@ const Summary = ({
       goalFocus
     ];
 
-    var a = moment().endOf('month');
-    var b = moment();
-    var daysTilEndOfMonth = a.diff(b, 'days');
+    const today = moment().date();
+    let payDayNumber = moment(profile.payDay).date();
+    let currentMonth = moment().month();
+    let currentYear = moment().year();
+
+    const now = moment([currentYear, currentMonth, today]);
+    const payDate = moment([currentYear, currentMonth, payDayNumber]);
+
+    let daysTilNextPay;
+    if (now.isBefore(payDate)) {
+      const now = moment([currentYear, currentMonth, today]);
+      const payDate = moment([currentYear, currentMonth, payDayNumber]);
+      daysTilNextPay = payDate.diff(now, 'days');
+    } else if (now.isAfter(payDate)) {
+      const newYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+      const newMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+      const now = moment([currentYear, currentMonth, today]);
+      const payDate = moment([newYear, newMonth, payDayNumber]);
+
+      daysTilNextPay = payDate.diff(now, 'days');
+    } else {
+      daysTilNextPay = 1;
+    }
 
     return (
       <div className="dashboard__summary">
@@ -90,7 +110,6 @@ const Summary = ({
           </h1>
         </div>
         <div className="overview__body">
-          <h2></h2>
           <h2>
             You will get your goal in{' '}
             {getTimeLeft(
@@ -132,12 +151,12 @@ const Summary = ({
           <p>
             Which means your daily limit is{' '}
             <span>
-              ${(profile.currentBankBalance / daysTilEndOfMonth).toFixed(2)}
+              ${(profile.currentBankBalance / daysTilNextPay).toFixed(2)}
             </span>
             .
           </p>
           <br />
-          <h2>Days till next pay: {daysTilEndOfMonth}</h2>
+          <h2>Days till next pay: {daysTilNextPay}</h2>
         </div>
       </div>
     );
