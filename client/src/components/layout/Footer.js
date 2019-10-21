@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="logo-section">
             <img className="logo-footer" src={Logo} alt="BudgetPlanner logo" />
             <p>
-              BudgetPlanner is a online tool to help you calculate your budget
+              BudgetPlanner is an online tool to help you calculate your budget
               from a month-to-month basis. {new Date().getFullYear()}
             </p>
           </div>

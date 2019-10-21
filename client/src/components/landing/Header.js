@@ -1,5 +1,6 @@
 import React from 'react';
 import Lottie from '../../assets/libraries/react-lottie';
+import { Link } from 'react-router-dom';
 
 const defaultOptionsLottie = lottie => {
   return {
@@ -22,9 +23,9 @@ const Header = () => {
             <p className="header__copy">
               Create realistic budget goals for your dreams!
             </p>
-            <a className="header-button button" href="#!">
+            <Link to="/register" className="header-button button">
               Learn how
-            </a>
+            </Link>
           </div>
           <div className="lottie-section">
             <Lottie
