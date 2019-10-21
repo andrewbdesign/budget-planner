@@ -172,7 +172,7 @@ const CreateGoal = ({ addGoal, history, setAlert }) => {
           </div>
 
           <div ref={sectionTwo} className="question second-section">
-            <div>
+            <div className="editing-profile">
               <label htmlFor="goal-target">I want to save up</label>
               <img className="icon-money" src={Money} alt="" />
               <span className="dollar-prefix">$</span>
@@ -194,7 +194,7 @@ const CreateGoal = ({ addGoal, history, setAlert }) => {
                 </p>
               )}
             </div>
-            <div>
+            <div className="editing-profile">
               <label htmlFor="total-saved">So far I have saved</label>
               <img className="icon-wallet" src={Wallet} alt="" />
               <span className="dollar-prefix">$</span>
@@ -216,7 +216,7 @@ const CreateGoal = ({ addGoal, history, setAlert }) => {
                 </p>
               )}
             </div>
-            <div>
+            <div className="editing-profile">
               <label htmlFor="goal-title">Because my goal is to get </label>
               <img className="icon-target" src={Target} alt="" />
               <input
