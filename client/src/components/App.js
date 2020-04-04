@@ -12,13 +12,11 @@ import Routes from './routing/Routes';
 
 // Components
 import Landing from './landing/Landing';
-import Navbar from './layout/Navbar';
-import Footer from './layout/Footer';
+import Navbar from './layout/Navbar/Navbar';
+import Footer from './layout/Footer/Footer';
 import Alert from './layout/Alert';
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
+if (localStorage.token) setAuthToken(localStorage.token);
 
 const App = () => {
   useEffect(() => {

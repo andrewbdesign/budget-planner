@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-// Components
-import Header from './Header';
-import Benefits from './Benefits';
-import Features from './Features';
-import Goals from './Goals';
-import Expenses from './Expenses';
-import SpendingLimit from './SpendingLimit';
-import CallToAction from './CallToAction';
+import Header from 'components/landing/Header/Header'
+import Benefits from 'components/landing/Benefits/Benefits'
+import Features from 'components/landing/Features/Features';
+import Goals from 'components/landing/Goals/Goals';
+import Expenses from 'components/landing/Expenses/Expenses';
+import SpendingLimit from 'components/landing/SpendingLimit/SpendingLimit';
+import CallToAction from 'components/landing/CallToAction/CallToAction';
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {

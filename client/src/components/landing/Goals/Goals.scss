@@ -1,0 +1,40 @@
+@import 'styles/variables/_breakpoints.scss';
+@import 'styles/variables/_colours.scss';
+
+.goals {
+
+  .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    @include tablet-and-up {
+      flex-direction: row;
+      text-align: left;
+    }
+
+    div {
+      width: 100%;
+    }
+  }
+
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 0 auto;
+  }
+
+  
+
+  .lottie {
+    max-width: 300px;
+
+    @include tablet-and-up {
+      max-width: 100%;
+    }
+  }
+}

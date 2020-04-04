@@ -1,0 +1,83 @@
+@import 'styles/variables/_breakpoints.scss';
+@import 'styles/variables/_colours.scss';
+
+footer {
+  background: $darkNavy;
+  color: $white;
+  padding: 50px 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 0 20px;
+    @include tablet-and-up {
+      flex-direction: row;
+    }
+
+  }
+
+  .logo-section {
+    width: 100%;
+
+    @include tablet-and-up {
+      width: 50%;
+    }
+
+    p {
+      line-height: 1.8;
+      max-width: 350px;
+
+    }
+  }
+
+  .footer-links {
+
+    h2 {
+      font-size: 1.6rem;
+      margin: 30px 0 0;
+
+      @include tablet-and-up {
+        margin: 0 0 20px;
+      }
+    }
+
+    a {
+      color: $grey;
+      display: block;
+      font-size: 1.4rem;
+      line-height: 1.8;
+
+      // margin-bottom: 8px;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .logo-footer {
+    width: 180px;
+    margin-bottom: 10px;
+  }
+}
+
+// @media screen and (min-width: 660px) {
+//   footer {
+
+//     .logo-section {
+//       width: 50%;
+//     }
+
+//     .footer__container {
+//       flex-direction: row;
+//     }
+
+//     .footer-links {
+//       h2 {
+//         margin: 0 0 20px;
+//       }
+//     }
+//   }
+// }

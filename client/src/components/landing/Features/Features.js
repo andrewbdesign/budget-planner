@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './Features.scss';
+
 const features = [
   ' Free Sign Up',
   'Simple to use',
@@ -23,13 +25,14 @@ const Features = () => {
   return (
     <section className="features">
       <div className="container">
-        <div className="features__container">
-          <h1 className="features__heading">Features</h1>
-          <p className="features__copy">Here is what you will get</p>
+        <div>
+          <h1>Features</h1>
+          <p>Here is what you will get</p>
 
-          <div className="features-group__container">
-            <ul className="features__group">{renderList()}</ul>
+          <div className="features-list">
+            <ul>{renderList()}</ul>
           </div>
+          
         </div>
         <div className="cta-section">
           <Link to="/register" className="button button-signup">

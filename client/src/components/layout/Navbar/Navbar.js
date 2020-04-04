@@ -2,9 +2,12 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { logout } from '../../actions/auth';
+import { logout } from 'actions/auth';
 
-import logo from '../../assets/images/logo-bp.svg';
+import './Navbar.scss';
+
+import logo from 'assets/images/logo-bp.svg';
+
 const Navbar = ({ logout, auth }) => {
   const { isAuthenticated, loading } = auth;
 
@@ -41,12 +44,12 @@ const Navbar = ({ logout, auth }) => {
   return (
     <nav className="navbar">
       <div className="container">
-        <div className="navbar__logo">
+        <div className="logo">
           <Link to="/">
             <img src={logo} alt="budget-planner logo" />
           </Link>
         </div>
-        <ul className="navbar__menu-list">
+        <ul className="menu-list">
           {!loading && (
             <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
           )}
