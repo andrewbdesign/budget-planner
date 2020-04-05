@@ -15,6 +15,8 @@ import { getTotalSum } from '../../../utils/bill';
 // Images
 import PlusIcon from '../../../assets/icons/plus.svg';
 
+import './Overview.scss';
+
 const Overview = ({
   user,
   profile: { profile },

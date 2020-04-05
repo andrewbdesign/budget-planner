@@ -16,6 +16,8 @@ import 'react-dates/lib/css/_datepicker.css';
 import moment from 'moment';
 import uuid from 'uuid';
 
+import './MonthlyBills.scss';
+
 const MonthlyExpenses = ({
   getBills,
   bills: { bills },

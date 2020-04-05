@@ -1,21 +1,23 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import Lottie from '../../assets/libraries/react-lottie';
-import { numberWithCommas } from '../../utils/numberFormatter';
+import Lottie from 'assets/libraries/react-lottie';
+import { numberWithCommas } from 'utils/numberFormatter';
 import { TimelineMax, Power1 } from 'gsap';
 
-import PlusIcon from '../../assets/icons/plus.svg';
-import CrossIcon from '../../assets/icons/cross.svg';
+import PlusIcon from 'assets/icons/plus.svg';
+import CrossIcon from 'assets/icons/cross.svg';
 
 // Edit form icons
-import Target from '../../assets/icons/target.svg';
-import Money from '../../assets/icons/money.svg';
-import Wallet from '../../assets/icons/wallet.svg';
+import Target from 'assets/icons/target.svg';
+import Money from 'assets/icons/money.svg';
+import Wallet from 'assets/icons/wallet.svg';
 
 // Redux
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getGoals, removeGoal, updateGoal } from '../../actions/goal';
+import { getGoals, removeGoal, updateGoal } from 'actions/goal';
+
+import './Goal.scss';
 
 const Goals = ({ goal: { goals }, getGoals, removeGoal, updateGoal }) => {
   const [isEditingGoal, setIsEditingGoal] = useState(false);
@@ -115,7 +117,7 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal, updateGoal }) => {
     return {
       loop: false,
       autoplay: true,
-      animationData: require(`../../assets/lotties/${lottie}.json`),
+      animationData: require(`assets/lotties/${lottie}.json`),
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice',
       },

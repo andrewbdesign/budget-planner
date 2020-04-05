@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { deleteAccount, getCurrentProfile } from '../../actions/profile';
+import { deleteAccount, getCurrentProfile } from 'actions/profile';
 import Loader from 'components/layout/Loader/Loader.js';
-import { numberWithCommas } from '../../utils/numberFormatter';
-import Lottie from '../../assets/libraries/react-lottie';
+import { numberWithCommas } from 'utils/numberFormatter';
+import Lottie from 'assets/libraries/react-lottie';
 import moment from 'moment';
+
+import './Profile.scss';
 
 const Profile = ({
   deleteAccount,
@@ -21,7 +23,7 @@ const Profile = ({
     return {
       loop: false,
       autoplay: true,
-      animationData: require(`../../assets/lotties/${lottie}.json`),
+      animationData: require(`assets/lotties/${lottie}.json`),
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice',
       },

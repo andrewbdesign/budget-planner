@@ -1,5 +1,13 @@
+@import 'styles/variables/_breakpoints.scss';
+@import 'styles/variables/_gradients.scss';
+@import 'styles/variables/_colours.scss';
+
 .dashboard {
-  background: linear-gradient(45deg, #6e2bd3, #6e2bd3 0, #b73587 48%, #fe7077 87%, #fe7077 0, #ffc18e);
+  background: $mainGradient;
+
+  h1 {
+    font-size: 1.5rem;
+  }
 }
 
 .goals__section {
