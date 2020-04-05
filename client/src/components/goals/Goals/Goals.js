@@ -1,8 +1,8 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import Lottie from 'assets/libraries/react-lottie';
+import Lottie from 'containers/Lottie/Lottie'
 import { numberWithCommas } from 'utils/numberFormatter';
-import { TimelineMax, Power1 } from 'gsap';
+// import { TimelineMax, Power1 } from 'gsap';
 
 import PlusIcon from 'assets/icons/plus.svg';
 import CrossIcon from 'assets/icons/cross.svg';
@@ -18,6 +18,8 @@ import PropTypes from 'prop-types';
 import { getGoals, removeGoal, updateGoal } from 'actions/goal';
 
 import './Goal.scss';
+
+const targetLottie = require('assets/lotties/target.json');
 
 const Goals = ({ goal: { goals }, getGoals, removeGoal, updateGoal }) => {
   const [isEditingGoal, setIsEditingGoal] = useState(false);
@@ -80,19 +82,19 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal, updateGoal }) => {
 
   useEffect(() => {
     getGoals();
+    // animateCardsIn()
   }, [getGoals]);
 
-  const animateCardsIn = () => {
-    const tl = new TimelineMax();
-    tl.staggerFromTo(
-      '.card',
-      0.3,
-      { autoAlpha: 0, y: 10 },
-      { autoAlpha: 1, y: 0, ease: Power1.easeOut },
-      0.2,
-      0,
-    );
-  };
+  // const animateCardsIn = () => {
+  //   const tl = new TimelineMax();
+  //   tl.staggerFrom(
+  //     '.card',
+  //     0.3,
+  //     { opacity: 0, autoAlpha: 0, y: 10, ease: Power1.easeOut },
+  //     0.2,
+  //     1,
+  //   );
+  // };
 
   const animateCardsOut = () => {
     setIsEditingGoal(true);
@@ -111,17 +113,6 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal, updateGoal }) => {
     //   0.2,
     //   0.5,
     // );
-  };
-
-  const defaultOptionsLottie = lottie => {
-    return {
-      loop: false,
-      autoplay: true,
-      animationData: require(`assets/lotties/${lottie}.json`),
-      rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice',
-      },
-    };
   };
 
   const renderGoalsCard = () => {
@@ -185,17 +176,10 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal, updateGoal }) => {
   );
 
   const lottiElement = (
-    <div className="lottie-container">
-      <Lottie
-        options={defaultOptionsLottie('target')}
-        eventListeners={[
-          {
-            eventName: 'complete',
-            callback: () => animateCardsIn(),
-          },
-        ]}
-      />
-    </div>
+    <Lottie
+      animationData={targetLottie}
+      className="lottie-container"
+      loop={false} />
   );
 
   const [saveBy, setSaveBy] = useState('date');
