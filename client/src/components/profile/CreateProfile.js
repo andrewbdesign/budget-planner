@@ -18,7 +18,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import uuid from 'uuid';
 import moment from 'moment';
 
-const pencilLottie = require('assets/lotties/pencil.json')
+const lottiePencil = require('assets/lotties/pencil.json')
 
 const CreateProfile = ({ createProfile, setAlert, history }) => {
   const [formData, setFormData] = useState({
@@ -96,8 +96,9 @@ const CreateProfile = ({ createProfile, setAlert, history }) => {
   const lottiElement = (
     <Lottie
       className="lottie-container"
-      animationData={pencilLottie}
-      loop={true} />
+      animationData={lottiePencil}
+      loop={false}
+      name="pencil"/>
   );
 
   const questions = (

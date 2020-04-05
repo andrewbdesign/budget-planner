@@ -3,13 +3,13 @@ import Lottie from 'containers/Lottie/Lottie';
 
 import './Expenses.scss';
 
-const biking = require('assets/lotties/biking.json');
+const lottieBiking = require('assets/lotties/biking.json');
 
 const Expenses = () => {
   return (
     <section className="tracking-expenses">
       <div className="container">
-      <Lottie animationData={biking} />
+      <Lottie animationData={lottieBiking} name={"biking"}/>
         <div>
           <h1>Track down everything</h1>
           <p>

@@ -4,7 +4,7 @@ import Lottie from 'containers/Lottie/Lottie';
 
 import 'components/landing/Header/Header.scss'
 
-const laptop = require('assets/lotties/ecommerce.json')
+const lottieLaptop = require('assets/lotties/ecommerce.json')
 
 const Header = () => (
   <section className="header">
@@ -19,7 +19,7 @@ const Header = () => (
         </Link>
       </div>
       
-      <Lottie animationData={laptop} />
+      <Lottie animationData={lottieLaptop} name="laptop"/>
     </div>
   </section>
 );

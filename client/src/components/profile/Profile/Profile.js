@@ -10,7 +10,7 @@ import moment from 'moment';
 
 import './Profile.scss';
 
-const coolGuy = require('assets/lotties/mr-cool.json');
+const lottieCoolGuy = require('assets/lotties/mr-cool.json');
 
 const Profile = ({
   deleteAccount,
@@ -24,8 +24,9 @@ const Profile = ({
 
   const lottiElement = (
     <Lottie 
-      animationData={coolGuy}
-      className="lottie-container"/>
+      animationData={lottieCoolGuy}
+      className="lottie-container"
+      name="cool-guy"/>
     );
 
   if (loading) {

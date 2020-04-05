@@ -3,7 +3,7 @@ import Lottie from 'containers/Lottie/Lottie';
 
 import './Goals.scss'
 
-const elephant = require('assets/lotties/hero-typing.json');
+const lottieElephant = require('assets/lotties/hero-typing.json');
 
 const Goals = () => {
   return (
@@ -15,7 +15,7 @@ const Goals = () => {
             See how long it will take for you to achieve it.
           </p>
         </div>
-        <Lottie animationData={elephant} />
+        <Lottie animationData={lottieElephant} name="elephant"/>
       </div>
     </section>
   );

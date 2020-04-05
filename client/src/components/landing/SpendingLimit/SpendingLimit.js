@@ -3,7 +3,7 @@ import Lottie from 'containers/Lottie/Lottie';
 
 import './SpendingLimit.scss'
 
-const eftpos = require('assets/lotties/payment-success.json');
+const lottieEftpos = require('assets/lotties/payment-success.json');
 
 const SpendingLimit = () => {
   return (
@@ -15,7 +15,7 @@ const SpendingLimit = () => {
             Don't scramble for money towards next pay day.
           </p>
         </div>
-        <Lottie animationData={eftpos} />
+        <Lottie animationData={lottieEftpos} name="eftpos" />
       </div>
     </section>
   );
