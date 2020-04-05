@@ -5,7 +5,11 @@ const Lottie = props => {
 
   const element = useRef(null)
 
-  const { animationData, className } = props
+  const { 
+    animationData,
+    className,
+    loop
+  } = props
 
   
   useEffect(() => {
@@ -26,10 +30,10 @@ const Lottie = props => {
       container: element.current,
       renderer: 'svg',
       autoplay: false,
-      loop: true,
+      loop: loop === false ? loop : true
     })
 
-  }, [animationData])
+  }, [animationData, loop])
 
   return <div ref={element} className={ className ? className : "lottie"} />
 }

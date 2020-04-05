@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 import { deleteAccount, getCurrentProfile } from 'actions/profile';
 import Loader from 'components/layout/Loader/Loader.js';
 import { numberWithCommas } from 'utils/numberFormatter';
-import Lottie from 'assets/libraries/react-lottie';
+import Lottie from 'containers/Lottie/Lottie'
 import moment from 'moment';
 
 import './Profile.scss';
+
+const coolGuy = require('assets/lotties/mr-cool.json');
 
 const Profile = ({
   deleteAccount,
@@ -19,22 +21,12 @@ const Profile = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  const defaultOptionsLottie = lottie => {
-    return {
-      loop: false,
-      autoplay: true,
-      animationData: require(`assets/lotties/${lottie}.json`),
-      rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice',
-      },
-    };
-  };
 
   const lottiElement = (
-    <div className="lottie-container">
-      <Lottie options={defaultOptionsLottie('mr-cool')} />
-    </div>
-  );
+    <Lottie 
+      animationData={coolGuy}
+      className="lottie-container"/>
+    );
 
   if (loading) {
     return <Loader />;

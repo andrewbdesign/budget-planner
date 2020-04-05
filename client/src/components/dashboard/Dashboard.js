@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCurrentProfile } from '../../actions/profile';
-import Lottie from '../../assets/libraries/react-lottie';
+import Lottie from 'containers/Lottie/Lottie'
 
 // Components
 import Loader from 'components/layout/Loader/Loader.js';
@@ -16,16 +16,7 @@ import MonthlyBills from './MonthlyBills/MonthlyBills';
 import Expenses from './Expenses/Expenses';
 import Dreams from './Dreams/Dreams';
 
-const defaultOptionsLottie = lottie => {
-  return {
-    loop: false,
-    autoplay: true,
-    animationData: require(`../../assets/lotties/${lottie}.json`),
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
-};
+const welcomeLottie = require('assets/lotties/done.json')
 
 const Dashboard = ({
   auth: { user },
@@ -63,17 +54,13 @@ const Dashboard = ({
               <div className="profile-setup__container">
                 {user && (
                   <Fragment>
-                    <div className="welcome-animation">
-                      <Lottie
-                        options={defaultOptionsLottie('done')}
-                        isStopped={false}
-                        isPaused={false}
-                      />
-                    </div>
+                    <Lottie 
+                      animationData={welcomeLottie} 
+                      className="welcome-animation" 
+                      loop={false} />
                     <h1>Hi {user.name}!</h1>
                     <p>
-                      You have not setup a profile with us yet. Click here to
-                      get started{' '}
+                      You have not setup a profile with us yet. Click here to get started
                     </p>
                     <Link to="/create-profile" className="button">
                       Create Profile
