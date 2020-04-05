@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { deleteAccount, getCurrentProfile } from '../../actions/profile';
-import Loader from '../../components/layout/Loader';
+import Loader from 'components/layout/Loader/Loader.js';
 import { numberWithCommas } from '../../utils/numberFormatter';
 import Lottie from '../../assets/libraries/react-lottie';
 import moment from 'moment';

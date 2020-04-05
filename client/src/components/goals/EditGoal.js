@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateGoal, getGoal } from '../../actions/goal';
 import PropTypes from 'prop-types';
-import Loader from '../layout/Loader';
+import Loader from 'components/layout/Loader/Loader.js';
 
 // Icons
 import Target from '../../assets/icons/target.svg';

@@ -10,11 +10,10 @@ footer {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    padding: 0 20px;
+
     @include tablet-and-up {
       flex-direction: row;
     }
-
   }
 
   .logo-section {
@@ -47,8 +46,6 @@ footer {
       display: block;
       font-size: 1.4rem;
       line-height: 1.8;
-
-      // margin-bottom: 8px;
       text-decoration: none;
 
       &:hover {
@@ -62,22 +59,3 @@ footer {
     margin-bottom: 10px;
   }
 }
-
-// @media screen and (min-width: 660px) {
-//   footer {
-
-//     .logo-section {
-//       width: 50%;
-//     }
-
-//     .footer__container {
-//       flex-direction: row;
-//     }
-
-//     .footer-links {
-//       h2 {
-//         margin: 0 0 20px;
-//       }
-//     }
-//   }
-// }

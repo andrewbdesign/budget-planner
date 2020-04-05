@@ -1,8 +1,11 @@
+@import 'styles/variables/_colours.scss';
+@import 'styles/variables/_gradients.scss';
+
 .loader {
   width: 100%;
   min-height: calc(100vh - 318px);
-  color: #fff;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  color: $white;
+  background: $rainbowGradient;
   background-size: 400% 400%;
   animation: gradientBG 5s ease infinite;
   display: flex;

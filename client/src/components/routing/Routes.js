@@ -3,8 +3,8 @@ import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from '../../components/routing/PrivateRoute';
 
-import Register from '../auth/Register';
-import Login from '../auth/Login';
+import Register from 'components/auth/Register/Register';
+import Login from 'components/auth/Login/Login';
 import CreateProfile from '../profile/CreateProfile';
 import EditProfile from '../profile/EditProfile';
 import Profile from '../profile/Profile';

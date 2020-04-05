@@ -3,6 +3,8 @@
 @import 'styles/variables/_typography.scss';
 
 @import 'styles/_button.scss';
+@import 'styles/_alert.scss';
+@import 'styles/_input.scss';
 
 * {
   box-sizing: border-box;
@@ -24,10 +26,6 @@ section {
   width: 90%;
   max-width: 960px;
   margin: 0 auto;
-
-  // div {
-  //   width: 100%;
-  // }
 }
 
 

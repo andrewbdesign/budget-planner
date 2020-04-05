@@ -8,7 +8,7 @@ import { getCurrentProfile } from '../../actions/profile';
 import Lottie from '../../assets/libraries/react-lottie';
 
 // Components
-import Loader from '../layout/Loader';
+import Loader from 'components/layout/Loader/Loader.js';
 import Overview from './Overview/Overview';
 import Progress from './Overview/Progress';
 import Summary from './Overview/Summary';

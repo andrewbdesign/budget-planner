@@ -11,7 +11,7 @@ import Calendar from '../../assets/icons/calendar.svg';
 import Money from '../../assets/icons/money.svg';
 
 import Lottie from '../../assets/libraries/react-lottie';
-import Loader from '../layout/Loader';
+import Loader from 'components/layout/Loader/Loader.js';
 
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';

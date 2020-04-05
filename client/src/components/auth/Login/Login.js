@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login } from '../../actions/auth';
+import { login } from 'actions/auth';
 import PropTypes from 'prop-types';
-import { setAlert } from '../../actions/alert';
+import { setAlert } from 'actions/alert';
+
+import './Login.scss'
 
 const Login = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
