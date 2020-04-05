@@ -1,5 +1,5 @@
 import React from 'react';
-import Lottie from 'components/lottie/Lottie';
+import Lottie from 'containers/Lottie/Lottie';
 
 import './Goals.scss'
 

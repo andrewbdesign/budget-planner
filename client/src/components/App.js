@@ -11,6 +11,7 @@ import setAuthToken from '../utils/setAuthToken';
 import Routes from './routing/Routes';
 
 // Components
+import ScrollToTop from 'containers/ScrollToTop/ScrollToTop'
 import Landing from './landing/Landing';
 import Navbar from './layout/Navbar/Navbar';
 import Footer from './layout/Footer/Footer';
@@ -26,7 +27,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <Fragment>
-        <Router onUpdate={() => window.scrollTo(0, 0)}>
+        <Router>
+          <ScrollToTop />
           <Navbar />
           <div className="alert-container">
             <Alert />

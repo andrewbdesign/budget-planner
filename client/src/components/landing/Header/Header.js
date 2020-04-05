@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Lottie from 'components/lottie/Lottie'
+import Lottie from 'containers/Lottie/Lottie';
 
 import 'components/landing/Header/Header.scss'
 
