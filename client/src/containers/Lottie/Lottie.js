@@ -8,6 +8,7 @@ const Lottie = props => {
   const { 
     animationData,
     className,
+    name,
     loop
   } = props
 
@@ -16,10 +17,10 @@ const Lottie = props => {
 
     const observer = new IntersectionObserver(entry => {
       const first = entry[0]
-      // first.isIntersecting ? lottie.play() : lottie.pause()
       if (first.isIntersecting) {
-        lottie.play()
-        observer.disconnect()
+        lottie.play(name)
+      } else {
+        lottie.pause(name)
       }
     })
 
@@ -30,12 +31,21 @@ const Lottie = props => {
       container: element.current,
       renderer: 'svg',
       autoplay: false,
-      loop: loop === false ? loop : true
+      loop: loop === false ? loop : true,
+      name: name ? name : ''
     })
 
-  }, [animationData, loop])
+  }, [animationData, loop, name])
 
-  return <div ref={element} className={ className ? className : "lottie"} />
+  return (
+    <div
+      ref={element}
+      className={[
+        'lottie',
+        className ? className : '',
+        name ? name : ''
+      ].join(' ')}
+      data-name={ name ? name : '' }/>)
 }
 
 export default Lottie

@@ -19,7 +19,7 @@ import { getGoals, removeGoal, updateGoal } from 'actions/goal';
 
 import './Goal.scss';
 
-const targetLottie = require('assets/lotties/target.json');
+const lottieTarget = require('assets/lotties/target.json');
 
 const Goals = ({ goal: { goals }, getGoals, removeGoal, updateGoal }) => {
   const [isEditingGoal, setIsEditingGoal] = useState(false);
@@ -177,9 +177,10 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal, updateGoal }) => {
 
   const lottiElement = (
     <Lottie
-      animationData={targetLottie}
+      animationData={lottieTarget}
       className="lottie-container"
-      loop={false} />
+      loop={false} 
+      name="target"/>
   );
 
   const [saveBy, setSaveBy] = useState('date');

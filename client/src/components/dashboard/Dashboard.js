@@ -16,7 +16,7 @@ import MonthlyBills from './MonthlyBills/MonthlyBills';
 import Expenses from './Expenses/Expenses';
 import Dreams from './Dreams/Dreams';
 
-const welcomeLottie = require('assets/lotties/done.json')
+const lottieWelcome = require('assets/lotties/done.json')
 
 const Dashboard = ({
   auth: { user },
@@ -55,9 +55,10 @@ const Dashboard = ({
                 {user && (
                   <Fragment>
                     <Lottie 
-                      animationData={welcomeLottie} 
+                      animationData={lottieWelcome} 
                       className="welcome-animation" 
-                      loop={false} />
+                      loop={false} 
+                      name="welcome"/>
                     <h1>Hi {user.name}!</h1>
                     <p>
                       You have not setup a profile with us yet. Click here to get started

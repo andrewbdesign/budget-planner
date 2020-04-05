@@ -2,7 +2,7 @@ import React from 'react';
 import Lottie from 'containers/Lottie/Lottie';
 import './Benefits.scss';
 
-const success = require('assets/lotties/success.json');
+const lottieSuccess = require('assets/lotties/success.json');
 
 const Benefits = () => {
   return (
@@ -14,7 +14,7 @@ const Benefits = () => {
           Seriously!
         </p>
       </div>
-      <Lottie animationData={success} />
+      <Lottie animationData={lottieSuccess} name={"lottieSuccess"}/>
     </section>
   );
 };
