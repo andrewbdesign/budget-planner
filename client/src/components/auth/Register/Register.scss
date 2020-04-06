@@ -44,7 +44,7 @@
       padding: 6px 0 6px 10px;
       height: 38px;
       font-size: 1.6rem;
-      margin: 5px 0 20px;
+      margin: 5px 0;
       box-sizing: border-box;
 
       &:focus {
@@ -78,6 +78,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       transition: all .3s ease-in-out;
+      margin-top: 20px;
 
       &:hover {
         background: $white;

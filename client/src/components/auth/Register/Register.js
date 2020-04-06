@@ -79,63 +79,63 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           <h2>Register</h2>
           <p>It's simple as 1, 2, 3.</p>
           <form onSubmit={onHandleSubmit}>
-            <label htmlFor="name">
-              Name:{' '}
+            <div>
+              <label htmlFor="name">Name: </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={onHandleChange}
+                className={`${nameError ? 'input-warning' : 'input-clear'}`}
+                onBlur={() => {
+                  setNameError(formData.name.length > 0 && formData.name.length < 2);
+                }}
+              />
               {nameError && (
-                <span className="input-warning-text">
-                  Please put a valid name
-                </span>
+                <span className="input-warning-text">Please put a valid name</span>
               )}
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={onHandleChange}
-              className={`${nameError ? 'input-warning' : 'input-clear'}`}
-              onBlur={() => {
-                setNameError(formData.name.length <= 1);
-              }}
-            />
-            <label htmlFor="email">
-              Email:{' '}
+            </div>
+
+            <div>
+              <label htmlFor="email">Email: </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={onHandleChange}
+                className={`${emailError ? 'input-warning' : 'input-clear'}`}
+                onBlur={() => {
+                  setEmailError(formData.email.length > 0 && formData.email.length < 3);
+                }}
+              />
               {emailError && (
                 <span className="input-warning-text">
                   Please put valid email
                 </span>
               )}
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={onHandleChange}
-              className={`${emailError ? 'input-warning' : 'input-clear'}`}
-              onBlur={() => {
-                setEmailError(formData.email.length <= 3);
-              }}
-            />
-            <label htmlFor="password">
-              Password:{' '}
+            </div>
+
+            <div>
+              <label htmlFor="password">Password: </label>
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                value={formData.password}
+                onChange={onHandleChange}
+                className={`${passwordError ? 'input-warning' : 'input-clear'}`}
+                onBlur={() => {
+                  setPasswordError(formData.password.length > 0 && formData.password.length < 6);
+                }}
+              />
               {passwordError && (
                 <span className="input-warning-text">
                   Please enter a password that is 6 or more characters
                 </span>
               )}
-            </label>
-            <input
-              id="password"
-              name="password"
-              type={showPassword ? 'text' : 'password'}
-              value={formData.password}
-              onChange={onHandleChange}
-              className={`${passwordError ? 'input-warning' : 'input-clear'}`}
-              onBlur={() => {
-                setPasswordError(formData.password.length < 6);
-              }}
-            />
+            </div>
 
             <p>
               Show password
