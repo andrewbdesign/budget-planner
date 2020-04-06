@@ -5,15 +5,15 @@ import moment from 'moment';
 
 // Redux
 import { connect } from 'react-redux';
-import { getGoals, setGoalFocus } from '../../../actions/goal';
+import { getGoals, setGoalFocus } from 'actions/goal';
 
 // Utils
-import { numberWithCommas } from '../../../utils/numberFormatter';
-import { getCurrentMonth } from '../../../utils/dates';
-import { getTotalSum } from '../../../utils/bill';
+import { numberWithCommas } from 'utils/numberFormatter';
+import { getCurrentMonth } from 'utils/dates';
+import { getTotalSum } from 'utils/bill';
 
 // Images
-import PlusIcon from '../../../assets/icons/plus.svg';
+import PlusIcon from 'assets/icons/plus.svg';
 
 import './Overview.scss';
 

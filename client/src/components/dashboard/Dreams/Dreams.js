@@ -6,7 +6,7 @@ import {
   addDream,
   updateDream,
   removeDream,
-} from '../../../actions/dream';
+} from 'actions/dream';
 
 import './Dreams.scss';
 
