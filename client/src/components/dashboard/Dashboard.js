@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // Libraries
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getCurrentProfile } from '../../actions/profile';
+import { getCurrentProfile } from 'actions/profile';
 import Lottie from 'containers/Lottie/Lottie'
 
 // Components

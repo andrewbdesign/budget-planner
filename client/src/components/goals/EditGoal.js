@@ -1,14 +1,14 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateGoal, getGoal } from '../../actions/goal';
+import { updateGoal, getGoal } from 'actions/goal';
 import PropTypes from 'prop-types';
 import Loader from 'components/layout/Loader/Loader.js';
 
 // Icons
-import Target from '../../assets/icons/target.svg';
-import Money from '../../assets/icons/money.svg';
-import Wallet from '../../assets/icons/wallet.svg';
+import Target from 'assets/icons/target.svg';
+import Money from 'assets/icons/money.svg';
+import Wallet from 'assets/icons/wallet.svg';
 
 const EditGoal = ({
   getGoal,

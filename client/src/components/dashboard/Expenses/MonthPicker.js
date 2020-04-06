@@ -7,10 +7,10 @@ import {
   increaseMonth,
   decreaseMonth,
   getExpensesByMonth,
-} from '../../../actions/expense';
+} from 'actions/expense';
 
-import arrowLeft from '../../../assets/images/arrow-left.svg';
-import arrowRight from '../../../assets/images/arrow-right.svg';
+import arrowLeft from 'assets/images/arrow-left.svg';
+import arrowRight from 'assets/images/arrow-right.svg';
 
 const MonthPicker = ({
   getMonth,

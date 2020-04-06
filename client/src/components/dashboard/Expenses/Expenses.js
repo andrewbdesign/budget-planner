@@ -9,12 +9,12 @@ import {
   addExpense,
   removeExpense,
   updateExpense,
-} from '../../../actions/expense';
+} from 'actions/expense';
 
 // Helpers
-import { numberWithCommas } from '../../../utils/numberFormatter';
-import { getTotalSum } from '../../../utils/bill';
-import { getCurrentMonth } from '../../../utils/dates';
+import { numberWithCommas } from 'utils/numberFormatter';
+import { getTotalSum } from 'utils/bill';
+import { getCurrentMonth } from 'utils/dates';
 
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';

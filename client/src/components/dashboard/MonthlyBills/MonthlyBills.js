@@ -7,9 +7,10 @@ import {
   addBill,
   removeBill,
   updateBill,
-} from '../../../actions/bill';
-import { numberWithCommas } from '../../../utils/numberFormatter';
-import { getTotalSum } from '../../../utils/bill';
+} from 'actions/bill';
+
+import { numberWithCommas } from 'utils/numberFormatter';
+import { getTotalSum } from 'utils/bill';
 
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
