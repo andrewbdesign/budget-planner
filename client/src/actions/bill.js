@@ -1,6 +1,16 @@
 import axios from 'axios';
-import { GET_BILLS, ADD_BILL, REMOVE_BILL, UPDATE_BILL } from './types';
+import { GET_BILLS, ADD_BILL, REMOVE_BILL, UPDATE_BILL, CLEAR_BILLS } from './types';
 import { setAlert } from './alert';
+
+export const clearBills = () => async dispatch => {
+  try {
+    dispatch({
+      type: CLEAR_BILLS
+    })
+  } catch (err) {
+    dispatch(setAlert("Couldn't clear bills"));
+  }
+}
 
 export const getBills = () => async dispatch => {
   try {

@@ -14,11 +14,13 @@ export const CREATE_PROFILE = 'CREATE_PROFILE';
 export const GET_PROFILE = 'GET_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
+export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 
 export const GET_BILLS = 'GET_BILLS';
 export const ADD_BILL = 'ADD_BILL';
 export const REMOVE_BILL = 'REMOVE_BILL';
 export const UPDATE_BILL = 'UPDATE_BILL';
+export const CLEAR_BILLS = 'CLEAR_BILLS';
 
 export const GET_EXPENSES = 'GET_EXPENSES';
 export const GET_CURRENT_MONTH_EXPENSES = 'GET_CURRENT_MONTH_EXPENSES';
@@ -26,11 +28,13 @@ export const GET_EXPENSES_BY_MONTH = 'GET_EXPENSES_BY_MONTH';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 export const UPDATE_EXPENSE = 'UPDATE_EXPENSE';
+export const CLEAR_EXPENSES = 'CLEAR_EXPENSES';
 
 export const GET_DREAMS = 'GET_DREAMS';
 export const ADD_DREAM = 'ADD_DREAM';
 export const REMOVE_DREAM = 'REMOVE_DREAM';
 export const UPDATE_DREAM = 'UPDATE_DREAM';
+export const CLEAR_DREAMS = 'CLEAR_DREAMS';
 
 export const GET_GOALS = 'GET_GOALS';
 export const ADD_GOAL = 'ADD_GOAL';
@@ -38,6 +42,7 @@ export const REMOVE_GOAL = 'REMOVE_GOAL';
 export const UPDATE_GOAL = 'UPDATE_GOAL';
 export const GET_GOAL = 'GET_GOAL';
 export const SET_GOAL_FOCUS = 'SET_GOAL_FOCUS';
+export const CLEAR_GOALS = 'CLEAR_GOALS';
 
 export const GET_MONTH = 'INCREASE_MONTH';
 export const INCREASE_MONTH = 'INCREASE_MONTH';
