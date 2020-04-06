@@ -64,9 +64,9 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
   }
 
   return (
-    <section className="login">
+    <section className="auth-form login">
       <div className="container">
-        <div className="login__container">
+        <div className="form__container">
           <h2>Login</h2>
           <p>Your dreams are waiting</p>
           <form onSubmit={onHandleSubmit}>

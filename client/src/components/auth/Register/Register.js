@@ -73,9 +73,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   }
 
   return (
-    <section className="register">
+    <section className="auth-form register">
       <div className="container">
-        <div className="register__container">
+        <div className="form__container">
           <h2>Register</h2>
           <p>It's simple as 1, 2, 3.</p>
           <form onSubmit={onHandleSubmit}>
