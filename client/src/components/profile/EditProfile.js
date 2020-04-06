@@ -3,12 +3,12 @@ import React, { useState, useEffect, Fragment } from 'react';
 // Redux
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createProfile, getCurrentProfile } from '../../actions/profile';
+import { createProfile, getCurrentProfile } from 'actions/profile';
 import { withRouter, Link } from 'react-router-dom';
 
-import Wallet from '../../assets/icons/wallet.svg';
-import Calendar from '../../assets/icons/calendar.svg';
-import Money from '../../assets/icons/money.svg';
+import Wallet from 'assets/icons/wallet.svg';
+import Calendar from 'assets/icons/calendar.svg';
+import Money from 'assets/icons/money.svg';
 
 import Lottie from 'containers/Lottie/Lottie'
 import Loader from 'components/layout/Loader/Loader.js';

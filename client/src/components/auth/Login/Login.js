@@ -64,50 +64,52 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
   }
 
   return (
-    <section className="login">
+    <section className="auth-form login">
       <div className="container">
-        <div className="login__container">
+        <div className="form__container">
           <h2>Login</h2>
           <p>Your dreams are waiting</p>
           <form onSubmit={onHandleSubmit}>
-            <label htmlFor="email">
-              Email:{' '}
+
+            <div>
+              <label htmlFor="email">Email:</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={onHandleChange}
+                className={`${emailError ? 'input-warning' : 'input-clear'}`}
+                onBlur={() => {
+                  setEmailError(formData.email.length > 0 && formData.email.length < 6);
+                }}
+              />
               {emailError && (
                 <span className="input-warning-text">
                   Please put valid email
                 </span>
               )}
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={onHandleChange}
-              className={`${emailError ? 'input-warning' : 'input-clear'}`}
-              onBlur={() => {
-                setEmailError(formData.email.length < 6);
-              }}
-            />
-            <label htmlFor="password">
-              Password:{' '}
+            </div>
+
+            <div>
+              <label htmlFor="password">Password: </label>
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                value={formData.password}
+                onChange={onHandleChange}
+                className={`${passwordError ? 'input-warning' : 'input-clear'}`}
+                onBlur={() => {
+                  setPasswordError(formData.password.length > 0 && formData.password.length < 6);
+                }}
+              />
               {passwordError && (
                 <span className="input-warning-text">
                   Please enter a password that is 6 or more characters
                 </span>
               )}
-            </label>
-            <input
-              id="password"
-              name="password"
-              type={showPassword ? 'text' : 'password'}
-              value={formData.password}
-              onChange={onHandleChange}
-              className={`${passwordError ? 'input-warning' : 'input-clear'}`}
-              onBlur={() => {
-                setPasswordError(formData.password.length < 6);
-              }}
-            />
+            </div>
 
             <p>
               Show password

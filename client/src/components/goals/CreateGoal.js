@@ -2,14 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { TimelineMax, Power1, TweenMax } from 'gsap';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addGoal } from '../../actions/goal';
+import { addGoal } from 'actions/goal';
 import PropTypes from 'prop-types';
-import { setAlert } from '../../actions/alert';
+import { setAlert } from 'actions/alert';
 
 // Icons
-import Target from '../../assets/icons/target.svg';
-import Money from '../../assets/icons/money.svg';
-import Wallet from '../../assets/icons/wallet.svg';
+import Target from 'assets/icons/target.svg';
+import Money from 'assets/icons/money.svg';
+import Wallet from 'assets/icons/wallet.svg';
 
 const CreateGoal = ({ addGoal, history, setAlert }) => {
   const [formData, setFormData] = useState({

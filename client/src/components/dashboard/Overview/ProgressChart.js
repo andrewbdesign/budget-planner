@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // Helpers
-import { numberWithCommas } from '../../../utils/numberFormatter';
+import { numberWithCommas } from 'utils/numberFormatter';
 
 let chartElement = null;
 

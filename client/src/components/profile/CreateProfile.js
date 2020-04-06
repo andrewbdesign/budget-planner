@@ -3,15 +3,15 @@ import React, { useState } from 'react';
 // Redux
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createProfile } from '../../actions/profile';
+import { createProfile } from 'actions/profile';
 import { withRouter } from 'react-router-dom';
 
-import Wallet from '../../assets/icons/wallet.svg';
-import Calendar from '../../assets/icons/calendar.svg';
-import Money from '../../assets/icons/money.svg';
+import Wallet from 'assets/icons/wallet.svg';
+import Calendar from 'assets/icons/calendar.svg';
+import Money from 'assets/icons/money.svg';
 
 import Lottie from 'containers/Lottie/Lottie'
-import { setAlert } from '../../actions/alert';
+import { setAlert } from 'actions/alert';
 
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';

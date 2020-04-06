@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import ProgressChart from './ProgressChart';
-import { numberWithCommas } from '../../../utils/numberFormatter';
+import { numberWithCommas } from 'utils/numberFormatter';
 
 // Redux
 import { connect } from 'react-redux';

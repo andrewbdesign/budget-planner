@@ -1,0 +1,78 @@
+.auth-form {
+  min-height: calc(100vh - 318px);
+  display: flex;
+  color: $black;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form__container {
+    width: 400px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    transition: background .2s ease-in-out;
+    cursor: pointer;
+    border-top: 5px solid $navy;
+    box-shadow: $boxShadow;
+
+    h2 {
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 1.3rem;
+    }
+
+    form {
+      margin: 20px 0 0;
+    }
+
+    input {
+      width: 100%;
+      border: none;
+      padding: 6px 0 6px 10px;
+      height: 38px;
+      font-size: 1.6rem;
+      margin: 5px 0;
+      box-sizing: border-box;
+      background: $offWhite;
+      border: 1px solid $white;
+    }
+
+    label {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: $black;
+    }
+
+    input[type="checkbox"] {
+      display: inline-block;
+      width: auto;
+      height: auto;
+      margin-left: 10px;
+      margin-bottom: 20px;
+      
+    }
+
+    button {
+      margin-top: 20px;
+      background: $yellow;
+      color: $black;
+      &:hover {
+        background: lighten($yellow, 15%);
+      }
+    }
+
+    button:disabled {
+      background: #dadada;
+      color: #656262;
+      cursor: not-allowed;
+    }
+
+  }
+}
