@@ -3,6 +3,7 @@ import {
   ADD_DREAM,
   UPDATE_DREAM,
   REMOVE_DREAM,
+  CLEAR_DREAMS
 } from '../actions/types';
 
 const initialState = {
@@ -23,6 +24,12 @@ export default function(state = initialState, action) {
         dreams: payload,
         loading: false,
       };
+    case CLEAR_DREAMS:
+      return {
+        ...state,
+        dreams: null,
+        loading: false
+      }
     default:
       return state;
   }

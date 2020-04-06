@@ -9,9 +9,20 @@ import {
   DECREASE_MONTH,
   GET_EXPENSES_BY_MONTH,
   GET_CURRENT_MONTH_EXPENSES,
+  CLEAR_EXPENSES
 } from './types';
 import { setAlert } from './alert';
 import moment from 'moment';
+
+export const clearExpenses = () => async dispatch => {
+  try {
+    dispatch({
+      type: CLEAR_EXPENSES
+    })
+  } catch (err) {
+    dispatch(setAlert("Couldn't clear current expenses"));
+  }
+}
 
 export const getExpenses = () => async dispatch => {
   try {
