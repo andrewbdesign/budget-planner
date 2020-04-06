@@ -8,6 +8,8 @@ import {
   removeDream,
 } from '../../../actions/dream';
 
+import './Dreams.scss';
+
 const Dreams = ({
   dream: { dreams },
   getDreams,
@@ -85,7 +87,7 @@ const Dreams = ({
         <div className="dreams__container">
           <div className="having">
             <h1>Dreams</h1>
-            <p>In 6 months I dream of having:</p>
+            <p>A place to put all your goals for the future:</p>
             <hr />
             {dreams && dreams.length > 0 ? (
               <Fragment>

@@ -8,11 +8,13 @@ import {
   DECREASE_MONTH,
   GET_EXPENSES_BY_MONTH,
   GET_CURRENT_MONTH_EXPENSES,
+  CLEAR_EXPENSES
 } from '../actions/types';
 
 const initialState = {
   expenses: null,
   loading: true,
+  monthFocus: null,
   error: {},
 };
 
@@ -59,6 +61,13 @@ export default function(state = initialState, action) {
         monthFocus: payload,
         loading: false,
       };
+    case CLEAR_EXPENSES:
+      return {
+        ...state,
+        expenses: null,
+        loading: false,
+        monthFocus: null,
+      }
     default:
       return state;
   }

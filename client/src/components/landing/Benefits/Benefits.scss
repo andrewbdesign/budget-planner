@@ -1,0 +1,28 @@
+@import 'styles/variables/_breakpoints.scss';
+@import 'styles/variables/_colours.scss';
+
+.benefits {
+  text-align: center;
+
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 30px;
+  }
+
+  p {
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+
+  .benefits-group__container {
+    display: none;
+    justify-content: space-around;
+    padding: 4rem 0;
+  }
+
+  .lottie {
+    padding: 4rem 0;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}

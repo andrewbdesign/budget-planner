@@ -3,6 +3,7 @@ import {
   ADD_BILL,
   REMOVE_BILL,
   UPDATE_BILL,
+  CLEAR_BILLS,
 } from '../actions/types';
 
 const initialState = {
@@ -24,6 +25,12 @@ export default function(state = initialState, action) {
         bills: payload,
         loading: false,
       };
+    case CLEAR_BILLS:
+      return {
+        ...state,
+        bills: null,
+        loading: false
+      }
     default:
       return state;
   }

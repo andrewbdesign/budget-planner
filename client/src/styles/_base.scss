@@ -1,0 +1,31 @@
+@import 'styles/variables/_breakpoints.scss';
+@import 'styles/variables/_colours.scss';
+@import 'styles/variables/_typography.scss';
+
+@import 'styles/_button.scss';
+@import 'styles/_alert.scss';
+@import 'styles/_input.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+section {
+  padding: 4rem 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+

@@ -1,0 +1,152 @@
+@import 'styles/variables/_breakpoints.scss';
+@import 'styles/variables/_colours.scss';
+
+.dreams {
+  background: $navy;
+  color: $white;
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding-bottom: 5px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    padding-top: 5px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    padding-bottom: 14px;
+  }
+
+  hr {
+    border-top: 1px solid #dadada;
+    border-bottom: none;
+    margin-bottom: 14px;
+  }
+
+  .having {
+    padding: 0 20px 0 0;
+  }
+
+  .dreams__container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+
+    &>div {
+      width: 100%;
+    }
+
+    ol {
+      padding: 0;
+      list-style-position: inside;
+      line-height: 1.5;
+      font-family: 'Roboto';
+      font-size: 1.3rem;
+      margin: 0;
+
+      li {
+        margin: 4px 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 660px) {
+  .dreams {
+    .dreams__container {
+      flex-direction: row;
+    }
+  }
+}
+
+.dreams-form {
+  label {
+    display: inline-block;
+    padding: 0 0 20px;
+  }
+
+  .label-title {
+    display: block;
+    font-size: 1.6rem;
+  }
+
+  .label-checkbox {
+    position: relative;
+    top: -10px;
+  }
+
+  input {
+    // width: 100%;
+    margin-top: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    font-size: 1.6rem;
+  }
+
+  .button {
+    display: inline-block;
+  }
+
+  .button-primary {
+    background: #FFC107;
+    color: #212121;
+  }
+
+  .button-secondary {
+    // border: 1px solid #fff;
+    text-decoration: underline;
+
+    &:hover {
+      background: transparent;
+      color: #fff;
+    }
+  }
+
+
+}
+
+.having {
+  li {
+    .button-secondary {
+      border: 1px solid;
+      padding: 4px 10px;
+      margin: 0 5px;
+
+      &:hover {
+        background: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+      }
+    }
+
+    .button-tertiary {
+      text-decoration: underline;
+      padding: 4px 10px;
+      margin: 0 5px;
+
+      &:hover {
+        background: transparent;
+        color: #e00;
+      }
+    }
+  }
+
+}
+
+ol li {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+ol li.achieved {
+  text-decoration: line-through;
+  color: #616979;
+}
+
+// linear-gradient(180deg,#263149,#49054e)

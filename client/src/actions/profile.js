@@ -4,8 +4,19 @@ import {
   PROFILE_ERROR,
   CREATE_PROFILE,
   DELETE_ACCOUNT,
+  CLEAR_PROFILE,
 } from './types';
 import { setAlert } from './alert';
+
+export const clearProfile = () => async dispatch => {
+  try {
+    dispatch({
+      type: CLEAR_PROFILE
+    })
+  } catch (err) {
+    dispatch(setAlert("Couldn't clear current profile"));
+  }
+}
 
 export const getCurrentProfile = () => async dispatch => {
   try {

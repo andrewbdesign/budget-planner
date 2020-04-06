@@ -3,14 +3,14 @@ import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from '../../components/routing/PrivateRoute';
 
-import Register from '../auth/Register';
-import Login from '../auth/Login';
+import Register from 'components/auth/Register/Register';
+import Login from 'components/auth/Login/Login';
 import CreateProfile from '../profile/CreateProfile';
 import EditProfile from '../profile/EditProfile';
-import Profile from '../profile/Profile';
+import Profile from 'components/profile/Profile/Profile';
 import Dashboard from '../dashboard/Dashboard';
 import Expenses from '../dashboard/Expenses/Expenses';
-import Goals from '../goals/Goals';
+import Goals from 'components/goals/Goals/Goals';
 import CreateGoal from '../goals/CreateGoal';
 import EditGoal from '../goals/EditGoal';
 import MonthlyBills from '../dashboard/MonthlyBills/MonthlyBills';
