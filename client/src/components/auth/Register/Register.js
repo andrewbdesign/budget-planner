@@ -89,11 +89,15 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                 onChange={onHandleChange}
                 className={`${nameError ? 'input-warning' : 'input-clear'}`}
                 onBlur={() => {
-                  setNameError(formData.name.length > 0 && formData.name.length < 2);
+                  setNameError(
+                    formData.name.length > 0 && formData.name.length < 2,
+                  );
                 }}
               />
               {nameError && (
-                <span className="input-warning-text">Please put a valid name</span>
+                <span className="input-warning-text">
+                  Please put a valid name
+                </span>
               )}
             </div>
 
@@ -107,7 +111,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                 onChange={onHandleChange}
                 className={`${emailError ? 'input-warning' : 'input-clear'}`}
                 onBlur={() => {
-                  setEmailError(formData.email.length > 0 && formData.email.length < 3);
+                  setEmailError(
+                    formData.email.length > 0 && formData.email.length < 3,
+                  );
                 }}
               />
               {emailError && (
@@ -127,7 +133,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                 onChange={onHandleChange}
                 className={`${passwordError ? 'input-warning' : 'input-clear'}`}
                 onBlur={() => {
-                  setPasswordError(formData.password.length > 0 && formData.password.length < 6);
+                  setPasswordError(
+                    formData.password.length > 0 &&
+                      formData.password.length < 6,
+                  );
                 }}
               />
               {passwordError && (
@@ -174,7 +183,4 @@ Register.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

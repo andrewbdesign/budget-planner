@@ -301,7 +301,4 @@ const mapDispatchToProps = {
   updateExpense,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Expenses);
+export default connect(mapStateToProps, mapDispatchToProps)(Expenses);

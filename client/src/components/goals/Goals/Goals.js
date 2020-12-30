@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import Lottie from 'containers/Lottie/Lottie'
+import Lottie from 'containers/Lottie/Lottie';
 import { numberWithCommas } from 'utils/numberFormatter';
 // import { TimelineMax, Power1 } from 'gsap';
 
@@ -179,8 +179,9 @@ const Goals = ({ goal: { goals }, getGoals, removeGoal, updateGoal }) => {
     <Lottie
       animationData={lottieTarget}
       className="lottie-container"
-      loop={false} 
-      name="target"/>
+      loop={false}
+      name="target"
+    />
   );
 
   const [saveBy, setSaveBy] = useState('date');
@@ -335,7 +336,4 @@ const mapDispatchToProps = {
   updateGoal,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Goals);
+export default connect(mapStateToProps, mapDispatchToProps)(Goals);

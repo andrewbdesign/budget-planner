@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { deleteAccount, getCurrentProfile } from 'actions/profile';
 import Loader from 'components/layout/Loader/Loader.js';
 import { numberWithCommas } from 'utils/numberFormatter';
-import Lottie from 'containers/Lottie/Lottie'
+import Lottie from 'containers/Lottie/Lottie';
 import moment from 'moment';
 
 import './Profile.scss';
@@ -21,13 +21,13 @@ const Profile = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-
   const lottiElement = (
-    <Lottie 
+    <Lottie
       animationData={lottieCoolGuy}
       className="lottie-container"
-      name="cool-guy"/>
-    );
+      name="cool-guy"
+    />
+  );
 
   if (loading) {
     return <Loader />;
@@ -90,7 +90,4 @@ const mapStateToDispatch = {
   getCurrentProfile,
 };
 
-export default connect(
-  mapStateToProps,
-  mapStateToDispatch,
-)(Profile);
+export default connect(mapStateToProps, mapStateToDispatch)(Profile);

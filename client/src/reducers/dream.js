@@ -3,7 +3,7 @@ import {
   ADD_DREAM,
   UPDATE_DREAM,
   REMOVE_DREAM,
-  CLEAR_DREAMS
+  CLEAR_DREAMS,
 } from 'actions/types';
 
 const initialState = {
@@ -28,8 +28,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         dreams: null,
-        loading: false
-      }
+        loading: false,
+      };
     default:
       return state;
   }

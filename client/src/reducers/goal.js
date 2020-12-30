@@ -48,7 +48,7 @@ export default function(state = initialState, action) {
         goals: [],
         goalFocus: 0,
         loading: false,
-      }
+      };
     default:
       return state;
   }

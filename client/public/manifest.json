@@ -1,7 +1,8 @@
 {
   "short_name": "BudgetPlanner",
   "name": "BudgetPlanner App",
-  "icons": [{
+  "icons": [
+    {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 16x16",
       "type": "image/x-icon"

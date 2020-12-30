@@ -14,7 +14,7 @@ const Benefits = () => {
           Seriously!
         </p>
       </div>
-      <Lottie animationData={lottieSuccess} name={"lottieSuccess"}/>
+      <Lottie animationData={lottieSuccess} name={'lottieSuccess'} />
     </section>
   );
 };

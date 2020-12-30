@@ -29,8 +29,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         bills: null,
-        loading: false
-      }
+        loading: false,
+      };
     default:
       return state;
   }

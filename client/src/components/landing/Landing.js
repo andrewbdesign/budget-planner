@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import Header from 'components/landing/Header/Header'
-import Benefits from 'components/landing/Benefits/Benefits'
+import Header from 'components/landing/Header/Header';
+import Benefits from 'components/landing/Benefits/Benefits';
 import Features from 'components/landing/Features/Features';
 import Goals from 'components/landing/Goals/Goals';
 import Expenses from 'components/landing/Expenses/Expenses';

@@ -8,7 +8,7 @@ import {
   DECREASE_MONTH,
   GET_EXPENSES_BY_MONTH,
   GET_CURRENT_MONTH_EXPENSES,
-  CLEAR_EXPENSES
+  CLEAR_EXPENSES,
 } from 'actions/types';
 
 const initialState = {
@@ -67,7 +67,7 @@ export default function(state = initialState, action) {
         expenses: null,
         loading: false,
         monthFocus: null,
-      }
+      };
     default:
       return state;
   }

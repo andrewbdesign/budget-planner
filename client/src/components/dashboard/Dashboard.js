@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCurrentProfile } from 'actions/profile';
-import Lottie from 'containers/Lottie/Lottie'
+import Lottie from 'containers/Lottie/Lottie';
 
 // Components
 import Loader from 'components/layout/Loader/Loader.js';
@@ -16,7 +16,7 @@ import MonthlyBills from './MonthlyBills/MonthlyBills';
 import Expenses from './Expenses/Expenses';
 import Dreams from './Dreams/Dreams';
 
-const lottieWelcome = require('assets/lotties/done.json')
+const lottieWelcome = require('assets/lotties/done.json');
 
 const Dashboard = ({
   auth: { user },
@@ -54,14 +54,16 @@ const Dashboard = ({
               <div className="profile-setup__container">
                 {user && (
                   <Fragment>
-                    <Lottie 
-                      animationData={lottieWelcome} 
-                      className="welcome-animation" 
-                      loop={false} 
-                      name="welcome"/>
+                    <Lottie
+                      animationData={lottieWelcome}
+                      className="welcome-animation"
+                      loop={false}
+                      name="welcome"
+                    />
                     <h1>Hi {user.name}!</h1>
                     <p>
-                      You have not setup a profile with us yet. Click here to get started
+                      You have not setup a profile with us yet. Click here to
+                      get started
                     </p>
                     <Link to="/create-profile" className="button">
                       Create Profile
@@ -92,7 +94,4 @@ const mapDispatchToProps = {
   getCurrentProfile,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

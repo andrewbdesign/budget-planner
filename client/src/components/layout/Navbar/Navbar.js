@@ -13,14 +13,15 @@ import './Navbar.scss';
 
 import logo from 'assets/images/logo-bp.svg';
 
-const Navbar = ({ 
-  logout, 
-  clearBills, 
-  clearProfile, 
+const Navbar = ({
+  logout,
+  clearBills,
+  clearProfile,
   clearExpenses,
   clearDreams,
   clearGoals,
-  auth }) => {
+  auth,
+}) => {
   const { isAuthenticated, loading } = auth;
 
   const authLinks = (
@@ -35,14 +36,17 @@ const Navbar = ({
         <Link to="/profile">Profile</Link>
       </li>
       <li>
-        <a href="#!" onClick={() => {
-          logout()
-          clearBills()
-          clearProfile()
-          clearExpenses()
-          clearDreams()
-          clearGoals()
-        }}>
+        <a
+          href="#!"
+          onClick={() => {
+            logout();
+            clearBills();
+            clearProfile();
+            clearExpenses();
+            clearDreams();
+            clearGoals();
+          }}
+        >
           Logout
         </a>
       </li>
@@ -92,7 +96,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-const mapDispatchToProps = { 
+const mapDispatchToProps = {
   logout,
   clearBills,
   clearProfile,
@@ -101,7 +105,4 @@ const mapDispatchToProps = {
   clearGoals,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

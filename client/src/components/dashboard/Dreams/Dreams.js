@@ -1,12 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  getDreams,
-  addDream,
-  updateDream,
-  removeDream,
-} from 'actions/dream';
+import { getDreams, addDream, updateDream, removeDream } from 'actions/dream';
 
 import './Dreams.scss';
 
@@ -191,7 +186,4 @@ const mapDispatchToProps = {
   removeDream,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Dreams);
+export default connect(mapStateToProps, mapDispatchToProps)(Dreams);

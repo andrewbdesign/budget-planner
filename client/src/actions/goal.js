@@ -13,12 +13,12 @@ import { setAlert } from './alert';
 export const clearGoals = () => async dispatch => {
   try {
     dispatch({
-      type: CLEAR_GOALS
-    })
+      type: CLEAR_GOALS,
+    });
   } catch (err) {
     dispatch(setAlert("Couldn't clear goals"));
   }
-}
+};
 
 export const getGoals = () => async dispatch => {
   try {

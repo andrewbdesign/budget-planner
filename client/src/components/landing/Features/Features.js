@@ -32,7 +32,6 @@ const Features = () => {
           <div className="features-list">
             <ul>{renderList()}</ul>
           </div>
-          
         </div>
         <div className="cta-section">
           <Link to="/register" className="button button-signup">
