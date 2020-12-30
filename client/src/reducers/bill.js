@@ -4,7 +4,7 @@ import {
   REMOVE_BILL,
   UPDATE_BILL,
   CLEAR_BILLS,
-} from '../actions/types';
+} from 'actions/types';
 
 const initialState = {
   bills: null,

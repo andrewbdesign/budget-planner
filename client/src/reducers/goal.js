@@ -6,7 +6,7 @@ import {
   GET_GOAL,
   SET_GOAL_FOCUS,
   CLEAR_GOALS,
-} from '../actions/types';
+} from 'actions/types';
 
 const initialState = {
   goals: [],

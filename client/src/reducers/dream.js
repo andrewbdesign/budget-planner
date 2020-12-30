@@ -4,7 +4,7 @@ import {
   UPDATE_DREAM,
   REMOVE_DREAM,
   CLEAR_DREAMS
-} from '../actions/types';
+} from 'actions/types';
 
 const initialState = {
   dreams: [],

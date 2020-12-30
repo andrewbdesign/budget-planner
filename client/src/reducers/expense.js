@@ -9,7 +9,7 @@ import {
   GET_EXPENSES_BY_MONTH,
   GET_CURRENT_MONTH_EXPENSES,
   CLEAR_EXPENSES
-} from '../actions/types';
+} from 'actions/types';
 
 const initialState = {
   expenses: null,
