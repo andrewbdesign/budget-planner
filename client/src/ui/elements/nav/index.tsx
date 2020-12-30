@@ -6,6 +6,8 @@ import { authLinks, guestLinks } from './routes';
 
 import logo from 'assets/images/logo-bp.svg';
 
+import * as S from './styled';
+
 type Props = {
   auth: {
     isAuthenticated: boolean;
@@ -17,30 +19,29 @@ const Navbar: FC<Props> = ({ auth }) => {
   const { isAuthenticated } = auth;
   const links = isAuthenticated ? authLinks : guestLinks;
   return (
-    <nav className="navbar">
-      <div className="container">
-        <div className="logo">
+    <S.Navbar>
+      <S.Container>
+        <S.Logo>
           <Link to="/">
             <img src={logo} alt="budget-planner logo" />
           </Link>
-        </div>
-        <ul className="menu-list">
+        </S.Logo>
+        <S.MenuList>
           {links &&
             links.map(({ path, name }) => {
               return (
                 <li key={path}>
-                  <Link to={path}>{name}</Link>
+                  <S.StyledLink to={path}>{name}</S.StyledLink>
                 </li>
               );
             })}
-        </ul>
-      </div>
-    </nav>
+        </S.MenuList>
+      </S.Container>
+    </S.Navbar>
   );
 };
 
-// TODO: Fix any state
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: Props) => ({
   auth: state.auth,
 });
 

@@ -11,12 +11,10 @@ import setAuthToken from '../utils/setAuthToken';
 import Routes from './routing/Routes';
 
 // Components
-import { Navbar2 } from 'ui/elements';
+import { Navbar, Footer } from 'ui/elements';
 
 import ScrollToTop from 'containers/ScrollToTop/ScrollToTop';
 import Landing from './landing/Landing';
-import Navbar from './layout/Navbar/Navbar';
-import Footer from './layout/Footer/Footer';
 import Alert from './layout/Alert';
 
 if (localStorage.token) setAuthToken(localStorage.token);
@@ -32,7 +30,6 @@ const App = () => {
         <Router>
           <ScrollToTop />
           <Navbar />
-          <Navbar2 />
           <div className="alert-container">
             <Alert />
           </div>

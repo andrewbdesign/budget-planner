@@ -12,7 +12,7 @@ const initialState = {
   error: {},
 };
 
-export default function(state = initialState, action) {
+export default function dream(state = initialState, action) {
   const { payload, type } = action;
   switch (type) {
     case GET_DREAMS:
