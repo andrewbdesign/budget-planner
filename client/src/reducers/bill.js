@@ -4,7 +4,7 @@ import {
   REMOVE_BILL,
   UPDATE_BILL,
   CLEAR_BILLS,
-} from '../actions/types';
+} from 'actions/types';
 
 const initialState = {
   bills: null,
@@ -12,7 +12,7 @@ const initialState = {
   error: {},
 };
 
-export default function(state = initialState, action) {
+export default function bill(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -29,8 +29,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         bills: null,
-        loading: false
-      }
+        loading: false,
+      };
     default:
       return state;
   }

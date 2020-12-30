@@ -7,7 +7,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   DELETE_ACCOUNT,
-} from '../actions/types';
+} from 'actions/types';
 
 const initialState = {
   token: localStorage.getItem('token'),
@@ -16,7 +16,7 @@ const initialState = {
   user: null,
 };
 
-export default function(state = initialState, action) {
+export default function auth(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -47,7 +47,7 @@ export default function(state = initialState, action) {
         token: null,
         isAuthenticated: false,
         loading: false,
-        user: null
+        user: null,
       };
     default:
       return state;

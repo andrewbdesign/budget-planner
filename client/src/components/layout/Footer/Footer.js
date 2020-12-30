@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Logo from 'assets/images/logo-bp.svg';
 
-import './Footer.scss'
+import './Footer.scss';
 
 const Footer = () => {
   return (
@@ -32,7 +32,7 @@ const Footer = () => {
           <Link to="/register">Links</Link>
           <Link to="/register">Inspiration</Link>
         </div>
-        </div>
+      </div>
     </footer>
   );
 };

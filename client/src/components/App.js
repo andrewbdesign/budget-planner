@@ -4,17 +4,17 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // Redux
 import { Provider } from 'react-redux';
 import store from '../store';
-import { loadUser } from '../actions/auth';
+import { loadUser } from 'actions/auth';
 import setAuthToken from '../utils/setAuthToken';
 
 // Routes
 import Routes from './routing/Routes';
 
 // Components
-import ScrollToTop from 'containers/ScrollToTop/ScrollToTop'
+import { Navbar, Footer } from 'ui/elements';
+
+import ScrollToTop from 'containers/ScrollToTop/ScrollToTop';
 import Landing from './landing/Landing';
-import Navbar from './layout/Navbar/Navbar';
-import Footer from './layout/Footer/Footer';
 import Alert from './layout/Alert';
 
 if (localStorage.token) setAuthToken(localStorage.token);

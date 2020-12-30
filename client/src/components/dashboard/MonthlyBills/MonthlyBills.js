@@ -2,12 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {
-  getBills,
-  addBill,
-  removeBill,
-  updateBill,
-} from 'actions/bill';
+import { getBills, addBill, removeBill, updateBill } from 'actions/bill';
 
 import { numberWithCommas } from 'utils/numberFormatter';
 import { getTotalSum } from 'utils/bill';
@@ -297,7 +292,4 @@ const mapDispatchToProps = {
   updateBill,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(MonthlyExpenses);
+export default connect(mapStateToProps, mapDispatchToProps)(MonthlyExpenses);

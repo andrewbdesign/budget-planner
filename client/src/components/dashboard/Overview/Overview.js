@@ -156,7 +156,4 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = { getGoals, setGoalFocus };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Overview);
+export default connect(mapStateToProps, mapDispatchToProps)(Overview);

@@ -9,12 +9,10 @@ const Expenses = () => {
   return (
     <section className="tracking-expenses">
       <div className="container">
-      <Lottie animationData={lottieBiking} name={"biking"}/>
+        <Lottie animationData={lottieBiking} name={'biking'} />
         <div>
           <h1>Track down everything</h1>
-          <p>
-            From Netflix to gym membership. Track it all.
-          </p>
+          <p>From Netflix to gym membership. Track it all.</p>
         </div>
       </div>
     </section>

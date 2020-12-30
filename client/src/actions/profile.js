@@ -11,12 +11,12 @@ import { setAlert } from './alert';
 export const clearProfile = () => async dispatch => {
   try {
     dispatch({
-      type: CLEAR_PROFILE
-    })
+      type: CLEAR_PROFILE,
+    });
   } catch (err) {
     dispatch(setAlert("Couldn't clear current profile"));
   }
-}
+};
 
 export const getCurrentProfile = () => async dispatch => {
   try {

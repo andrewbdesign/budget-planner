@@ -5,7 +5,7 @@ import { login } from 'actions/auth';
 import PropTypes from 'prop-types';
 import { setAlert } from 'actions/alert';
 
-import './Login.scss'
+import './Login.scss';
 
 const Login = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
@@ -70,7 +70,6 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
           <h2>Login</h2>
           <p>Your dreams are waiting</p>
           <form onSubmit={onHandleSubmit}>
-
             <div>
               <label htmlFor="email">Email:</label>
               <input
@@ -81,7 +80,9 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
                 onChange={onHandleChange}
                 className={`${emailError ? 'input-warning' : 'input-clear'}`}
                 onBlur={() => {
-                  setEmailError(formData.email.length > 0 && formData.email.length < 6);
+                  setEmailError(
+                    formData.email.length > 0 && formData.email.length < 6,
+                  );
                 }}
               />
               {emailError && (
@@ -101,7 +102,10 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
                 onChange={onHandleChange}
                 className={`${passwordError ? 'input-warning' : 'input-clear'}`}
                 onBlur={() => {
-                  setPasswordError(formData.password.length > 0 && formData.password.length < 6);
+                  setPasswordError(
+                    formData.password.length > 0 &&
+                      formData.password.length < 6,
+                  );
                 }}
               />
               {passwordError && (
@@ -146,7 +150,4 @@ Login.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

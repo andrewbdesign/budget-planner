@@ -10,7 +10,7 @@ import Wallet from 'assets/icons/wallet.svg';
 import Calendar from 'assets/icons/calendar.svg';
 import Money from 'assets/icons/money.svg';
 
-import Lottie from 'containers/Lottie/Lottie'
+import Lottie from 'containers/Lottie/Lottie';
 import Loader from 'components/layout/Loader/Loader.js';
 
 import { SingleDatePicker } from 'react-dates';
@@ -18,7 +18,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import uuid from 'uuid';
 import moment from 'moment';
 
-const lottiePencil = require('assets/lotties/pencil.json')
+const lottiePencil = require('assets/lotties/pencil.json');
 
 const EditProfile = ({
   createProfile,
@@ -72,7 +72,8 @@ const EditProfile = ({
       className="lottie-container"
       animationData={lottiePencil}
       loop={false}
-      name="pencil"/>
+      name="pencil"
+    />
   );
 
   const questions = (

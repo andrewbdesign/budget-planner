@@ -6,7 +6,7 @@ import {
   GET_GOAL,
   SET_GOAL_FOCUS,
   CLEAR_GOALS,
-} from '../actions/types';
+} from 'actions/types';
 
 const initialState = {
   goals: [],
@@ -16,7 +16,7 @@ const initialState = {
   goalFocus: 0,
 };
 
-export default function(state = initialState, action) {
+export default function goal(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -48,7 +48,7 @@ export default function(state = initialState, action) {
         goals: [],
         goalFocus: 0,
         loading: false,
-      }
+      };
     default:
       return state;
   }

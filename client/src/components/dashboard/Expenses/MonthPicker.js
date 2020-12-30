@@ -87,7 +87,4 @@ const mapDispatchToProps = {
   getExpensesByMonth,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(MonthPicker);
+export default connect(mapStateToProps, mapDispatchToProps)(MonthPicker);

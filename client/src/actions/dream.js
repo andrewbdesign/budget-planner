@@ -1,16 +1,22 @@
 import axios from 'axios';
-import { GET_DREAMS, ADD_DREAM, UPDATE_DREAM, REMOVE_DREAM, CLEAR_DREAMS } from './types';
+import {
+  GET_DREAMS,
+  ADD_DREAM,
+  UPDATE_DREAM,
+  REMOVE_DREAM,
+  CLEAR_DREAMS,
+} from './types';
 import { setAlert } from './alert';
 
 export const clearDreams = () => async dispatch => {
   try {
     dispatch({
-      type: CLEAR_DREAMS
-    })
+      type: CLEAR_DREAMS,
+    });
   } catch (err) {
-    dispatch(setAlert("Couldn't clear current dreams"))
+    dispatch(setAlert("Couldn't clear current dreams"));
   }
-}
+};
 
 export const getDreams = () => async dispatch => {
   try {
