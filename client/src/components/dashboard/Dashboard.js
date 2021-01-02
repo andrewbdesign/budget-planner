@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCurrentProfile } from 'actions/profile';
-import Lottie from 'containers/Lottie/Lottie';
+import { Lottie } from 'ui/elements';
 
 // Components
 import Loader from 'components/layout/Loader/Loader.js';

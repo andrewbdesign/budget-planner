@@ -10,7 +10,7 @@ import Wallet from 'assets/icons/wallet.svg';
 import Calendar from 'assets/icons/calendar.svg';
 import Money from 'assets/icons/money.svg';
 
-import Lottie from 'containers/Lottie/Lottie';
+import { Lottie } from 'ui/elements';
 import Loader from 'components/layout/Loader/Loader.js';
 
 import { SingleDatePicker } from 'react-dates';

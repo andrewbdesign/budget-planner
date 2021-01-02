@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 
 import { authLinks, guestLinks } from './routes';
 
-import logo from 'assets/images/logo-bp.svg';
+import { Wrapper } from 'ui/common';
 
 import * as S from './styled';
+import logo from 'assets/images/logo-bp.svg';
 
 type Props = {
   auth: {
@@ -20,7 +21,7 @@ const Navbar: FC<Props> = ({ auth }) => {
   const links = isAuthenticated ? authLinks : guestLinks;
   return (
     <S.Navbar>
-      <S.Container>
+      <Wrapper>
         <S.Logo>
           <Link to="/">
             <img src={logo} alt="budget-planner logo" />
@@ -35,8 +36,9 @@ const Navbar: FC<Props> = ({ auth }) => {
                 </li>
               );
             })}
+          {isAuthenticated ? <button>Logout</button> : null}
         </S.MenuList>
-      </S.Container>
+      </Wrapper>
     </S.Navbar>
   );
 };

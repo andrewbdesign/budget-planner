@@ -1,5 +1,5 @@
 import React from 'react';
-import Lottie from 'containers/Lottie/Lottie';
+import { Lottie } from 'ui/elements';
 
 import './Expenses.scss';
 

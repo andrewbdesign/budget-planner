@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 
 import logo from 'assets/images/logo-bp.svg';
 
+import { Wrapper } from 'ui/common';
+
 import { footerLinks } from './routes';
 
 import * as S from './styled';
@@ -9,7 +11,7 @@ import * as S from './styled';
 const Footer: FC = () => {
   return (
     <S.Footer>
-      <S.Container>
+      <Wrapper>
         <S.Wrapper>
           <S.Logo src={logo} alt="BudgetPlanner logo" />
           <p>
@@ -17,23 +19,23 @@ const Footer: FC = () => {
             from a month-to-month basis. {new Date().getFullYear()}
           </p>
         </S.Wrapper>
-        <S.Wrapper>
+        <S.LinkWrapper>
           <S.Header>Important Links</S.Header>
           {footerLinks.map(({ path, name }) => (
             <S.StyledLink key={path} to={path}>
               {name}
             </S.StyledLink>
           ))}
-        </S.Wrapper>
-        <S.Wrapper>
+        </S.LinkWrapper>
+        <S.LinkWrapper>
           <S.Header>Important Links</S.Header>
           {footerLinks.map(({ path, name }) => (
             <S.StyledLink key={path} to={path}>
               {name}
             </S.StyledLink>
           ))}
-        </S.Wrapper>
-      </S.Container>
+        </S.LinkWrapper>
+      </Wrapper>
     </S.Footer>
   );
 };

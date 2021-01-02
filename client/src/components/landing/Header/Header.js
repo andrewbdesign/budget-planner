@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Lottie from 'containers/Lottie/Lottie';
+import { Lottie } from 'ui/elements';
 
 import 'components/landing/Header/Header.scss';
 
@@ -10,13 +10,15 @@ const Header = () => (
   <section className="header">
     <div className="container">
       <div>
-        <h1>A simple dream cost calculator</h1>
-        <p>Create realistic budget goals for your dreams!</p>
+        <h1>Dream cost calculator</h1>
+        <p>
+          A simple way to start managing your money and create the most
+          realistic goals of your dreams!
+        </p>
         <Link className="header-button button" to="/register">
           Learn how
         </Link>
       </div>
-
       <Lottie animationData={lottieLaptop} name="laptop" />
     </div>
   </section>
