@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import lottieSuccess from 'assets/lotties/success.json';
+import lottiePayment from 'assets/lotties/payment-success.json';
 
 import * as S from './styled';
 
@@ -8,7 +8,7 @@ import { messages } from './messages';
 
 import { Wrapper } from 'ui/common';
 
-const SetYourGoals: FC = () => {
+const SeeYourSpendingLimit: FC = () => {
   return (
     <S.Section>
       <Wrapper>
@@ -16,10 +16,10 @@ const SetYourGoals: FC = () => {
           <S.Heading>{messages.heading}</S.Heading>
           <S.Paragraph>{messages.paragraph}</S.Paragraph>
         </S.TextWrapper>
+        <S.LottieWrapper animationData={lottiePayment} name="payment" />
       </Wrapper>
-      <S.LottieWrapper animationData={lottieSuccess} name="lottieSuccess" />
     </S.Section>
   );
 };
 
-export default SetYourGoals;
+export default SeeYourSpendingLimit;
