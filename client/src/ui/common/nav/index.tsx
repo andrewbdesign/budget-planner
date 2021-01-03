@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { logout } from 'actions/auth';
 import { authLinks, guestLinks } from './routes';
 
 import { Wrapper } from 'ui/common';
@@ -14,11 +15,13 @@ type Props = {
     isAuthenticated: boolean;
     loading: boolean;
   };
+  logout: () => void;
 };
 
-const Navbar: FC<Props> = ({ auth }) => {
+const Navbar: FC<Props> = ({ auth, logout }) => {
   const { isAuthenticated } = auth;
   const links = isAuthenticated ? authLinks : guestLinks;
+
   return (
     <S.Navbar>
       <Wrapper>
@@ -28,15 +31,20 @@ const Navbar: FC<Props> = ({ auth }) => {
           </Link>
         </S.Logo>
         <S.MenuList>
-          {links &&
-            links.map(({ path, name }) => {
-              return (
-                <li key={path}>
-                  <S.StyledLink to={path}>{name}</S.StyledLink>
-                </li>
-              );
-            })}
-          {isAuthenticated ? <button>Logout</button> : null}
+          {links.map(({ path, name }) => {
+            return (
+              <li key={path}>
+                <S.StyledLink to={path}>{name}</S.StyledLink>
+              </li>
+            );
+          })}
+          {isAuthenticated ? (
+            <li>
+              <S.StyledLink to="/" onClick={logout}>
+                Logout
+              </S.StyledLink>
+            </li>
+          ) : null}
         </S.MenuList>
       </Wrapper>
     </S.Navbar>
@@ -47,4 +55,8 @@ const mapStateToProps = (state: Props) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = {
+  logout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
