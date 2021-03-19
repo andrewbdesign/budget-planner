@@ -17,7 +17,11 @@ const SetYourGoals: FC = () => {
           <S.Paragraph>{messages.paragraph}</S.Paragraph>
         </S.TextWrapper>
       </Wrapper>
-      <S.LottieWrapper animationData={lottieSuccess} name="lottieSuccess" />
+      <S.LottieWrapper
+        animationData={lottieSuccess}
+        name="lottieSuccess"
+        maxWidth={300}
+      />
     </S.Section>
   );
 };

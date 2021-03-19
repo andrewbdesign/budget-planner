@@ -3,38 +3,42 @@ import lottie from 'lottie-web';
 
 import { Wrapper } from './styled';
 
-type LottieProps = {
+type Props = {
+  // TODO: Fix animationData any type
   animationData: any;
   name: string;
   loop?: boolean;
   className?: string;
+  maxWidth?: number;
+  maxHeight?: number;
 };
 
-const Lottie: FC<LottieProps> = ({
+const Lottie: FC<Props> = ({
   animationData,
-  loop = true,
   name,
+  loop = true,
   className,
+  maxWidth,
+  maxHeight,
 }) => {
-  // TODO: Fix any type
-  const element = useRef<any>(null);
-
+  const element = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(entry => {
-      const first = entry[0];
-      first.isIntersecting ? lottie.play(name) : lottie.pause(name);
+      const lottieElement = entry[0];
+      lottieElement.isIntersecting ? lottie.play(name) : lottie.pause(name);
     });
 
-    observer.observe(element.current);
-
-    lottie.loadAnimation({
-      animationData,
-      loop,
-      name,
-      container: element.current,
-      renderer: 'svg',
-      autoplay: true,
-    });
+    if (element.current) {
+      observer.observe(element.current);
+      lottie.loadAnimation({
+        animationData,
+        loop,
+        name,
+        container: element.current,
+        renderer: 'svg',
+        autoplay: true,
+      });
+    }
 
     return () => {
       observer.disconnect();
@@ -43,6 +47,7 @@ const Lottie: FC<LottieProps> = ({
   }, [animationData, loop, name]);
   return (
     <Wrapper
+      style={{ maxWidth: maxWidth + 'px', maxHeight: maxHeight + 'px' }}
       ref={element}
       className={['lottie', className, name].filter(Boolean).join(' ')}
       data-name={name}

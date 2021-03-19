@@ -15,7 +15,12 @@ const Hero: FC = () => (
         <S.Paragraph>{messages.paragraph}</S.Paragraph>
         <Button to="/register">{messages.cta}</Button>
       </div>
-      <Lottie animationData={lottieLaptop} name="laptop" />
+      <Lottie
+        animationData={lottieLaptop}
+        name="laptop"
+        maxWidth={536}
+        maxHeight={586}
+      />
     </Wrapper>
   </S.Section>
 );
