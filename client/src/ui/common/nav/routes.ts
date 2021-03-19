@@ -22,8 +22,4 @@ export const authLinks = [
     name: 'Profile',
     path: '/profile',
   },
-  {
-    name: 'Logout',
-    path: '/logout',
-  },
 ];

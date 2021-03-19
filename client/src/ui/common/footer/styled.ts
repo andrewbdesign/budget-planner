@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { gridSpacing } from 'ui/utils/spacing';
+
+const small = gridSpacing() * 2;
+const large = gridSpacing() * 4;
+
 export const Footer = styled.footer`
   background: #151a27;
   color: white;
-  padding: 50px 20px;
+  padding: ${large}px ${small}px;
 `;
 
 export const Container = styled.div`
@@ -15,16 +20,20 @@ export const Container = styled.div`
 
 export const Logo = styled.img`
   width: 180px;
-  margin-bottom: 10px;
+  margin-bottom: ${small}px;
 `;
 
 export const Wrapper = styled.div`
-  width: 100%;
+  max-width: 50%;
+`;
+
+export const LinkWrapper = styled.div`
+  width: 25%;
 `;
 
 export const Header = styled.h2`
   font-size: 1.6rem;
-  margin: 30px 0 0;
+  margin: ${large}px 0 0;
 `;
 
 export const StyledLink = styled(Link)`

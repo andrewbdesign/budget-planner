@@ -11,10 +11,10 @@ import setAuthToken from '../utils/setAuthToken';
 import Routes from './routing/Routes';
 
 // Components
-import { Navbar, Footer } from 'ui/elements';
+import { Navbar, Footer } from 'ui/common';
 
 import ScrollToTop from 'containers/ScrollToTop/ScrollToTop';
-import Landing from './landing/Landing';
+import Landing from 'pages/landing';
 import Alert from './layout/Alert';
 
 if (localStorage.token) setAuthToken(localStorage.token);
@@ -23,7 +23,6 @@ const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
-
   return (
     <Provider store={store}>
       <Fragment>

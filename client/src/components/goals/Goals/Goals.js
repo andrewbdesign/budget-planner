@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import Lottie from 'containers/Lottie/Lottie';
+import { Lottie } from 'ui/elements';
 import { numberWithCommas } from 'utils/numberFormatter';
 // import { TimelineMax, Power1 } from 'gsap';
 

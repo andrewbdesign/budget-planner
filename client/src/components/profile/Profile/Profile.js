@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { deleteAccount, getCurrentProfile } from 'actions/profile';
 import Loader from 'components/layout/Loader/Loader.js';
 import { numberWithCommas } from 'utils/numberFormatter';
-import Lottie from 'containers/Lottie/Lottie';
+import { Lottie } from 'ui/elements';
 import moment from 'moment';
 
 import './Profile.scss';

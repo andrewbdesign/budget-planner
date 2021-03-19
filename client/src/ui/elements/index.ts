@@ -1,2 +1,2 @@
-export { default as Navbar } from './nav';
-export { default as Footer } from './footer';
+export { default as Lottie } from './lottie';
+export { default as Button } from './button';
