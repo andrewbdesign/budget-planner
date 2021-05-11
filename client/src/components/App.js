@@ -11,7 +11,7 @@ import setAuthToken from '../utils/setAuthToken';
 import Routes from './routing/Routes';
 
 // Components
-import { Navbar, Footer } from 'ui/common';
+import { Footer } from 'ui/common';
 
 import ScrollToTop from 'containers/ScrollToTop/ScrollToTop';
 import Landing from 'pages/landing';
@@ -28,7 +28,6 @@ const App = () => {
       <Fragment>
         <Router>
           <ScrollToTop />
-          <Navbar />
           <div className="alert-container">
             <Alert />
           </div>

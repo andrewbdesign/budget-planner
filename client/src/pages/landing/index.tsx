@@ -7,10 +7,12 @@ import WriteDownYourGoals from './write-down-your-goals';
 import TrackDownEverything from './track-down-everything';
 import SeeYourSpendingLimit from './see-your-spending-limit';
 import CallToAction from './call-to-actions';
+import { Nav } from 'components/nav';
 
 const LandingPage: FC = () => {
   return (
     <>
+      <Nav />
       <Hero />
       <SetYourGoals />
       <Features />
