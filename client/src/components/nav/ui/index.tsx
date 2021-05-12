@@ -20,6 +20,7 @@ const Nav = () => {
   } = useValidateUser();
 
   const { email, password } = formData;
+
   return (
     <S.Nav>
       <S.Logo src={logo} alt="budget planner logo" />

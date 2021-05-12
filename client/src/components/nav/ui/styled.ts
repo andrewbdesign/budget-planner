@@ -55,7 +55,8 @@ export const Submit = styled.button`
   }
 
   :disabled {
-    background: grey;
+    background: #765f1a;
+    color: #1a1919;
     cursor: not-allowed;
   }
 `;

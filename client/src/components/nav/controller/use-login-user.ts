@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { login } from 'actions/auth';
 
 const useLoginUser = () => {
@@ -8,6 +9,7 @@ const useLoginUser = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const dispatch = useDispatch();
 
   const onHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -19,11 +21,11 @@ const useLoginUser = () => {
     setIsDisabled(password.length < 6 || email.length < 3);
   };
 
-  const onHandleSubmit = (e: FormEvent) => {
+  const onHandleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     const { email, password } = formData;
-    login(email, password);
+    dispatch(login(email, password));
   };
 
   return {
