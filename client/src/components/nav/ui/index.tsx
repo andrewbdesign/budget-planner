@@ -1,25 +1,44 @@
-import React from 'react';
-import { useLoginUser, useValidateUser } from '../controller';
+import React, { FC } from 'react';
+import { Redirect } from 'react-router-dom';
+
+import {
+  useLoginUser,
+  useValidateUser,
+  useAuthenticateUser,
+} from '../controller';
 import * as S from './styled';
 import logo from '../assets/logo.svg';
 
-const Nav = () => {
+// TODO
+// - if auth, show other pages
+// - if not auth, show login form
+// - Make respsonsive
+// - Move this component to AppRoot level
+// - Fix onChange
+// - Add spinner when validating
+
+const Nav: FC = () => {
   const {
-    formData,
     onHandleChange,
     onHandleSubmit,
+    formData,
     isLoading,
     isDisabled,
   } = useLoginUser();
 
   const {
-    isEmailError,
-    isPasswordError,
     onValidateEmail,
     onValidatePassword,
+    isEmailError,
+    isPasswordError,
   } = useValidateUser();
 
+  const { isAuthenticated } = useAuthenticateUser();
   const { email, password } = formData;
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <S.Nav>

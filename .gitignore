@@ -2,3 +2,4 @@ node_modules
 client/node_modules
 config/production.json
 .DS_Store
+client/.eslintcache
