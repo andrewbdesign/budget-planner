@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { login } from 'actions/auth';
 
 const useLoginUser = () => {
   const [formData, setFormData] = useState({
@@ -7,7 +8,6 @@ const useLoginUser = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [isError, setIsError] = useState(false);
 
   const onHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -15,44 +15,23 @@ const useLoginUser = () => {
       [e.target.name]: e.target.value,
     });
 
-    if (formData.email.length > 3 && formData.password.length > 3) {
-      setIsDisabled(false);
-      // setIsError(true);
-    } else {
-      setIsDisabled(true);
-      // setIsError(false);
-    }
+    const { email, password } = formData;
+    setIsDisabled(password.length < 6 || email.length < 3);
   };
 
   const onHandleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(formData);
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 4000);
-    // validateForm();
-    // if (errors.length === 0) {
-    //   login(email, password);
-    // }
-  };
-
-  const onHandleError = () => {
-    if (formData.email.length > 0 && formData.email.length < 6) {
-      setIsError(false);
-    } else {
-      setIsError(true);
-    }
+    const { email, password } = formData;
+    login(email, password);
   };
 
   return {
     onHandleSubmit,
     onHandleChange,
-    onHandleError,
     formData,
     isLoading,
     isDisabled,
-    isError,
   };
 };
 

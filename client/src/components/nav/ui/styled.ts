@@ -29,10 +29,10 @@ export const Label = styled.label`
   margin: 0 10px 0 20px;
 `;
 
-export const Input = styled.input`
-  border: none;
-  padding: 6px 10px;
-  font-size: 1.6rem;
+export const Input = styled.input<{ isError: boolean }>`
+  border: 2px solid ${props => (props.isError ? 'red' : 'transparent')};
+  padding: 4px 8px;
+  font-size: 1.4rem;
   box-sizing: border-box;
   background: white;
 `;
