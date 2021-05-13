@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Nav = styled.nav`
@@ -8,6 +8,7 @@ export const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  height: 60px;
 `;
 
 export const Logo = styled.img`
@@ -40,7 +41,6 @@ export const Input = styled.input<{ isError: boolean }>`
 export const Submit = styled.button`
   font-family: 'Roboto', sans-serif;
   border-radius: 4px;
-  padding: 8px 16px;
   border: none;
   margin: 0 8px;
   background: #ffc107;
@@ -50,13 +50,42 @@ export const Submit = styled.button`
   text-transform: uppercase;
   letter-spacing: 1px;
   min-width: 73px;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     background: #d39e00;
   }
 
   :disabled {
-    background: #765f1a;
     color: #1a1919;
     cursor: not-allowed;
+  }
+`;
+
+const spinAnimation = keyframes`
+ 0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+
+  &:after {
+    content: ' ';
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: ${spinAnimation} 1.2s linear infinite;
   }
 `;

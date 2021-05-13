@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from 'components/routing/PrivateRoute';
 
-import Register from 'components/auth/Register/Register';
+import { Register } from 'pages/register';
 import Login from 'components/auth/Login/Login';
 import CreateProfile from '../profile/CreateProfile';
 import EditProfile from '../profile/EditProfile';
@@ -19,7 +19,7 @@ import Logout from 'pages/logout';
 
 const Routes = () => {
   return (
-    <Fragment>
+    <>
       <Switch>
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
@@ -34,9 +34,8 @@ const Routes = () => {
         <PrivateRoute exact path="/create-goal" component={CreateGoal} />
         <PrivateRoute path="/edit-goal/:id" component={EditGoal} />
       </Switch>
-    </Fragment>
+    </>
   );
 };
 
-//
 export default Routes;

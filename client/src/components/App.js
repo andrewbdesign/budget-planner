@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Redux
@@ -16,6 +16,7 @@ import { Footer } from 'ui/common';
 import ScrollToTop from 'containers/ScrollToTop/ScrollToTop';
 import Landing from 'pages/landing';
 import Alert from './layout/Alert';
+import { Nav } from 'components/nav';
 
 if (localStorage.token) setAuthToken(localStorage.token);
 
@@ -25,19 +26,18 @@ const App = () => {
   }, []);
   return (
     <Provider store={store}>
-      <Fragment>
-        <Router>
-          <ScrollToTop />
-          <div className="alert-container">
-            <Alert />
-          </div>
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route component={Routes} />
-          </Switch>
-          <Footer />
-        </Router>
-      </Fragment>
+      <Router>
+        <Nav />
+        <ScrollToTop />
+        <div className="alert-container">
+          <Alert />
+        </div>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route component={Routes} />
+        </Switch>
+        <Footer />
+      </Router>
     </Provider>
   );
 };

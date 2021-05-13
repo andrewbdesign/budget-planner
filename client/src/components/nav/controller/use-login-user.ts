@@ -6,9 +6,9 @@ const useLoginUser = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    name: '',
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(true);
   const dispatch = useDispatch();
 
   const onHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -16,16 +16,19 @@ const useLoginUser = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-
-    const { email, password } = formData;
-    setIsDisabled(password.length < 6 || email.length < 3);
   };
 
   const onHandleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     const { email, password } = formData;
-    dispatch(login(email, password));
+    try {
+      await dispatch(login(email, password));
+      setIsLoading(false);
+    } catch (e) {
+      setIsLoading(false);
+      console.error(e);
+    }
   };
 
   return {
@@ -33,7 +36,6 @@ const useLoginUser = () => {
     onHandleChange,
     formData,
     isLoading,
-    isDisabled,
   };
 };
 
