@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from 'components/routing/PrivateRoute';
 
 import { Register } from 'pages/register';
-import Login from 'components/auth/Login/Login';
 import CreateProfile from '../profile/CreateProfile';
 import EditProfile from '../profile/EditProfile';
 import Profile from 'components/profile/Profile/Profile';
@@ -20,7 +19,6 @@ const Routes = () => {
     <>
       <Switch>
         <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/create-profile" component={CreateProfile} />
         <PrivateRoute exact path="/edit-profile" component={EditProfile} />

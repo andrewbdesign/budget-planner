@@ -7,7 +7,7 @@ import {
   useAuthenticateUser,
 } from '../controller';
 import * as S from './styled';
-import logo from '../assets/logo.svg';
+import logo from 'assets/images/logo-bp.svg';
 
 const Nav: FC = () => {
   const { onHandleChange, onLoginUser, formData, isLoading } = useLoginUser();
@@ -33,6 +33,7 @@ const Nav: FC = () => {
       <Link to="/">
         <S.Logo src={logo} alt="budget planner logo" />
       </Link>
+
       <S.Form onSubmit={onLoginUser}>
         <S.Label htmlFor="email">Email:</S.Label>
         <S.Input

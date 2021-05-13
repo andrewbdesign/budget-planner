@@ -11,7 +11,7 @@ export const FormWrapper = styled.div`
   padding: 30px;
   border-radius: 5px;
   cursor: pointer;
-  border-top: 5px solid $navy;
+  border-top: 5px solid #1d263d;
   box-shadow: 1px 1px 13px -1px rgba(0, 0, 0, 0.15);
   margin: 0 auto;
 `;

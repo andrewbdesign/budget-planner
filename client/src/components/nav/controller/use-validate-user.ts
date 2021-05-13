@@ -6,7 +6,7 @@ const useValidateUser = () => {
   const [isNameError, setIsNameError] = useState(false);
 
   const onValidateName = (name: string) => {
-    setIsNameError(name.length === 0);
+    setIsNameError(name.length > 0 && name.length < 2);
   };
 
   const onValidateEmail = (email: string) => {

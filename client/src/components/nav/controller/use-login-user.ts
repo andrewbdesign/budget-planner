@@ -27,7 +27,7 @@ const useLoginUser = () => {
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
-      console.error(e);
+      console.error('Error logging in user', e);
     }
   };
 
@@ -40,6 +40,7 @@ const useLoginUser = () => {
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
+      console.error('Error registering user', e);
     }
   };
 

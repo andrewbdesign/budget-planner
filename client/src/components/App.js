@@ -11,12 +11,11 @@ import setAuthToken from '../utils/setAuthToken';
 import Routes from './routing/Routes';
 
 // Components
-import { Footer } from 'ui/common';
+import { Nav, Footer } from 'components';
 
 import ScrollToTop from 'containers/ScrollToTop/ScrollToTop';
 import Landing from 'pages/landing';
 import Alert from './layout/Alert';
-import { Nav } from 'components/nav';
 
 if (localStorage.token) setAuthToken(localStorage.token);
 

@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Nav = styled.nav`
-  background: #101522;
+  background: #151a27;
   color: #cdcdcd;
   display: flex;
   justify-content: space-between;
