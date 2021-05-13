@@ -15,15 +15,12 @@ import CreateGoal from '../goals/CreateGoal';
 import EditGoal from '../goals/EditGoal';
 import MonthlyBills from '../dashboard/MonthlyBills/MonthlyBills';
 
-import Logout from 'pages/logout';
-
 const Routes = () => {
   return (
     <>
       <Switch>
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/logout" component={Logout} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/create-profile" component={CreateProfile} />
         <PrivateRoute exact path="/edit-profile" component={EditProfile} />

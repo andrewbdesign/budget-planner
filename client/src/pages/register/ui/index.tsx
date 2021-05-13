@@ -13,7 +13,7 @@ const Register: FC = () => {
     isPasswordError,
   } = useValidateUser();
 
-  const { formData, onHandleChange } = useLoginUser();
+  const { formData, onHandleChange, onRegisterUser } = useLoginUser();
   const { email, password, name } = formData;
 
   const isDisabled = password.length < 6 || email.length < 3;
@@ -22,8 +22,8 @@ const Register: FC = () => {
     <S.Section>
       <S.FormWrapper>
         <S.Heading>Register</S.Heading>
-        <S.Body>Your dreams are waiting {isNameError} asdf</S.Body>
-        <S.Form>
+        <S.Body>Your dreams are waiting</S.Body>
+        <S.Form onSubmit={onRegisterUser}>
           <S.Label htmlFor="name">Name:</S.Label>
 
           <S.Input
@@ -69,11 +69,10 @@ const Register: FC = () => {
             <S.WarningLabel>Please enter valid password</S.WarningLabel>
           )}
 
-          <S.Body>
+          <S.Label>
             Show password
             <S.Checkbox />
-          </S.Body>
-
+          </S.Label>
           <S.Button disabled={isDisabled}>Submit</S.Button>
         </S.Form>
       </S.FormWrapper>

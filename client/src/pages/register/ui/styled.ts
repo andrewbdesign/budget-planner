@@ -10,7 +10,6 @@ export const FormWrapper = styled.div`
   background: #fff;
   padding: 30px;
   border-radius: 5px;
-  transition: background 0.2s ease-in-out;
   cursor: pointer;
   border-top: 5px solid $navy;
   box-shadow: 1px 1px 13px -1px rgba(0, 0, 0, 0.15);
@@ -63,7 +62,7 @@ export const Button = styled.button`
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.3s ease-in-out;
-  display: inline-block;
+  display: block;
   margin-top: 20px;
   background: #ffc107;
   color: #212121;

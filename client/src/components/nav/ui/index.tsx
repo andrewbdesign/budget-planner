@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import {
   useLoginUser,
@@ -10,12 +10,7 @@ import * as S from './styled';
 import logo from '../assets/logo.svg';
 
 const Nav: FC = () => {
-  const {
-    onHandleChange,
-    onHandleSubmit,
-    formData,
-    isLoading,
-  } = useLoginUser();
+  const { onHandleChange, onLoginUser, formData, isLoading } = useLoginUser();
 
   const {
     onValidateEmail,
@@ -35,8 +30,10 @@ const Nav: FC = () => {
 
   return (
     <S.Nav>
-      <S.Logo src={logo} alt="budget planner logo" />
-      <S.Form onSubmit={onHandleSubmit}>
+      <Link to="/">
+        <S.Logo src={logo} alt="budget planner logo" />
+      </Link>
+      <S.Form onSubmit={onLoginUser}>
         <S.Label htmlFor="email">Email:</S.Label>
         <S.Input
           isError={isEmailError}

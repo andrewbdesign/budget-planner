@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from 'actions/auth';
+import { login, register } from 'actions/auth';
 
 const useLoginUser = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const useLoginUser = () => {
     });
   };
 
-  const onHandleSubmit = async (e: FormEvent) => {
+  const onLoginUser = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     const { email, password } = formData;
@@ -31,8 +31,21 @@ const useLoginUser = () => {
     }
   };
 
+  const onRegisterUser = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const { name, email, password } = formData;
+    try {
+      await dispatch(register({ name, email, password }));
+      setIsLoading(false);
+    } catch (e) {
+      setIsLoading(false);
+    }
+  };
+
   return {
-    onHandleSubmit,
+    onLoginUser,
+    onRegisterUser,
     onHandleChange,
     formData,
     isLoading,
