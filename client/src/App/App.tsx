@@ -8,14 +8,13 @@ import { loadUser } from 'actions/auth';
 import setAuthToken from '../utils/setAuthToken';
 
 // Routes
-import Routes from './routing/Routes';
+import Routes from 'components/routing/Routes';
 
 // Components
 import { Nav, Footer } from 'components';
 
-import ScrollToTop from 'containers/ScrollToTop/ScrollToTop';
 import Landing from 'pages/landing';
-import Alert from './layout/Alert';
+import Alert from 'components/layout/alert';
 
 if (localStorage.token) setAuthToken(localStorage.token);
 
@@ -27,7 +26,6 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Nav />
-        <ScrollToTop />
         <div className="alert-container">
           <Alert />
         </div>

@@ -25,7 +25,7 @@ const Footer: FC = () => {
           <S.List>
             {pages.map(({ path, name }) => {
               return (
-                <li>
+                <li key={path}>
                   <S.StyledLink to={path}>{name}</S.StyledLink>
                 </li>
               );

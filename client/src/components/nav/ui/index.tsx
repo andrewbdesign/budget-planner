@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import {
   useLoginUser,
@@ -30,36 +30,38 @@ const Nav: FC = () => {
 
   return (
     <S.Nav>
-      <Link to="/">
-        <S.Logo src={logo} alt="budget planner logo" />
-      </Link>
+      <S.Wrapper>
+        <S.LogoLink to="/">
+          <S.Logo src={logo} alt="budget planner logo" />
+        </S.LogoLink>
 
-      <S.Form onSubmit={onLoginUser}>
-        <S.Label htmlFor="email">Email:</S.Label>
-        <S.Input
-          isError={isEmailError}
-          id="email"
-          name="email"
-          type="email"
-          value={email}
-          onChange={onHandleChange}
-          onBlur={() => onValidateEmail(email)}
-        />
-        <S.Label htmlFor="password">Password:</S.Label>
-        <S.Input
-          isError={isPasswordError}
-          id="password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={onHandleChange}
-          onBlur={() => onValidatePassword(password)}
-        />
-        <S.Submit disabled={isDisabled}>
-          {isLoading ? <S.Spinner className="lds-dual-ring" /> : 'Login'}
-        </S.Submit>
-        <S.StyledLink to="/register">Register</S.StyledLink>
-      </S.Form>
+        <S.Form onSubmit={onLoginUser}>
+          <S.Label htmlFor="email">Email:</S.Label>
+          <S.Input
+            isError={isEmailError}
+            id="email"
+            name="email"
+            type="email"
+            value={email}
+            onChange={onHandleChange}
+            onBlur={() => onValidateEmail(email)}
+          />
+          <S.Label htmlFor="password">Password:</S.Label>
+          <S.Input
+            isError={isPasswordError}
+            id="password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={onHandleChange}
+            onBlur={() => onValidatePassword(password)}
+          />
+          <S.Submit disabled={isDisabled}>
+            {isLoading ? <S.Spinner className="lds-dual-ring" /> : 'Login'}
+          </S.Submit>
+          <S.StyledLink to="/register">Register</S.StyledLink>
+        </S.Form>
+      </S.Wrapper>
     </S.Nav>
   );
 };

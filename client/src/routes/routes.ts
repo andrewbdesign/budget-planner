@@ -1,5 +1,4 @@
 import { Register } from 'pages/register';
-import Login from 'components/auth/Login/Login';
 import CreateProfile from 'components/profile/CreateProfile';
 import EditProfile from 'components/profile/EditProfile';
 import Profile from 'components/profile/Profile/Profile';
@@ -21,11 +20,6 @@ export const ROUTES: Route[] = [
     path: '/register',
     exact: true,
     component: Register,
-  },
-  {
-    path: '/login',
-    exact: true,
-    component: Login,
   },
 ];
 

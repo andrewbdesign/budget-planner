@@ -4,15 +4,24 @@ import { Link } from 'react-router-dom';
 export const Nav = styled.nav`
   background: #151a27;
   color: #cdcdcd;
+`;
+
+export const Wrapper = styled.div`
+  padding: 10px 20px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  height: 60px;
 `;
 
 export const Logo = styled.img`
   width: 170px;
+  height: 26px;
+`;
+
+export const LogoLink = styled(Link)`
+  width: 170px;
+  height: 26px;
 `;
 
 export const StyledLink = styled(Link)`

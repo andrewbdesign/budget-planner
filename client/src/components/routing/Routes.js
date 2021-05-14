@@ -4,10 +4,12 @@ import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from 'components/routing/PrivateRoute';
 
 import { Register } from 'pages/register';
+// import { Dashboard } from 'pages/dashboard';
+import Dashboard from 'components/dashboard/Dashboard';
+
 import CreateProfile from '../profile/CreateProfile';
 import EditProfile from '../profile/EditProfile';
 import Profile from 'components/profile/Profile/Profile';
-import Dashboard from '../dashboard/Dashboard';
 import Expenses from '../dashboard/Expenses/Expenses';
 import Goals from 'components/goals/Goals/Goals';
 import CreateGoal from '../goals/CreateGoal';

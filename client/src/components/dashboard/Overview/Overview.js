@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -25,10 +25,12 @@ const Overview = ({
   goal: { goals, loading, goalFocus },
   setGoalFocus,
 }) => {
+  // on Mount get goals
   useEffect(() => {
     getGoals();
   }, [getGoals]);
 
+  // Handle dates
   const today = moment().date();
   let payDayNumber = moment(profile.payDay).date();
   let currentMonth = moment().month();
@@ -89,57 +91,48 @@ const Overview = ({
     ));
   };
 
-  const renderGoalsMenu = () => {
-    if (goals.length > 0 && !loading) {
-      return goals.map((goal, index) => {
-        const { goalTitle, _id } = goal;
-        return (
-          <div
-            key={_id}
-            className={`goal-item ${index === goalFocus && 'active'}`}
-            onClick={() => setGoalFocus(index)}
-          >
-            {goalTitle}
-          </div>
-        );
-      });
-    } else {
-      return <div></div>;
-    }
-  };
-
-  if (goals.length > 0) {
-    return (
-      <div className="overview">
-        {!loading && goals.length > 0 && (
-          <Fragment>
-            <div className="goals__section">
-              <div className="goals-menu">
-                {renderGoalsMenu()}
-                <Link to="/create-goal" className="goal-item">
-                  Add new goal <img src={PlusIcon} alt="plus icon" />{' '}
-                </Link>
-              </div>
-            </div>
-          </Fragment>
-        )}
-
-        <div className="overview__heading">
-          <h1>
-            Hello, {user && <span>{user.name}</span>}. It is{' '}
-            {moment().format('MMM Do, YYYY')}
-          </h1>
-          <p>Welcome to your savings overview</p>
-        </div>
-        <div className="overview__body">
-          <div className="overview__section"></div>
-          <div className="overview__stats">{renderOverviewStats()}</div>
-        </div>
-      </div>
-    );
+  if (goals.length === 0) {
+    return <div>Nothing to show...</div>;
   }
 
-  return <div></div>;
+  return (
+    <div className="overview">
+      {/* Goal selector menu */}
+      <div className="goals__section">
+        <div className="goals-menu">
+          {goals.map((goal, index) => {
+            const { goalTitle, _id } = goal;
+            return (
+              <div
+                key={_id}
+                className={`goal-item ${index === goalFocus && 'active'}`}
+                onClick={() => setGoalFocus(index)}
+              >
+                {goalTitle}
+              </div>
+            );
+          })}
+          <Link to="/create-goal" className="goal-item">
+            Add new goal <img src={PlusIcon} alt="plus icon" />{' '}
+          </Link>
+        </div>
+      </div>
+
+      {/* Heading */}
+      <div className="overview__heading">
+        <h1>
+          Hello, {user && <span>{user.name}</span>}. It is{' '}
+          {moment().format('MMM Do, YYYY')}
+        </h1>
+        <p>Welcome to your savings overview</p>
+      </div>
+      {/* Body */}
+      <div className="overview__body">
+        <div className="overview__section"></div>
+        <div className="overview__stats">{renderOverviewStats()}</div>
+      </div>
+    </div>
+  );
 };
 
 Overview.propTypes = {
