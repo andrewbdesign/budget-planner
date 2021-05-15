@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 
 import * as S from './styled';
 import Header from './header';
+import Menu from './menu';
+
 import moment from 'moment';
 // import { getTotalSum } from 'utils/bill';
 
@@ -33,8 +35,8 @@ const Dashboard = () => {
   });
   const { name } = profile.user;
 
-  // const goal = useSelector((state: RootState) => state.goal);
-  // const { goals, goalFocus } = goal;
+  const goal = useSelector((state: RootState) => state.goal);
+  const { goals, goalFocus, loading } = goal;
 
   // @TODO
   // const daysTilNextPay = 10;
@@ -87,7 +89,10 @@ const Dashboard = () => {
 
   return (
     <S.Section>
-      <Header name={name} todaysDate={todaysDate} stats={stats} />
+      <S.Wrapper>
+        <Menu goals={goals} loading={loading} goalFocus={goalFocus} />
+        <Header name={name} todaysDate={todaysDate} stats={stats} />
+      </S.Wrapper>
     </S.Section>
   );
 };

@@ -12,6 +12,11 @@ export const Section = styled.section`
   );
 `;
 
+export const Wrapper = styled.div`
+  width: 90%;
+  margin: 0 auto;
+`;
+
 // .overview__heading {
 
 //   span {
