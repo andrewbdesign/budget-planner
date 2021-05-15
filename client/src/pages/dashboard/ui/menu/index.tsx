@@ -1,25 +1,23 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { useGoalStats } from '../../controller';
+
 import * as S from './styled';
 
 import PlusIcon from 'assets/icons/plus.svg';
 import { setGoalFocus } from 'actions/goal';
-import { Goal } from '../../types';
 
-type Props = {
-  goals: Goal[];
-  loading: boolean;
-  goalFocus: number;
-};
-
-const Menu: FC<Props> = ({ goals, loading, goalFocus }) => {
+const Menu: FC = () => {
   const dispatch = useDispatch();
 
-  if (loading) {
+  const { goals, goalFocus, isLoadingGoals } = useGoalStats();
+
+  if (isLoadingGoals) {
     return <div>Loading...</div>;
   }
 
+  // @TODO Add default view when there are no goals
   if (goals.length === 0) {
     return <div>You don't have any goals.. Create a new one here</div>;
   }

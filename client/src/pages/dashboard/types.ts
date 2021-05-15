@@ -19,6 +19,12 @@ export type Profile = {
   };
 };
 
+export type Expense = {
+  expenses: any;
+  loading: boolean;
+  monthFocus: number | null;
+};
+
 // @TODO: Import type from store
 export type RootState = {
   profile: Profile;
@@ -27,4 +33,5 @@ export type RootState = {
     goals: Goal[];
     goalFocus: number;
   };
+  expense: Expense;
 };

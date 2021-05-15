@@ -1,6 +1,6 @@
 const useDaysTilNextPay = () => {
   const daysTilNextPay = 3;
-  return { daysTilNextPay };
+  return daysTilNextPay;
 };
 
 export default useDaysTilNextPay;

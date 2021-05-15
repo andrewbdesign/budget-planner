@@ -1,33 +1,26 @@
 import React, { FC } from 'react';
+import moment from 'moment';
+
 import { numberWithCommas } from 'utils/numberFormatter';
 import * as S from './styled';
 
-import { Profile } from '../../types';
-import { useOverviewStats } from '../../controller';
+import { useOverviewStats, useProfileStats } from '../../controller';
 
-type Props = {
-  name: string;
-  todaysDate: string;
-  loading: boolean;
-  profile: Profile;
-};
+const Header: FC = () => {
+  const { isLoadingProfile, profile } = useProfileStats();
 
-const Header: FC<Props> = ({ name, todaysDate, loading, profile }) => {
-  if (loading) {
+  if (isLoadingProfile) {
     <div>Loading...</div>;
   }
 
-  if (profile.loading) {
-    <div>Loading...</div>;
-  }
-
+  const todaysDate = moment().format('MMM Do, YYYY');
   const stats = useOverviewStats();
 
   return (
     <>
       <S.NavHeader>
         <S.Heading>
-          Hello, <span>{name}</span>! Today is {todaysDate}.
+          Hello, <span>{profile.user.name}</span>! Today is {todaysDate}.
         </S.Heading>
         <S.Description>Welcome to your savings overview</S.Description>
       </S.NavHeader>

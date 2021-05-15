@@ -1,7 +1,10 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../types';
-import { getCurrentMonth, getTotalSum, Bill } from 'utils';
-import { useDaysTilNextPay } from './';
+import { getCurrentMonth, getTotalSum } from 'utils';
+import {
+  useDaysTilNextPay,
+  useProfileStats,
+  useGoalStats,
+  useExpensesStats,
+} from './';
 
 type Stats = {
   title: string;
@@ -10,60 +13,53 @@ type Stats = {
 };
 
 const useOverviewStats = () => {
-  const { goal, profile } = useSelector((state: RootState) => state);
-  const { goals, goalFocus } = goal;
-  const { currentBankBalance } = profile.profile;
-  const { daysTilNextPay } = useDaysTilNextPay();
+  const { isLoadingProfile, profile } = useProfileStats();
+  const { isLoadingGoals, goalFocus, goals } = useGoalStats();
+  const { isLoadingExpenses, expenses } = useExpensesStats();
+  const daysTilNextPay = useDaysTilNextPay();
 
-  // @TODO Load bills properly
-  const expenses: Bill[] = [
-    {
-      name: 'asdf',
-      amount: 30,
-    },
-    {
-      name: 'asd2f',
-      amount: 330,
-    },
-  ];
-
-  // if goals are still loading, return empty string;
-  if (goal.loading) {
+  // if profile or goals still loading,
+  // then return an empty array
+  if (isLoadingProfile || isLoadingGoals || isLoadingExpenses) {
     return [];
   }
 
-  const currentGoal = goals[goalFocus];
   const currentMonth = getCurrentMonth();
+  const currentGoal = goals[goalFocus];
+  const { goalTitle, goalTarget, totalSaved } = currentGoal;
 
   const overviewStats: Stats[] = [
     {
-      title: `Target goal for: ${currentGoal.goalTitle}`,
-      value: currentGoal.goalTarget,
+      title: `Target goal for: ${goalTitle}`,
+      value: goalTarget,
       id: '1',
     },
     {
       title: 'Current savings for goal',
-      value: currentGoal.totalSaved,
+      value: totalSaved,
       id: '2',
     },
     {
       title: 'Money left to save',
-      value: currentGoal.goalTarget - currentGoal.totalSaved,
+      value: goalTarget - totalSaved,
       id: '3',
     },
     {
       title: 'Current balance',
-      value: currentBankBalance,
+      value: profile.currentBankBalance,
       id: '4',
     },
     {
       title: 'Daily limit',
-      value: parseFloat((currentBankBalance / daysTilNextPay).toFixed(2)),
+      value: parseFloat(
+        (profile.currentBankBalance / daysTilNextPay).toFixed(2),
+      ),
       id: '5',
     },
     {
       title: `${currentMonth} Expenses`,
-      value: expenses ? parseFloat(getTotalSum(expenses).toFixed(2)) : 0,
+      value:
+        expenses === null ? 0 : parseFloat(getTotalSum(expenses).toFixed(2)),
       id: '6',
     },
   ];
