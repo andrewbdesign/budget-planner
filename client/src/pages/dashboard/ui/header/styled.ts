@@ -35,11 +35,13 @@ export const Description = styled.p`
   font-size: 1.3rem;
 `;
 
-export const OverviewStats = styled.div`
-  column-count: 1;
+export const OverviewStats = styled.ul`
+  column-count: 3;
   width: 100%;
+  padding: 0;
+  list-style: none;
+`;
 
-  div {
-    padding-bottom: 10px;
-  }
+export const Stat = styled.li`
+  padding-bottom: 10px;
 `;

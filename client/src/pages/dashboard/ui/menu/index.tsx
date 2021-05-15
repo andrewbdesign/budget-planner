@@ -5,12 +5,7 @@ import * as S from './styled';
 
 import PlusIcon from 'assets/icons/plus.svg';
 import { setGoalFocus } from 'actions/goal';
-
-type Goal = {
-  goal: string;
-  goalTitle: string;
-  _id: string;
-};
+import { Goal } from '../types';
 
 type Props = {
   goals: Goal[];
@@ -32,11 +27,11 @@ const Menu: FC<Props> = ({ goals, loading, goalFocus }) => {
   return (
     <S.Wrapper>
       <S.Menu>
-        {goals.map(({ goalTitle, _id }, index) => {
+        {goals.map(({ goalTitle }, index) => {
           const isActive = index === goalFocus;
           return (
             <S.GoalItem
-              key={_id}
+              key={index}
               isActive={isActive}
               onClick={() => dispatch(setGoalFocus(index))}
             >
