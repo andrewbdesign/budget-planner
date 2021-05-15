@@ -7,10 +7,11 @@ import Menu from './menu';
 
 import moment from 'moment';
 
-import { RootState } from './types';
+import { RootState } from '../types';
 
 const Dashboard = () => {
   const profile = useSelector((state: RootState) => {
+    console.log(state);
     return state.profile;
   });
   const { name } = profile.profile.user;
@@ -31,9 +32,7 @@ const Dashboard = () => {
         <Header
           name={name}
           todaysDate={todaysDate}
-          goals={goals}
           loading={loading}
-          goalFocus={goalFocus}
           profile={profile}
         />
       </S.Wrapper>

@@ -5,7 +5,7 @@ import * as S from './styled';
 
 import PlusIcon from 'assets/icons/plus.svg';
 import { setGoalFocus } from 'actions/goal';
-import { Goal } from '../types';
+import { Goal } from '../../types';
 
 type Props = {
   goals: Goal[];
